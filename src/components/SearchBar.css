@@ -1,0 +1,35 @@
+.search-container {
+  display:block;
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 145vh;
+  z-index: auto;
+  margin-bottom: 0px;
+  line-height: 21px;
+}
+
+.titulo{
+  text-align: center;
+  margin: 40px;
+}
+
+.text-black{
+  text-align: center;
+  line-height: 35px;
+
+}
+
+.body-card{
+  text-align: center;
+}
+
+
+.tabla{
+  min-height: 80px;
+  min-width: 1200px;
+
+}
+

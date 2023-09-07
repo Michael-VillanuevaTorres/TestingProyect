@@ -1,0 +1,864 @@
+{
+	"info": {
+		"_postman_id": "b061b9a1-c316-4a73-867e-7e20cd771b3b",
+		"name": "Endpoints API IS2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27523090",
+		"_collection_link": "https://universal-firefly-533538.postman.co/workspace/IS2~23bc7984-37fb-4ea4-b513-bff844becc54/collection/27084407-b061b9a1-c316-4a73-867e-7e20cd771b3b?action=share&creator=27523090&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Add Reporte",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"postman asd\",\r\n    \"description\":\"tesdsteo desde postman asdasies\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/reports/add?id_product=2&id_cliente=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reports",
+						"add"
+					],
+					"query": [
+						{
+							"key": "id_product",
+							"value": "2"
+						},
+						{
+							"key": "id_cliente",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Comment to Reporte",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\":\"testeo 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/reports/comments?id_report=5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reports",
+						"comments"
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Like to Reporte",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\":\"comentario enviado desde postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/reports/like?id_report=26&id_user=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reports",
+						"like"
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "26"
+						},
+						{
+							"key": "id_user",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3087] Update estado of Reporte",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\":\"testeo 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/reports/update/estado?id_report=31&id_estado=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reports",
+						"update",
+						"estado"
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "31"
+						},
+						{
+							"key": "id_estado",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3091] Add/Update dev to reporte",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"postman test\",\r\n    \"description\":\"testeo desde postman asies\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/reports/add/developer/?id_report=36&id_dev=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reports",
+						"add",
+						"developer",
+						""
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "36"
+						},
+						{
+							"key": "id_dev",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3085] Add solicitud de reasignation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"motivo\": \"Your motivo here\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/reasignacion/add/?id_report=31&id_developer=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reasignacion",
+						"add",
+						""
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "31"
+						},
+						{
+							"key": "id_developer",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar nivel de prioridad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/reports/update/prioridad?id_report=26&id_prioridad=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reports",
+						"update",
+						"prioridad"
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "26"
+						},
+						{
+							"key": "id_prioridad",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get \"x\" Amount of Reportes in \"y\" Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/reports/get?quantity=5&id_product=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reports",
+						"get"
+					],
+					"query": [
+						{
+							"key": "quantity",
+							"value": "5"
+						},
+						{
+							"key": "id_product",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Comentarios in a Reporte",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/comments/get?id_report=4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"comments",
+						"get"
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reporte",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/report/get?id_report=4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report",
+						"get"
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Reportes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/reports/all",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reports",
+						"all"
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get developers of a product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/products/get/developers?id_product=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"products",
+						"get",
+						"developers"
+					],
+					"query": [
+						{
+							"key": "id_product",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get info of developer / revisar si borrar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/dev/info/?id_dev=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"dev",
+						"info",
+						""
+					],
+					"query": [
+						{
+							"key": "id_dev",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3080] Get all Reportes asignados de un desarrollador",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/dev/reportes/?id_dev=3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"dev",
+						"reportes",
+						""
+					],
+					"query": [
+						{
+							"key": "id_dev",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3088] Get all possible estados from a report",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/reports/check/estados?id_report=4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reports",
+						"check",
+						"estados"
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3090] Get all reports no asignados from a producto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/products/get/reports?id_product=3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"products",
+						"get",
+						"reports"
+					],
+					"query": [
+						{
+							"key": "id_product",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3093] Get the number of all the reportes from a dev and the number of those who are from a specific product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/dev/all/report-product/?id_dev=3&id_product=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"dev",
+						"all",
+						"report-product",
+						""
+					],
+					"query": [
+						{
+							"key": "id_dev",
+							"value": "3"
+						},
+						{
+							"key": "id_product",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3094] Get all reportes from a specific product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/products/get/all_reports?id_product=3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"products",
+						"get",
+						"all_reports"
+					],
+					"query": [
+						{
+							"key": "id_product",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3082] Get all the reportes from the products asociated to the dev id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/dev/all-reportes-related-to-products/?id_dev=3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"dev",
+						"all-reportes-related-to-products",
+						""
+					],
+					"query": [
+						{
+							"key": "id_dev",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3114 & 3096] Get all solicitudes de rasignacion of a product/project ademas de nombre y titulo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/reasignacion/get/all/product/?id_product=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reasignacion",
+						"get",
+						"all",
+						"product",
+						""
+					],
+					"query": [
+						{
+							"key": "id_product",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3097] Get motivo de reasignacion from a report",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/reasignacion/get/motivo/report/?id_report=31",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reasignacion",
+						"get",
+						"motivo",
+						"report",
+						""
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all prioridades",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/reports/prioridad/all",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reports",
+						"prioridad",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all liked reports",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/user/liked/?id_user=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"liked",
+						""
+					],
+					"query": [
+						{
+							"key": "id_user",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all reports made by user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/user/reports/?id_user=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"reports",
+						""
+					],
+					"query": [
+						{
+							"key": "id_user",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[3115 & 3099] Delete peticion de reasignacion",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/reasignacion/delete/?id_report=31&id_dev=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"reasignacion",
+						"delete",
+						""
+					],
+					"query": [
+						{
+							"key": "id_report",
+							"value": "31"
+						},
+						{
+							"key": "id_dev",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
