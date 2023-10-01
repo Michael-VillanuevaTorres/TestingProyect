@@ -1,4 +1,4 @@
-from ..database import db 
+from .. import db 
 from flask import Blueprint, jsonify, request
 
 product_controller = Blueprint('product_controller', __name__)
