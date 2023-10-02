@@ -6,66 +6,112 @@ encargado_controller = Blueprint('encargado_controller', __name__)
 #ENDPOINT API para agregar una solicitud de reasignacion a la BD
 @encargado_controller.route('/reasignacion/add/', methods=['POST'])
 def add_reasingation_petition():
-    data=request.json
+    data = request.json
     id_report = request.args.get('id_report')
     id_developer = request.args.get('id_developer')
-    if db.reporte.query.filter_by(id=id_report).first() == None:
-        return jsonify({'message': 'The id_report is not in the database'}), 400
-    if db.desarrollador.query.filter_by(id=id_developer).first() == None:
-        return jsonify({'message': 'The id_dev is not in the database'}), 400
-    if db.solicitud_reasignacion.query.filter_by(id_dev=id_developer,id_reporte = id_report).first() != None:
-        return jsonify({'message': 'The id_dev is already in the database'}), 400
-    add_solicitud_reasignacion(id_report,id_developer, data['motivo'])
-    db.session.commit()
-    return jsonify({'message': 'solicitud de reasignacion agregada exitosamente.'}), 201
+    # Validaciones y manejo de errores
+    result = add_solicitud_reasignacion(id_report, id_developer, data['motivo'])
+    if result['success']:
+        db.session.commit()
+        return jsonify({'message': 'Solicitud de reasignacion agregada exitosamente.'}), 201
+    else:
+        return jsonify({'message': result['message']}), 400
+
+def add_solicitud_reasignacion(id_report, id_developer, motivo):
+    if not db.reporte.query.filter_by(id=id_report).first():
+        return {'success': False, 'message': 'The id_report is not in the database'}
+
+    if not db.desarrollador.query.filter_by(id=id_developer).first():
+        return {'success': False, 'message': 'The id_dev is not in the database'}
+
+    if db.solicitud_reasignacion.query.filter_by(id_dev=id_developer, id_reporte=id_report).first():
+        return {'success': False, 'message': 'The id_dev is already in the database'}
+
+    reasignation = db.solicitud_reasignacion(id_report, id_developer, motivo)
+    db.session.add(reasignation)
+    return {'success': True}  
+
 
 @encargado_controller.route('/reasignacion/delete/', methods=['DELETE'])
 def delete_reasingation_petition():
     id_report = request.args.get('id_report')
     id_dev = request.args.get('id_dev')
-    petition = db.solicitud_reasignacion.query.get_or_404([id_dev,id_report])
+    
+    delete_solicitud_reasignacion(id_report, id_dev)
+    
+    return jsonify({'message': 'Solicitud de reasignacion borrada exitosamente.'}), 201
+
+def delete_solicitud_reasignacion(id_report, id_dev):
+    petition = db.solicitud_reasignacion.query.get_or_404([id_dev, id_report])
     db.session.delete(petition)
     db.session.commit()
-    return jsonify({'message': 'solicitud de reasignacion borrada exitosamente.'}), 201
+
 
 @encargado_controller.route('/reasignacion/get/all/product/', methods=['GET'])
 def get_all_reasignation_petitions_from_a_specific_product():
     id_product = request.args.get('id_product')
-    if db.producto.query.filter_by(id=id_product).first() == None:
+    if db.producto.query.filter_by(id=id_product).first() is None:
         return jsonify({'message': 'The id_product is not in the database'}), 400
-    reports = db.reporte.query.filter_by(id_producto=id_product).all()
-    reasignacion_jsons = []
+
+    reasignation_jsons = get_reasignation_petitions_by_product_id(id_product)
+    return jsonify(reasignation_jsons), 200
+
+def get_reasignation_petitions_by_product_id(product_id):
+    reports = db.reporte.query.filter_by(id_producto=product_id).all()
+    reasignation_jsons = []
     for report in reports:
         petitions = db.solicitud_reasignacion.query.filter_by(id_reporte=report.id).all()
-        #also get the name of the developer and title of the report
         for petition in petitions:
-            petition_json = {}
-            petition_json['id_report'] = petition.id_reporte
-            petition_json['id_developer'] = petition.id_dev
-            petition_json['date'] = petition.fecha
-            petition_json['motivo'] = petition.motivo
-            petition_json['developer_name'] = db.desarrollador.query.filter_by(id=petition.id_dev).first().nombre
-            report = db.reporte.query.filter_by(id=petition.id_reporte).first()
-            petition_json['report_title'] = report.titulo
-            petition_json['id_prioridad'] = report.id_prioridad
-            reasignacion_jsons.append(petition_json)
-    return jsonify(reasignacion_jsons), 200
+            petition_json = format_petition(petition)
+            reasignation_jsons.append(petition_json)
+    return reasignation_jsons
+
+def format_petition(petition):
+    petition_json = {
+        'id_report': petition.id_reporte,
+        'id_developer': petition.id_dev,
+        'date': petition.fecha,
+        'motivo': petition.motivo,
+        'developer_name': get_developer_name(petition.id_dev),
+        'report_title': get_report_title(petition.id_reporte),
+        'id_prioridad': get_report_priority(petition.id_reporte)
+    }
+    return petition_json
+
+def get_developer_name(dev_id):
+    developer = db.desarrollador.query.filter_by(id=dev_id).first()
+    return developer.nombre
+
+def get_report_title(report_id):
+    report = db.reporte.query.filter_by(id=report_id).first()
+    return report.titulo
+
+def get_report_priority(report_id):
+    report = db.reporte.query.filter_by(id=report_id).first()
+    return report.id_prioridad
 
 @encargado_controller.route('/reasignacion/get/motivo/report/', methods=['GET'])
 def get_motivo_reasignation_petition_from_a_specific_report():
     id_report = request.args.get('id_report')
-    if db.reporte.query.filter_by(id=id_report).first() == None:
+  
+    if not check_report_exists(id_report):
         return jsonify({'message': 'The id_report is not in the database'}), 400
-    #check is the id_report is in the solicitud_reasignacion table
-    if db.solicitud_reasignacion.query.filter_by(id_reporte=id_report).first() == None:
+    if not check_report_in_solicitud_reasignacion(id_report):
         return jsonify({'message': 'The id_report is not in the solicitud_reasignacion table'}), 400
-    petitions = db.solicitud_reasignacion.query.filter_by(id_reporte=id_report).all()
-    petition = petitions[0]
-    petition_json = {}
-    petition_json['motivo'] = petition.motivo
-    return jsonify(petition_json), 200
+    motivo = get_motivo_reasignation_petition(id_report)
+    if motivo is None:
+        return jsonify({'message': 'No reasignation petition found for the id_report'}), 400
+    return jsonify({'motivo': motivo}), 200
 
-def add_solicitud_reasignacion(id_report,id_developer, motivo):
-    reasignation = db.solicitud_reasignacion(id_report,id_developer,motivo)
-    db.session.add(reasignation)
-    db.session.commit()
+def get_motivo_reasignation_petition(report_id):
+    petitions = db.solicitud_reasignacion.query.filter_by(id_reporte=report_id).all()
+    if not petitions:
+        return None
+    return petitions[0].motivo
+
+def check_report_exists(report_id):
+    return db.reporte.query.filter_by(id=report_id).first() is not None
+
+def check_report_in_solicitud_reasignacion(report_id):
+    return db.solicitud_reasignacion.query.filter_by(id_reporte=report_id).first() is not None
+
