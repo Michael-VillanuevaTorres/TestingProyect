@@ -1,23 +1,17 @@
 from app.user import bp as app
 
-@app.route('/reports/', methods=['GET'])
-def get_reportes_from_dev():
+@app.route('/reports', methods=['GET'])
+def get_actives_reports_from_developer():
     pass
 
-@app.route('/all/report-product/', methods=['GET'])
-def get_all_reports_and_products():
+@app.route('number/product/reports/all', methods=['GET'])
+def get_number_of_total_reports_and_reports_related_to_product_from_developer():
     pass
 
-@app.route('/all-reportes-related-to-products/', methods=['GET'])
-def get_all_reports_related_to_products():
+@app.route('/product/reports/all', methods=['GET'])
+def get_all_reports_from_products_related_to_developer():
     pass
 
-@app.route('/info/', methods=['GET'])
-def get_dev_info():
+@app.route('/get', methods=['GET'])
+def get_developer():
     pass    
-
-async def add_cliente(nombre, email):
-    pass
-
-async def add_id_rol(nombre):
-    pass

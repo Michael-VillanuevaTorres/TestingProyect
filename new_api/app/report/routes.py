@@ -1,6 +1,6 @@
 from app.report import bp as app
 
-@app.route('/get/comments', methods=['GET'])
+@app.route('/comments', methods=['GET'])
 def get_comments_form_report():
     pass
 
@@ -16,32 +16,47 @@ def add_like_to_comment():
 def add_report():
     pass
 
-@app.route('/get', methods=['GET'])
-def get_report():
+@app.route('/get/more', methods=['GET'])
+def get_number_of_reports():
     pass
 
 @app.route('/get/all', methods=['GET'])
 def get_all_reports():
     pass
 
-@app.route('/all/product/', methods=['GET'])
-def get_all_reports_from_a_specific_product():
+@app.route('/product/all', methods=['GET'])
+def get_all_reports_from_product():
     pass
 
 @app.route('/get', methods=['GET'])
-def get_single_report():
+def get_report():
     pass
 
-@app.route('/update/estado', methods=['POST'])
-def update_estado():
+@app.route('/update/state', methods=['POST'])
+def update_state_of_report():
     pass
 
-@app.route('/update/prioridad', methods=['POST'])
-def update_prioridad():
+@app.route('/update/priority', methods=['POST'])
+def update_priority_of_report():
     pass
 
-@app.route('/check/estados', methods=['GET'])
-def check_estados():
+@app.route('/state', methods=['GET'])
+def check_possibles_states_to_report():
+    pass
+
+@app.route('/state/all', methods=['GET'])
+def all_states():
+    pass
+
+@app.route('/add/developer/', methods=['POST'])
+def add_developer():
+    pass
+
+@app.route('/priority/all', methods=['GET'])
+def all_prioritys():
+    pass
+
+def commit_developer(report, id_developer):
     pass
 
 def commit_comment(description, id_report):
@@ -60,21 +75,6 @@ def object_to_list_report(report):
     pass
 
 def object_to_list_estado(estado):
-    pass
-
-@app.route('/estados/all', methods=['GET'])
-def all_estados():
-    pass
-
-@app.route('/add/developer/', methods=['POST'])
-def add_developer():
-    pass
-
-def commit_developer(report, id_developer):
-    pass
-
-@app.route('/prioridad/all', methods=['GET'])
-def all_prioridad():
     pass
 
 def object_to_list_prioridad(prioridad):

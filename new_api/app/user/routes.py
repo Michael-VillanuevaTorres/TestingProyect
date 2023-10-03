@@ -1,15 +1,9 @@
 from app.user import bp as app
 
-@app.route('/liked/', methods=['GET'])
+@app.route('/likes', methods=['GET'])
 def get_likes_from_user():
     pass
 
-@app.route('/reports/', methods=['GET'])
-def get_user_reports():
+@app.route('/reports', methods=['GET'])
+def get_reports_from_user():
     pass  
-
-async def add_cliente(nombre, email):
-    pass
-
-async def add_id_rol(nombre):
-    pass
