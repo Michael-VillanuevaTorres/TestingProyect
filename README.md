@@ -10,19 +10,24 @@ El backend se encuentra en la carpeta api:
 
 1. Tener pip instalado
 2. Instalar flask `sudo apt install python3-flask`
+3. Instalar venv  `sudo apt install python3-venv`
+4. Instanciar un entorno virtual `python3 -m venv myvenv`
+5. Activar el entorno `source myvenv/bin/activate`
 3. Instalar los requerimientos con `pip install -r requirements.txt`
-4. Crear el archivo api/db/.env, abrir el archivo con "nano .env" y copar la siguiente linea `SQLALCHEMY_DATABASE_URI=mysql+pymysql://emouwu:rojas@206.189.177.52/is2`, remplazando las credenciales donde sea necesario.
 5. Correr el proyecto con `flask run`
 
-Mac:
-Tener instalado python3
-En la carpeta api colocar: 
+Para correr los test, estar dentro del entorno virtual:
+
+1. Instalar pytest `pip install pytest`
+2. Ir a la carpeta tests y con `pytest test_encargado.py`// Tambien se puede escribir pytest y se iniciaran todos los test
+
+### Recalcar que los test no pasan las pruebas 
 
 ### Frontend
+Tener instalado node 18.15.00
 
 1. Hacer `npm install` para instalar las dependecias
 2. Correr  el frontend con `npm dev run`
-3. Hacer click en el link. 
 
 REQUERIMIENTOS:
 Ing Soft IITema: Bug Tracker
@@ -30,12 +35,3 @@ Ing Soft IITema: Bug Tracker
 El bugtracker seria publico (para los clientes) y seria para multiples
 productos de la PYME.
 
-- Parecido a los Issue de Github.
-- Tiene una vista solo para devs para asignar el dev encargado, poner tags 
-  y cerrar los issues / redigirirlos
-- Tiene una busqueda con tags para poder buscar los bugs, como dev y cliente. 
-- Una "bandeja de entrada" para los devs con los issues de los proyectos
-  que tienen asigandos.
-- Estadisticas?
-- Pagina no abierta, requiere login de los clientes / devs.
-- 
