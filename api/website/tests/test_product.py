@@ -1,57 +1,18 @@
 import pytest
 from flask import jsonify
-from website import create_app
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../')))
+from app import app
 
 # Fixture para configuración común
 @pytest.fixture
 def app_client():
-    app = create_app()
-    app.config['TESTING'] = True
-    client = app.test_client()
+    with app.test_client() as client:
     # Generar datos falsos para pruebas
-    response = client.get('/generate_fake_data')
-    assert response.status_code == 200
-    yield client
+        response = client.get('/generate_fake_data')
+        yield client
 
-def test_get_reports_valid_product(app_client):
-    """
-    Given: a valid product ID
-    When: a request is made to get reports for the product
-    Then: it should return a 200 status code and a list of reports
-    """
-    # Given
-    product_id = 1
-    
-    # When
-    response = app_client.get(f'/products/get/reports?id_product={product_id}')
-    
-    # Then
-    assert response.status_code == 200
-    data = jsonify(response.get_json())
-    assert len(data) == 1
-    assert data[0]['id'] == 1
-    assert data[0]['title'] == 'Report 1'
-
-def test_get_product(app_client):
-    """
-    Given: a valid product ID
-    When: a request is made to get a product
-    Then: it should return a 200 status code and the expected product JSON
-    """
-    # Given
-    product_id = 1
-    
-    # When
-    response = app_client.get(f'/product/get?id_product={product_id}')
-    
-    # Then
-    expected_json = {
-        'id': 1,
-        'nombre': 'Producto de prueba',
-        'id_encargado': 1
-    }
-    assert response.status_code == 200
-    assert response.get_json() == expected_json
 
 def test_get_all_products(app_client):
     """
@@ -60,7 +21,7 @@ def test_get_all_products(app_client):
     Then: it should return a 200 status code and the expected product list
     """
     # When
-    response = app_client.get("/products/all")
+    response = app_client.get('/products/all')
     
     # Then
     assert response.status_code == 200

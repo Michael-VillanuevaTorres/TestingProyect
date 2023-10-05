@@ -1,6 +1,19 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
+import os
+import sys
 
-from . import db
+DB_NAME = 'database.db'
+
+app = Flask(__name__)
+basedir = os.path.abspath(os.path.dirname(__file__))
+basedir = basedir[:-3]
+
+app = Flask(__name__, template_folder=basedir + '/templates')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+db = SQLAlchemy(app)
 
 class Cliente(db.Model):
     __tablename__ = 'cliente'
@@ -138,3 +151,7 @@ class Like(db.Model):
     def __init__(self, id_desarrollador, id_reporte):
         self.id_desarrollador = id_desarrollador
         self.id_reporte = id_reporte
+
+
+with app.app_context():
+    db.create_all()
