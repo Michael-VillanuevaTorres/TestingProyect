@@ -1,6 +1,6 @@
 from app.extensions import db
 
-class Desarrollador(db.Model):
+class Developer(db.Model):
     __tablename__ = 'developer'
     
     id      = db.Column('id', db.Integer, primary_key=True, autoincrement=True)

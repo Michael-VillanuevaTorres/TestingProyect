@@ -12,5 +12,5 @@ class Config:
 class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.getenv('TEST_DATABASE_URI',
-                                        default=f"sqlite:///{os.path.join(basedir, 'instance', 'test.db')}")
+                                        default=f"sqlite:///{os.path.join(basedir, 'test.db')}")
     WTF_CSRF_ENABLED = False

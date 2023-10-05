@@ -1,4 +1,7 @@
 from app.report import bp as app
+from app.extensions import db
+
+from flask import jsonify, request
 
 @app.route('/comments', methods=['GET'])
 def get_comments_form_report():
@@ -68,23 +71,8 @@ def commit_like(id_user, id_reporte):
 def commit_report(titulo,descripcion,id_producto,id_cliente):
     pass
 
-def object_to_list_comment(comment):
-    pass
-
-def object_to_list_report(report):
-    pass
-
-def object_to_list_estado(estado):
-    pass
-
-def object_to_list_prioridad(prioridad):
-    pass
-
 def add_desarrollador_producto(id_desarrollador, id_producto):
     pass
 
 def add_estado(nombre):
-    pass
-
-def add_producto(nombre):
     pass

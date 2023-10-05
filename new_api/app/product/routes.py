@@ -20,11 +20,20 @@ def get_pending_reports():
     return jsonify(reports_json), 200
 
 @app.route('/get', methods=['GET'])
-def get_product():
+def route_get_product():
     id_product = request.args.get('id_product')
-    product = db.product.query.get_or_404(id_product)
     
-    return jsonify(product_to_list(product)), 200 
+    product = get_product(id_product)
+    
+    if product is None:
+        return jsonify({'message': 'el producto no existe'}), 400
+    
+    product_json = product_to_list(product)
+    
+    return jsonify(product_json), 200
+
+def get_product(id_product):
+    return db.product.query.get(id_product)
 
 @app.route('/reports/all', methods=['GET'])
 def get_all_reports_from_product():

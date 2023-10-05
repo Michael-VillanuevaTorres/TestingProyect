@@ -4,10 +4,10 @@ from app.main import bp as app
 def index():
    pass
 
-@app.route('/reporte/<int:id>')
+@app.route('/report/<int:id>')
 def reporte(id):
     pass
 
-@app.route('/producto/<int:id>')
+@app.route('/product/<int:id>')
 def producto(id):
     pass

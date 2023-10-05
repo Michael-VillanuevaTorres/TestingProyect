@@ -1,4 +1,7 @@
 from app.user import bp as app
+from app.extensions import db
+
+from flask import jsonify, request
 
 @app.route('/likes', methods=['GET'])
 def get_likes_from_user():
