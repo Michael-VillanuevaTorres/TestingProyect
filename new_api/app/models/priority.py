@@ -7,4 +7,4 @@ class Priority(db.Model):
     name = db.Column('name', db.String(45))
     
     def __init__(self, name):
-        self.nombre = name
+        self.name = name
