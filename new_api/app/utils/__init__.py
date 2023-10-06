@@ -31,3 +31,25 @@ def developer_to_list(developer):
     }
     
     return developer_list
+
+def state_to_list(state):
+    state_json = {
+        'id' : state.id,
+        'name' : state.name,
+    }
+    return state_json
+
+def comment_to_list(comment):
+    comment_json = {
+        'id': comment.id,
+        'content': comment.content,
+        'date': comment.date
+    }
+    return comment_json
+
+def priority_to_list(priority):
+    priority_json = {
+        'id': priority.id,
+        'name': priority.name
+    }
+    return priority_json
