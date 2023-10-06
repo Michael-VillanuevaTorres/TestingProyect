@@ -15,7 +15,7 @@ class Report(db.Model):
     id_user      = db.Column('id_user', db.Integer, db.ForeignKey('user.id'))
     
     def __init__(self, title, description, id_product, id_user):
-        self.titul = title
+        self.title = title
         self.description = description
         self.id_product = id_product
         self.id_user = id_user

@@ -9,6 +9,6 @@ class Developer(db.Model):
     id_role = db.Column('id_role', db.Integer, db.ForeignKey('role.id'))
     
     def __init__(self, name, email, id_role):
-        self.nombre = name
+        self.name = name
         self.email = email
-        self.id_rol = id_role
+        self.id_role = id_role

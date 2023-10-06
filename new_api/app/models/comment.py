@@ -9,6 +9,6 @@ class Comment(db.Model):
     id_report = db.Column('id_report', db.Integer, db.ForeignKey('report.id'))
     date      = db.Column('date', db.DateTime, default=db.func.current_timestamp())
     
-    def __init__(self, contenido, id_reporte):
-        self.contenido = contenido
-        self.id_reporte = id_reporte
+    def __init__(self, content, id_report):
+        self.content = content
+        self.id_report = id_report

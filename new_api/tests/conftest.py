@@ -18,16 +18,25 @@ def test_client():
 @pytest.fixture(scope='module')
 def init_database(test_client):
     
-    tester_role = Role(name='tester')
-    default_developer = Developer(name='default_developer',email='defaul@email.com', id_role=tester_role.id)
-    default_product = Product(name ='default_product')
+    from app.models.role import Role
+    from app.models.developer import Developer
+    from app.models.product import Product
+#
     
+    tester_role = Role(name='testero')
+    default_product = Product(name='default_product')
+    default_developer = Developer(name="default_developer", email='defaul@email.com', id_role=0)
+
     db.session.add(tester_role)
-    db.session.add(default_developer)
-    db.session.add(default_product)
-    
     db.session.commit()
     
+    db.session.add(default_product)
+    db.session.add(default_developer)
+    db.session.commit()
+    
+
+
+
     yield 
     
     db.drop_all()
