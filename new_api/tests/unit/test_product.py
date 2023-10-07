@@ -111,7 +111,7 @@ def test_json_get_pending_reports(test_client, init_database):
     """
     report = test_client.get('/product/get/pending_reports?id_product=1').json[0]
     
-    assert report['title'] == 'default'
+    assert report['title'] == 'default_report'
     assert report['description'] == 'default description'
     assert report['id_product'] == 1
     assert report['id_user'] == 1
