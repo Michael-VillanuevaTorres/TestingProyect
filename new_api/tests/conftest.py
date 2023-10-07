@@ -58,6 +58,18 @@ def init_database(test_client):
     default_report = Report(title='default_report', description='default description', id_product=1, id_user=1)
     db.session.add(default_report)
     
+    # States
+    default_state = State(name='default_state')
+    default_state2 = State(name='default_state2')
+    db.session.add(default_state)
+    db.session.add(default_state2)
+
+    # Prioritys
+    default_priority = State(name='default_priority')
+    default_priority2 = State(name='default_priority2')
+    db.session.add(default_priority)
+    db.session.add(default_priority2)
+    
     # Commit changes
     db.session.commit()
     
