@@ -15,7 +15,7 @@ def get_single_product():
     product = Product.query.get(id_product)
     
     if product is None:
-        return jsonify({'message': 'el producto no existe'}), 400
+        return jsonify({'message': 'el product no existe'}), 400
     
     product_json = product_to_list(product)
     
@@ -65,8 +65,9 @@ def get_all_reports_from_product():
         return jsonify({'message': 'el producto no existe'}), 400
     
     reports = Report.query.filter_by(id_product=id_product).all()
+
     if len(reports) == 0:
-        return jsonify({'message': 'el producto no tiene reportes asignados'}), 400
+        return jsonify({'message': 'el product no tiene reportes asignados'}), 400
     
     #create a json with the information of the reports'
     reports_json = [report_to_list(report) for report in reports]  
@@ -77,6 +78,7 @@ def get_all_reports_from_product():
 def get_developers_from_product():
     id_product = request.args.get('id_product')
     
+
     if Product.query.get(id_product) is None:
         return jsonify({'message': 'el producto no existe'}), 400
     
@@ -84,6 +86,7 @@ def get_developers_from_product():
     
     if len(relationship) == 0:
         return jsonify({'message': 'el producto no tiene desarrolladores asignados'}), 400
+
     
     developers = []
     for developer in relationship:
@@ -91,3 +94,13 @@ def get_developers_from_product():
     
     developers_jsons = [developer_to_list(developer) for developer in developers]
     return jsonify(developers_jsons), 200
+
+def add_product(name):
+    product = db.product(name)
+    db.session.add(product)
+    db.session.commit()
+
+def add_developer_product(id_developer, id_product):
+    developer_product = db.developer_product(id_developer, id_product)
+    db.session.add(developer_product)
+    db.session.commit()
