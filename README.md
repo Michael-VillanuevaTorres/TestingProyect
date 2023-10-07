@@ -1,7 +1,8 @@
 # Proyecto_IngenieriaSoftwareII
 
-## Como correr el proyecto en local
+# Proyecto de Testing, solo se hicieron pruebas en backend
 
+## Como correr el proyecto en local
 ### Backend
 
 El backend se encuentra en la carpeta api:
@@ -15,13 +16,10 @@ El backend se encuentra en la carpeta api:
 5. Activar el entorno `source myvenv/bin/activate`
 3. Instalar los requerimientos con `pip install -r requirements.txt`
 5. Correr el proyecto con `flask run`
+6. Para testear el proyecto utilizar el comando `python -m pytest` adentro de la carpeta `new_api`
 
-Para correr los test, estar dentro del entorno virtual:
 
-1. Instalar pytest `pip install pytest`
-2. Ir a la carpeta tests y con `pytest test_encargado.py`// Tambien se puede escribir pytest y se iniciaran todos los test
-
-### Recalcar que los test no pasan las pruebas 
+#####################################################
 
 ### Frontend
 Tener instalado node 18.15.00
