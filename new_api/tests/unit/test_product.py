@@ -171,7 +171,7 @@ def test_json_get_all_reports_from_product(test_client, init_database):
     """
     report1 = test_client.get('/product/get/reports/all?id_product=1').json[0]
     
-    assert report1['title'] == 'default'
+    assert report1['title'] == 'default_report'
     assert report1['description'] == 'default description'
     assert report1['id_product'] == 1
     assert report1['id_user'] == 1

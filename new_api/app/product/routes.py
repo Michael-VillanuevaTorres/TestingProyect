@@ -15,7 +15,7 @@ def get_single_product():
     product = Product.query.get(id_product)
     
     if product is None:
-        return jsonify({'message': 'el product no existe'}), 400
+        return jsonify({'message': 'el producto no existe'}), 400
     
     product_json = product_to_list(product)
     
@@ -67,7 +67,7 @@ def get_all_reports_from_product():
     reports = Report.query.filter_by(id_product=id_product).all()
 
     if len(reports) == 0:
-        return jsonify({'message': 'el product no tiene reportes asignados'}), 400
+        return jsonify({'message': 'el producto no tiene reportes asignados'}), 400
     
     #create a json with the information of the reports'
     reports_json = [report_to_list(report) for report in reports]  

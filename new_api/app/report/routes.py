@@ -8,13 +8,9 @@ from app.models.developer import Developer
 from app.models.like import Like
 from app.models.priority import Priority
 from app.models.product import Product
-from app.models.reassignment import Reassignment
-from app.models.relationship_developer_product import RelationshipDeveloperProduct
-from app.models.relationship_user_product import RelationshipUserProduct 
 from app.models.report import Report
-from app.models.role import Role
 from app.models.state import State
-from app.models.user import User
+
 
 
 @app.route('/add/comment', methods=['POST'])
