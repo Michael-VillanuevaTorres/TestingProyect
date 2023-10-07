@@ -253,3 +253,5 @@ def test_json_no_developers_error_get_developers_from_product(test_client, init_
     db.session.commit()
     
     assert test_client.get('/product/get/developers/all?id_product=1').json['message'] == 'el producto no tiene desarrolladores asignados'
+
+#
