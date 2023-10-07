@@ -140,11 +140,11 @@ def init_database(test_client):
     
     db.session.commit()
     
-    default_relationship = RelationshipDeveloperProduct(id_product=1, id_developer=1)
+    #default_relationship = RelationshipDeveloperProduct(id_product=1, id_developer=1)
     
     default_report = Report(title='default', description='default description', id_product=1, id_user=1)
     
-    db.session.add(default_relationship)
+    #db.session.add(default_relationship)
     db.session.add(default_report)
     
     db.session.commit()

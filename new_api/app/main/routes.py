@@ -2,11 +2,7 @@ from app.main import bp as app
 
 @app.route('/')
 def index():
-<<<<<<< HEAD
-   return"HELLO"
-=======
-    return 'Hello World'
->>>>>>> main
+    pass
 
 @app.route('/report/<int:id>')
 def reporte(id):
