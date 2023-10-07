@@ -8,7 +8,8 @@ def report_to_list(report):
         'id_product'  : report.id_product,
         'id_priority' : report.id_priority,
         'id_state'    : report.id_state,
-        'id_developer': report.id_developer
+        'id_developer': report.id_developer,
+        'id_user'     : report.id_user
     }
     
     return report_list
