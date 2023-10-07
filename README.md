@@ -1,11 +1,11 @@
 # Proyecto_IngenieriaSoftwareII
 
-# Proyecto de Testing, solo se hicieron pruebas en backend
+# Proyecto de Testing (Backend)
 
 ## Como correr el proyecto en local
 ### Backend
 
-El backend se encuentra en la carpeta api:
+El backend se encuentra en la carpeta new_api:
 
 (Usar un Virtual Enviroment)
 
