@@ -3,12 +3,25 @@ from app.extensions import db
 from app.utils import *
 from flask import jsonify, request
 
+from app.models.comment import Comment
+from app.models.developer import Developer
+from app.models.like import Like
+from app.models.priority import Priority
+from app.models.product import Product
+from app.models.reassignment import Reassignment
+from app.models.relationship_developer_product import RelationshipDeveloperProduct
+from app.models.relationship_user_product import RelationshipUserProduct 
+from app.models.report import Report
+from app.models.role import Role
+from app.models.state import State
+from app.models.user import User
+
 
 @app.route('/add/comment', methods=['POST'])
 def add_comment_to_report():
     data = request.json
     id_report = request.args.get('id_report')
-    if db.report.query.filter_by(id=id_report).first() is None:
+    if Report.query.filter_by(id=id_report).first() is None:
         return jsonify({'message': 'The id_report is not in the database'}), 400
     
     if data.get('text') is None:
@@ -23,9 +36,9 @@ def add_like_to_report():
     id_report = request.args.get('id_report')
     id_user = request.args.get('id_user')
     
-    report = db.report.query.get_or_404(id_report)
+    report = Report.query.get_or_404(id_report)
     
-    if db.like.query.filter_by(id_developer=id_user, id_report=id_report).first() is not None:
+    if Like.query.filter_by(id_developer=id_user, id_report=id_report).first() is not None:
         return jsonify({'message': 'The like is already in the database'}), 400
     
     commit_like(id_user, id_report)
@@ -40,7 +53,7 @@ def add_report():
     id_product = request.args.get('id_product')
     id_user = request.args.get('id_user')
     
-    if db.product.query.filter_by(id=id_product).first() is None:
+    if Product.query.filter_by(id=id_product).first() is None:
         return jsonify({'message': 'The id_product is not in the database'}), 400
     
     if data.get('title') is None:
@@ -57,10 +70,10 @@ def add_report():
 def get_comments_form_report():
     id_report = request.args.get('id_report')
 
-    if db.report.query.filter_by(id=id_report).first() is None:
+    if Report.query.filter_by(id=id_report).first() is None:
         return jsonify({'message': 'The id_report is not in the database'}), 400
 
-    comments = db.comment.query.filter_by(id_report=id_report).all()
+    comments = Comment.query.filter_by(id_report=id_report).all()
     comments_json = [comment_to_list(comment) for comment in comments]
 
     return jsonify(comments_json), 200
@@ -70,25 +83,25 @@ def get_number_of_reports():
     quantity = request.args.get('quantity')
     id_product = request.args.get('id_product')
 
-    if db.product.query.filter_by(id=id_product).first() is None:
+    if Product.query.filter_by(id=id_product).first() is None:
         return jsonify({'message': 'The id_product is not in the database'}), 400
 
     if quantity is None:
         return jsonify({'message': 'Quantity not specified'}), 400
 
-    if int(quantity) > db.report.query.filter_by(id_product=id_product).count():
+    if int(quantity) > Report.query.filter_by(id_product=id_product).count():
         return jsonify({
-            'message': f'The quantity is bigger than the number of reports. Quantity asked is: {quantity} The number of reports with the product id is: {db.report.query.filter_by(id_product=id_product).count()}'
+            'message': f'The quantity is bigger than the number of reports. Quantity asked is: {quantity} The number of reports with the product id is: {Report.query.filter_by(id_product=id_product).count()}'
         }), 400
 
-    reports = db.report.query.filter_by(id_product=id_product).order_by(db.report.likes.desc()).limit(quantity).all()
+    reports = Report.query.filter_by(id_product=id_product).order_by(Report.likes.desc()).limit(quantity).all()
     reports_json = [report_to_list(report) for report in reports]
 
     return jsonify(reports_json), 200
 
 @app.route('/get/all', methods=['GET'])
 def get_all_reports():
-    reports = db.reporte.query.all()
+    reports = Report.query.all()
     reports_json = [report_to_list(report) for report in reports]
 
     return jsonify(reports_json), 200
@@ -96,9 +109,9 @@ def get_all_reports():
 @app.route('/product/all', methods=['GET'])
 def get_all_reports_from_product():
     id_product = request.args.get('id_product')
-    if db.product.query.filter_by(id=id_product).first() == None:
+    if Product.query.filter_by(id=id_product).first() == None:
         return jsonify({'message': 'The id_product is not in the database'}), 400
-    reports = db.report.query.filter_by(id_product=id_product).all()
+    reports = Report.query.filter_by(id_product=id_product).all()
     #revisar si se quiere asi o que solamente entregue una lista vacia
     if len(reports) == 0:
         return jsonify({'message': 'There are no reports with that id_product'}), 400
@@ -110,9 +123,9 @@ def get_all_reports_from_product():
 @app.route('/get', methods=['GET'])
 def get_report():
     id_report = request.args.get('id_report')
-    report = db.report.query.get_or_404(id_report)
+    report = Report.query.get_or_404(id_report)
     
-    report_json = [report_to_list(report) for report in report]
+    report_json = report_to_list(report)
     
     return jsonify(report_json), 200
 
@@ -120,13 +133,15 @@ def get_report():
 def update_state_of_report():
     id_report = request.args.get('id_report')
     id_state = request.args.get('id_state')
-    
-    if db.report.query.filter_by(id=id_report).first() == None:
+    print (id)
+    print (id_state)
+
+    if Report.query.filter_by(id=id_report).first() == None:
         return jsonify({'message': 'The id_report is not in the database'}), 400
-    if db.state.query.filter_by(id=id_state).first() == None:
+    if State.query.filter_by(id=id_state).first() == None:
         return jsonify({'message': 'The id_state is not in the database'}), 400
     
-    report = db.report.query.get_or_404(id_report)
+    report = Report.query.get_or_404(id_report)
     report.id_state = id_state
     db.session.commit()
     
@@ -138,12 +153,12 @@ def update_priority_of_report():
     id_report = request.args.get('id_report')
     id_priority = request.args.get('id_priority')
     
-    if db.report.query.filter_by(id=id_report).first() == None:
+    if Report.query.filter_by(id=id_report).first() == None:
         return jsonify({'message': 'The id_report is not in the database'}), 400
-    if db.priority.query.filter_by(id=id_priority).first() == None:
+    if Priority.query.filter_by(id=id_priority).first() == None:
         return jsonify({'message': 'The id_state is not in the database'}), 400
     
-    report = db.report.query.get_or_404(id_report)
+    report = Report.query.get_or_404(id_report)
     report.id_priority = id_priority
     db.session.commit()
     
@@ -151,20 +166,23 @@ def update_priority_of_report():
 
 @app.route('/state', methods=['GET'])
 def check_possibles_states_to_report():
-    id_report= request.args.get('id_report')
-    
-    if db.report.query.filter_by(id=id_report).first() == None:
+    id_report = request.args.get('id_report')
+
+    if Report.query.filter_by(id=id_report).first() is None:
         return jsonify({'message': 'The id_report is not in the database'}), 400
-    #return all the states, but the id=0 and the current id_state
-    states = db.state.query.filter(db.state.id != 0).filter(db.state.id != db.report.query.get_or_404(id_report).id_state).all()
+
+    # return all the states, but the id=0 and the current id_state
+    states = State.query.filter(State.id != 0).filter(State.id != Report.query.get_or_404(id_report).id_state).all()
     states_json = []
     for state in states:
         states_json.append(state_to_list(state))
 
+    return jsonify(states_json), 200
+
 @app.route('/state/all', methods=['GET'])
 def all_states():
     #return all the states
-    states = db.state.query.all()
+    states = State.query.all()
     states_json = []
     
     for state in states:
@@ -177,12 +195,12 @@ def add_developer():
     id_report = request.args.get('id_report')
     id_developer = request.args.get('id_dev')
     
-    if db.report.query.filter_by(id=id_report).first() is None:
+    if Report.query.filter_by(id=id_report).first() is None:
         return jsonify({'message': 'The id_report is not in the database'}), 400
-    if db.developer.query.filter_by(id=id_developer).first() is None:
+    if Developer.query.filter_by(id=id_developer).first() is None:
         return jsonify({'message': 'The id_developer is not in the database'}), 400
     
-    report = db.report.query.get_or_404(id_report)
+    report = Report.query.get_or_404(id_report)
     commit_developer(report, id_developer)
     
     return jsonify({'message': 'Developer added successfully.'}), 201
@@ -190,7 +208,7 @@ def add_developer():
 
 @app.route('/priority/all', methods=['GET'])
 def all_prioritys():
-    prioritys = db.priority.query.all()
+    prioritys = Priority.query.all()
     prioritys_json = [priority_to_list(priority) for priority in prioritys]
         
     return jsonify(prioritys_json), 200
@@ -201,21 +219,22 @@ def commit_developer(report, id_developer):
     db.session.commit()
 
 def commit_comment(description, id_report):
-    comment = db.comment(description, id_report)
+    comment = Comment(description, id_report)
     db.session.add(comment)
     db.session.commit()
 
 def commit_like(id_user, id_report):
-    like = db.like(id_user,id_report)
+    like = Like(id_user,id_report)
     db.session.add(like)
     db.session.commit()
 
 def commit_report(title,description,id_product,id_user):
-    report = db.report(title, description, id_product,id_user)
+    report = Report(title, description, id_product,id_user)
     db.session.add(report)
     db.session.commit()
     
+
 def add_state(name):
-    state = db.state(name)
+    state = State(name)
     db.session.add(state)
     db.session.commit()
