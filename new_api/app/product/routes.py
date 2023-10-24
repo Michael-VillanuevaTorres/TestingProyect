@@ -9,6 +9,21 @@ from app.models.developer import Developer
 
 from flask import jsonify, request
 
+@app.route('/pending_reports', methods=['GET'])
+def get_pending_reports():
+    id_product = request.args.get('id_product')
+    db.product.query.get_or_404(id_product)
+    # Get all the reports where the id_product matches the id_product in the request
+    reports = db.report.query.filter_by(id_product=id_product).all()
+    
+    # Filter the reports where the estado is 0
+    reports = [report for report in reports if report.id_state == 0]
+
+    # Create a JSON response with the information of the reports
+    reports_json = [report_to_list(report) for report in reports]
+
+    return jsonify(reports_json), 200
+
 @app.route('/get', methods=['GET'])
 def get_single_product():
     id_product = request.args.get('id_product')
