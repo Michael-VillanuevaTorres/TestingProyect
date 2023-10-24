@@ -21,6 +21,7 @@ def init_database(test_client):
     from app.models.developer import Developer
     from app.models.product import Product
 <<<<<<< HEAD
+<<<<<<< HEAD
     from app.models.report import Report
 
     from app.models.user import User
@@ -45,11 +46,19 @@ def init_database(test_client):
     default_product = Product(name='default_product')
     default_developer = Developer(name="default_developer", email='defaul@email.com', id_role=0)
 >>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
+=======
+#
+    
+    tester_role = Role(name='testero')
+    default_product = Product(name='default_product')
+    default_developer = Developer(name="default_developer", email='defaul@email.com', id_role=0)
+>>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
 
 
     db.session.add(tester_role)    
     
     db.session.add(default_product)
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -58,6 +67,11 @@ def init_database(test_client):
     db.session.commit()
     
 
+=======
+    db.session.add(default_developer)
+    db.session.commit()
+    
+>>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
 
 
 
@@ -84,7 +98,10 @@ def init_database(test_client):
     yield 
     
 <<<<<<< HEAD
+<<<<<<< HEAD
    
+=======
+>>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
 =======
 >>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
     db.drop_all()

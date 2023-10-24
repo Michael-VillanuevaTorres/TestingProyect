@@ -3,7 +3,11 @@ from app.main import bp as app
 @app.route('/')
 def index():
 <<<<<<< HEAD
+<<<<<<< HEAD
     pass
+=======
+   pass
+>>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
 =======
    pass
 >>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
