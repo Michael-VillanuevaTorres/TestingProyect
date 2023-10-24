@@ -4,7 +4,11 @@ from app.main import bp as app
 def index():
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     pass
+=======
+   pass
+>>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
 =======
    pass
 >>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)

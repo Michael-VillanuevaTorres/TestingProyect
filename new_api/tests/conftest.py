@@ -20,89 +20,110 @@ def init_database(test_client):
     from app.models.role import Role
     from app.models.developer import Developer
     from app.models.product import Product
-<<<<<<< HEAD
-<<<<<<< HEAD
     from app.models.report import Report
-
     from app.models.user import User
     from app.models.state import State
     from app.models.priority import Priority
 
-    from app.models.relationship_developer_product import RelationshipDeveloperProduct
-    from app.models.user import User
-    
-    tester_role = Role(name='testero')
-    default_product = Product(name='default_product')
-    default_product2 = Product(name='default_product2')
-    
-    default_developer = Developer(name="default_developer", email='default@email.com', id_role=1)
-    default_developer2 = Developer(name="default_developer2", email='default2@email.com', id_role=1)
-    
-    default_user = User(name='default_user', email='default@email.com')
-=======
-#
-    
-    tester_role = Role(name='testero')
-    default_product = Product(name='default_product')
-    default_developer = Developer(name="default_developer", email='defaul@email.com', id_role=0)
->>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
-=======
-#
-    
-    tester_role = Role(name='testero')
-    default_product = Product(name='default_product')
-    default_developer = Developer(name="default_developer", email='defaul@email.com', id_role=0)
->>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
 
+
+    # Cometer los cambios en la base de datos
+    db.session.commit()
+    
+    tester_role = Role(name='testero')
+    default_product = Product(name='default_product')
 
     db.session.add(tester_role)    
     
     db.session.add(default_product)
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-    db.session.add(default_developer)
->>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
-    db.session.commit()
-    
-
-=======
-    db.session.add(default_developer)
-    db.session.commit()
-    
->>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
-
-
-
-    db.session.add(default_product2)
-    
-    db.session.add(default_developer)
-    db.session.add(default_developer2)
-    
-    db.session.add(default_user)
-    
-    db.session.commit()
-    
-    #default_relationship = RelationshipDeveloperProduct(id_product=1, id_developer=1)
-    
-    default_report = Report(title='default', description='default description', id_product=1, id_user=1)
-    
-    #db.session.add(default_relationship)
-    db.session.add(default_report)
-    
     db.session.commit()
     
     
+    developer = Developer(
+        name="Developers 1",
+        email="Developers1@example.com",
+        id_role=0
+    )
+    db.session.add(developer)
+    db.session.commit()
+
+    developer2 = Developer(
+        name="Developers 2",
+        email="Developers2@example.com",
+        id_role=1
+    )
+    db.session.add(developer)
+    db.session.commit()
+
+    # Crear Clients (2 en total)
+    
+    client = User(
+        name="Client 1",
+        email="email1@example.com"
+    )
+    db.session.add(client)
+    db.session.commit()
+
+    client2 = User(
+        name="Client 2",
+        email="email1@example.com"
+    )
+    db.session.add(client)
+    db.session.commit()
+
+
+
+    # Crear Reports (2 por cada Product)
+      
+    report = Report(
+        title="Report 1",
+        description="Description Report 1",
+        id_product=default_product.id,
+        id_user=1, 
+    )
+    db.session.add(report)
+    Report.add_developer(report, 1)
+    db.session.commit()
+
+    report2 = Report(
+        title="Report 2",
+        description="Description Report 2",
+        id_product=default_product.id,
+        id_user=1, 
+    )
+    db.session.add(report)
+    Report.add_developer(report, 1)
+    db.session.commit()
+
+    state=State(
+        name="state 1"
+    )
+    db.session.add(state)
+
+    state2=State(
+        name="state 2"
+    )
+    db.session.add(state2)
+
+    
+    priority = Priority(
+        name="priority 1"
+    )
+    db.session.add(priority)
+    db.session.commit()
+
+    priority2 = Priority(
+        name="priority 1"
+    )
+    db.session.add(priority2)
+    db.session.commit()
+    
+
+
+
 
     yield 
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-   
-=======
->>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
-=======
->>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
+    db.session.rollback()
     db.drop_all()
     

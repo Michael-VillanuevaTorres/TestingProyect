@@ -1,10 +1,16 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 import pytest
 import app.product.routes as product
 
+=======
+import pytest
+import app.product.routes as product
+
+>>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
 =======
 import pytest
 import app.product.routes as product
@@ -23,6 +29,12 @@ def test_json_get_single_product(test_client, init_database):
 def test_json_error_get_single_product(test_client, init_database):
     assert test_client.get('/product/get?id_product=999').json['message'] == 'el producto no existe'
 <<<<<<< HEAD
+<<<<<<< HEAD
+    
+    
+    
+>>>>>>> parent of 47d285ae (test(reports): Create tests for report paths and fix associated bugs)
+=======
     
     
     
