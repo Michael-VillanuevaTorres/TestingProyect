@@ -3,23 +3,21 @@ import pytest
 from app import create_app
 from app.extensions import db
 from config import TestingConfig
+import app.report.routes as report 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='function')
 def test_client():
     app = create_app(TestingConfig)
 
-    # other setup can go here
-
-    with app.test_client() as testing_client:
-        # Establish an application context
-        with app.app_context():
-            yield testing_client  # this is where the testing happens!
+  # this is where the testing happens!
     
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='function')
 def init_database(test_client):
+
     from app.models.role import Role
     from app.models.developer import Developer
     from app.models.product import Product
+#
     from app.models.report import Report
     from app.models.user import User
     from app.models.state import State
@@ -29,16 +27,9 @@ def init_database(test_client):
 
     # Cometer los cambios en la base de datos
     db.session.commit()
-    
+
     tester_role = Role(name='testero')
     default_product = Product(name='default_product')
-
-    db.session.add(tester_role)    
-    
-    db.session.add(default_product)
-    db.session.commit()
-    
-    
     developer = Developer(
         name="Developers 1",
         email="Developers1@example.com",
@@ -56,7 +47,7 @@ def init_database(test_client):
     db.session.commit()
 
     # Crear Clients (2 en total)
-    
+
     client = User(
         name="Client 1",
         email="email1@example.com"
@@ -74,7 +65,7 @@ def init_database(test_client):
 
 
     # Crear Reports (2 por cada Product)
-      
+
     report = Report(
         title="Report 1",
         description="Description Report 1",
@@ -105,7 +96,7 @@ def init_database(test_client):
     )
     db.session.add(state2)
 
-    
+
     priority = Priority(
         name="priority 1"
     )
@@ -117,13 +108,12 @@ def init_database(test_client):
     )
     db.session.add(priority2)
     db.session.commit()
-    
+
 
 
 
 
     yield 
-    
+
     db.session.rollback()
     db.drop_all()
-    
