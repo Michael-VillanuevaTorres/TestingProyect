@@ -13,22 +13,22 @@ interface IReportes_sin_AsignarProps {
 type reporte = {
   id: number;
   title:string;
-  descripcion:string;
+  descripction:string;
   likes:number;
   fecha:string;
-  id_estado: number;
-  id_prioridad: number;
-  id_producto: number;
+  id_state: number;
+  id_priority: number;
+  id_product: number;
 }
 
 type producto = {
-  nombre: string;
+  name: string;
   id: number;
-  id_encargado: number;
+  id_developer: number;
 }
 type prioridad = {
   id: number;
-  nombre: string;
+  name: string;
 };
 const getPrioridades = (): prioridad[] => {
   const [prioridades, setPrioridades] = useState<prioridad[]>([]);
@@ -36,7 +36,7 @@ const getPrioridades = (): prioridad[] => {
   useEffect(() => {
     const fetchPrioridades = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/reports/prioridad/all');
+        const response = await fetch('http://127.0.0.1:5000/report/priority/all');
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);
@@ -67,13 +67,13 @@ const Reportes_sin_Asignar: React.FunctionComponent<IReportes_sin_AsignarProps> 
     if (!prio) {
       return <h5 className="prioridadCero">NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
-      return <h5 className="prioridadCero">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadCero">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 1) {
-      return <h5 className="prioridadUno">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadUno">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 2) {
-      return <h5 className="prioridadDos">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadDos">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 3) {
-      return <h5 className="prioridadTres">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadTres">{prio.name.toUpperCase()}</h5>;
     } else {
       return <h5 className="prioridadCero">NO ASIGNADO</h5>;
     }
@@ -86,7 +86,7 @@ const Reportes_sin_Asignar: React.FunctionComponent<IReportes_sin_AsignarProps> 
   
 
   const fetchData = () => {
-    fetch("http://127.0.0.1:5000/products/get/reports?id_product="+id_product)
+    fetch("http://127.0.0.1:5000/report/product/all?id_product="+id_product)
       .then((response) => {
         return response.json();
       })
@@ -113,10 +113,12 @@ const Reportes_sin_Asignar: React.FunctionComponent<IReportes_sin_AsignarProps> 
     }
   }
 
-  const reports = datos.map((reports:reporte) => {
+  const filteredReports = datos.filter((report:reporte) => report.id_state === 0);
+
+  const reports = filteredReports.map((reports:reporte) => {
     return {
       titulo:<Button href={"/VerReporteEnv/"+reports.id} variant="link">{reports.title}</Button>, 
-      prioridad: getPrioridadNombre(reports.id_prioridad),
+      prioridad: getPrioridadNombre(reports.id_priority),
       likes:reports.likes,
       asignacion:<AsignacionButton id_report ={reports.id}  ></AsignacionButton>,
       prioridad_a: <DropdownPrioridad  id_report={reports.id}></DropdownPrioridad>
@@ -162,17 +164,17 @@ const Reportes_sin_Asignar: React.FunctionComponent<IReportes_sin_AsignarProps> 
     const [products, setProducts] = useState([]);
   
     useEffect(() => {
-      fetch("http://127.0.0.1:5000/products/all")
+      fetch("http://127.0.0.1:5000/product/get/all")
         .then((response) => response.json())
         .then((data) => setProducts(data));
     }, []);
-
-    const productos = products.filter((producto:producto) => producto.id_encargado === 2).map((item: producto) =>{
+    
+    const productos = products.filter((producto:producto) => producto.id_developer === 1).map((item: producto) =>{
       return {
-        nombre:item.nombre, id:item.id
+        nombre:item.name, id:item.id
         }
       });
-
+      console.log(productos)
     return productos;
   };
 

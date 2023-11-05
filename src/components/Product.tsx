@@ -1,15 +1,15 @@
 class Product {
-  nombre: string;
+  name: string;
   id: number;
-  id_encargado: number;
+  id_developer: number;
   constructor(
     nombre = "vacio",
     id = -1,
-    id_encargado = -1,
+    id_developer = -1,
   ) {
-    this.nombre = nombre;
+    this.name = nombre;
     this.id = id;
-    this.id_encargado = id_encargado;
+    this.id_developer = id_developer;
   }
 }
 

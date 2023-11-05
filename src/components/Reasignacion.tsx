@@ -20,9 +20,9 @@ type reporte = {
 }
 
 type producto = {
-  nombre: string;
+  name: string;
   id: number;
-  id_encargado: number;
+  id_developer: number;
 }
 
 const Reasignacion: React.FunctionComponent<IReasignacionProps> = (props) => {
@@ -104,14 +104,14 @@ const Reasignacion: React.FunctionComponent<IReasignacionProps> = (props) => {
     const [products, setProducts] = useState([]);
   
     useEffect(() => {
-      fetch("http://127.0.0.1:5000/products/all")
+      fetch("http://127.0.0.1:5000/product/get/all")
         .then((response) => response.json())
         .then((data) => setProducts(data));
     }, []);
 
-    const productos = products.filter((producto:producto) => producto.id_encargado === 2).map((item: producto) =>{
+    const productos = products.filter((producto:producto) => producto.id_developer === 1).map((item: producto) =>{
       return {
-        nombre:item.nombre, id:item.id
+        nombre:item.name, id:item.id
         }
       });
 

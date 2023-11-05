@@ -10,7 +10,51 @@ from app.models.priority import Priority
 from app.models.product import Product
 from app.models.report import Report
 from app.models.state import State
+from app.models.reassignment import Reassignment
+from app.models.relationship_developer_product import RelationshipDeveloperProduct
+from app.models.relationship_user_product import RelationshipUserProduct 
+from app.models.report import Report
+from app.models.role import Role
+from app.models.user import User
 
+from app.product.routes import add_developer_product
+
+desarrolladores_fake = [
+    "Desarrollador 1",
+    "Desarrollador 2",
+]
+desarrolladores_fake2 = [
+    "Desarrollador 3",
+    "Desarrollador 4",
+]
+
+# Generar clientes
+clientes_fake = [
+    "Cliente 1",
+    "Cliente 2",
+    "Cliente 3",
+]
+
+# Generar productos
+productos_fake = [
+    "Producto 1",
+    "Producto 2",
+    "Producto 3",
+    "Producto 4",
+]
+emailcliente_fake = [
+    "email1@example.com",
+    "email2@example.com", 
+    "email3@example.com"
+]
+emaildesarrollador_fake =[
+    "desarrollador1@example.com"
+    "desarrollador2@example.com",
+]
+emaildesarrollador_fake2 =[
+    "desarrollador3@example.com",
+    "desarrollador4@example.com"
+]
 
 
 @app.route('/add/comment', methods=['POST'])
@@ -129,8 +173,6 @@ def get_report():
 def update_state_of_report():
     id_report = request.args.get('id_report')
     id_state = request.args.get('id_state')
-    print (id)
-    print (id_state)
 
     if Report.query.filter_by(id=id_report).first() == None:
         return jsonify({'message': 'The id_report is not in the database'}), 400
@@ -209,6 +251,112 @@ def all_prioritys():
         
     return jsonify(prioritys_json), 200
 
+@app.route('/reset_fake_data', methods=['GET']) 
+def reset_fake_data():
+    # Eliminar todos los objetos generados por Fake de la base de datos
+    db.session.query(Developer).delete()
+    db.session.query(User).delete()
+    db.session.query(Product).delete()
+    db.session.query(Report).delete()
+    db.session.query(Like).delete()
+    db.session.query(Priority).delete()
+    db.session.query(Reassignment).delete()
+    db.session.query(RelationshipDeveloperProduct).delete()
+    db.session.query(RelationshipUserProduct).delete()
+    db.session.query(State).delete()
+    db.session.query(Role).delete()
+    db.session.query(Comment).delete()
+
+
+
+    # Cometer los cambios en la base de datos
+    db.session.commit()
+
+    return ({'message': 'Datos generados por Fake eliminados correctamente'}), 200
+
+@app.route('/generate_fake_data')
+def generate_fake_data():
+
+    # Roles
+    developer_role = Role(name='developer')
+    db.session.add(developer_role)
+    
+    admin_role = Role(name='admin')
+    db.session.add(admin_role)
+
+    # Commit changes
+    db.session.commit()
+
+    # Developers
+    default_developer = Developer(name="default_developer", email='default@email.com', id_role=1)
+    default_developer2 = Developer(name="default_developer2", email='default2@email.com', id_role=1)
+    default_developer3 = Developer(name="default_developer3", email='default3@email.com', id_role=2)
+    db.session.add(default_developer)
+    db.session.add(default_developer2)
+    db.session.add(default_developer3)
+
+    # Commit changes
+    db.session.commit()
+
+    # Products
+    default_product = Product(name='default_product')
+    default_product2 = Product(name='default_product2')
+    db.session.add(default_product)
+    db.session.add(default_product2)
+
+    # Commit changes
+    db.session.commit()
+
+    default_product.id_developer = 1
+    default_product2.id_developer = 1  
+
+
+    # Users
+    default_user = User(name='default_user', email='default@email.com')
+    db.session.add(default_user)
+
+    # Commit changes
+    db.session.commit()
+    
+    # RelationshipDeveloperProduct
+    default_relationship = RelationshipDeveloperProduct(id_product=1, id_developer=1)
+    db.session.add(default_relationship)
+    
+    # States
+    default_state = State(name='Pendiente')
+    default_state2 = State(name='En proceso')
+    default_state3 = State(name='Cerrado')
+
+    db.session.add(default_state)
+    db.session.add(default_state2)
+    db.session.add(default_state3)
+
+    # Prioritys
+    default_priority = Priority(name='Baja')
+    default_priority2 = Priority(name='Media')
+    default_priority3 = Priority(name='Alta')
+    db.session.add(default_priority)
+    db.session.add(default_priority2)
+    db.session.add(default_priority3)
+
+    # Reports
+    default_report = Report(title='default_report', description='default description', id_product=1, id_user=1)
+    db.session.add(default_report)
+
+    default_report2 = Report(title='default_report2', description='default2 description', id_product=2, id_user=1)
+    db.session.add(default_report2)
+    # Commit changes
+    db.session.commit()
+
+    default_report.id_state = 1
+    default_report2.id_state = 1  
+
+
+    # Commit changes
+    db.session.commit()
+
+    return "Funcionó correctamente"
+
 def commit_developer(report, id_developer):
     report.id_developer = id_developer
     report.id_state = 1
@@ -234,3 +382,4 @@ def add_state(name):
     state = State(name)
     db.session.add(state)
     db.session.commit()
+

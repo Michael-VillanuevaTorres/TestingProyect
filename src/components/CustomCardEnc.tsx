@@ -11,7 +11,7 @@ import DropdownPrioridad from './DropdownPrioridad';
 
 type prioridad = {
   id: number;
-  nombre: string;
+  name: string;
 };
 const getPrioridades = (): prioridad[] => {
   const [prioridades, setPrioridades] = useState<prioridad[]>([]);
@@ -19,7 +19,7 @@ const getPrioridades = (): prioridad[] => {
   useEffect(() => {
     const fetchPrioridades = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/reports/prioridad/all');
+        const response = await fetch('http://127.0.0.1:5000/report/priority/all');
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);
@@ -53,13 +53,13 @@ function CustomCardEnv(props: { bug: Bug }) {
     if (!prio) {
       return <h5 className="prioridadCeroCustom">NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
-      return <h5 className="prioridadCeroCustom">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadCeroCustom">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 1) {
-      return <h5 className="prioridadUnoCustom">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadUnoCustom">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 2) {
-      return <h5 className="prioridadDosCustom">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadDosCustom">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 3) {
-      return <h5 className="prioridadTresCustom">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadTresCustom">{prio.name.toUpperCase()}</h5>;
     } else {
       return <h5 className="prioridadCeroCustom">NO ASIGNADO</h5>;
     }
@@ -69,7 +69,7 @@ function CustomCardEnv(props: { bug: Bug }) {
     const newBugState = e.target.value;
     setBugState(newBugState);
     const idEstado = mapBugStateToId(newBugState);
-    const url = `http://127.0.0.1:5000/reports/update/estado?id_estado=${idEstado}&id_report=${props.bug.id}`;
+    const url = `http://127.0.0.1:5000/report/update/state?id_state=${idEstado}&id_report=${props.bug.id}`;
     try {
       const response = await fetch(url, { method: "POST" });
       if (response.ok) {

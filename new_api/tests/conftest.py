@@ -28,21 +28,26 @@ def init_database(test_client):
     from app.models.relationship_developer_product import RelationshipDeveloperProduct
     
     # Roles
-    tester_role = Role(name='testero')
-    db.session.add(tester_role)
+    developer_role = Role(name='developer')
+    db.session.add(developer_role)
     
-    # Products
-    default_product = Product(name='default_product')
-    default_product2 = Product(name='default_product2')
-    db.session.add(default_product)
-    db.session.add(default_product2)
-    
+    admin_role = Role(name='admin')
+    db.session.add(admin_role)
+
     # Developers
     default_developer = Developer(name="default_developer", email='default@email.com', id_role=1)
     default_developer2 = Developer(name="default_developer2", email='default2@email.com', id_role=1)
+    default_developer3 = Developer(name="default_developer3", email='default3@email.com', id_role=2)
     db.session.add(default_developer)
     db.session.add(default_developer2)
+    db.session.add(default_developer3)
     
+    # Products
+    default_product = Product(name='default_product',id_develope=1)
+    default_product2 = Product(name='default_product2',id_developer=1)
+    db.session.add(default_product)
+    db.session.add(default_product2)
+
     # Users
     default_user = User(name='default_user', email='default@email.com')
     db.session.add(default_user)

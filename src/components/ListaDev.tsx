@@ -12,14 +12,21 @@ interface IListaDevProps { }
 
 type Dev = {
   id: number;
-  nombre: string;
+  name: string;
   email: string;
   num_reportes: string;
 }
 type prioridad = {
   id: number;
-  nombre: string;
+  name: string;
 };
+
+type producto = {
+  name: string;
+  id: number;
+  id_developer: number;
+}
+
 
 const useDevData = (url: string, id_product: number) => {
   const [datos, setUsers] = useState<Dev[]>([]);
@@ -49,15 +56,12 @@ const useDevData = (url: string, id_product: number) => {
 const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
   const [id_product, setId_product] = useState<number>(1);
   const [devs, setDevs] = useState<Dev[]>([]);
-  const [products, setProducts] = useState<Product[]>([]);
 
   const selectChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
     setId_product(parseInt(event.target.value, 10));
-
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAa change to");
   };
 
-  const datos = useDevData('http://127.0.0.1:5000/products/get/developers', id_product);
+  const datos = useDevData('http://127.0.0.1:5000/product/get/developers/all', id_product);
 
   const fetchNumReports = async (devId: number) => {
     try {
@@ -75,7 +79,7 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
       const num_rep = await fetchNumReports(dev.id);
 
       return {
-        nombre: dev.nombre,
+        nombre: dev.name,
         email: dev.email,
         num_reportes: num_rep.total_reports + ' (' + num_rep.product_reports + ')',
         modal: <ListaDevButton id_dev={dev.id} id_producto={id_product}></ListaDevButton>,
@@ -97,26 +101,28 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
     console.log("se realiza la actualizacion")
   }, [datos, id_product]);
 
-  const getProducts = async () => {
-    const response = await fetch('http://127.0.0.1:5000/products/all');
-    const data = await response.json();
-    const productos = data
-      .filter((producto: Product) => producto.id_encargado === 2)
-      .map((item: Product) => {
-        return {
-          nombre: item.nombre,
-          id: item.id,
-        };
+  const getProducts = () => {
+    const [products, setProducts] = useState([]);
+  
+    useEffect(() => {
+      fetch("http://127.0.0.1:5000/product/get/all")
+        .then((response) => response.json())
+        .then((data) => setProducts(data));
+    }, []);
+    
+    const productos = products.filter((producto:producto) => producto.id_developer === 1).map((item: producto) =>{
+      return {
+        nombre:item.name, id:item.id
+        }
       });
-
+      console.log(productos)
     return productos;
   };
 
   useEffect(() => {
-    getProducts().then((productos) => {
-      setProducts(productos);
-    });
+    
   }, []);
+
 
   const data = {
     columns: [
@@ -144,6 +150,7 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
     rows: devs,
   };
 
+  const products=getProducts();
   return (
     <Container>
       <Card style={{ width: '43rem', height: '20rem'}}>

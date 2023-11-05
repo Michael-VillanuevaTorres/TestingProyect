@@ -12,23 +12,23 @@ import Dropdown from 'react-bootstrap/Dropdown';
 type reporte = {
   date: Date;
   description: string;
-  id_estado: number;
+  id_state: number;
   id: number;
-  id_prioridad:number;
-  id_producto: number;
+  id_priority:number;
+  id_product: number;
   likes: number;
   title: string;
 }
 
 type producto = {
-  nombre: string;
+  name: string;
   id: number;
-  id_encargado: number;
+  id_developer: number;
 }
 
 interface Estado {
   id: number;
-  nombre: string;
+  name: string;
 }
 
 type EstadoDictionary = Record<number, string>;
@@ -37,12 +37,12 @@ const getEstados = (): EstadoDictionary => {
   const [estados, setEstados] = useState<EstadoDictionary>({});
 
   const fetchEstados = () => {
-    fetch("http://127.0.0.1:5000/reports/estados/all")
+    fetch("http://127.0.0.1:5000/report/state/all")
       .then((response) => response.json())
       .then((data: Estado[]) => {
         const estadosDictionary: EstadoDictionary = {};
         data.forEach((estado) => {
-          estadosDictionary[estado.id] = estado.nombre;
+          estadosDictionary[estado.id] = estado.name;
         });
         setEstados(estadosDictionary);
       });
@@ -61,7 +61,7 @@ const getData = () => {
   const [users, setUsers] = useState([]);
 
   const fetchUserData = () => {
-    fetch("http://127.0.0.1:5000/reports/all")
+    fetch("http://127.0.0.1:5000/report/get/all")
       .then((response) => {
         return response.json();
       })
@@ -90,16 +90,16 @@ export default function SearchBar() {
   const estados = getEstados();
   const [id_product, setId_product] = useState(1);
   const [query, setQuery] = useState("");
-  const [name_product, setName] = useState("jarro3000v1.69");
+  const [name_product, setName] = useState("");
   const filteredItems = getFilteredItems(query, users);
   const reports = filteredItems.map((report: reporte) => {
     return {
       titulo: <Button href={"/VerReporte/" + report.id} variant="link">{report.title}</Button>,
       fecha: report.date,
-      estado: estados[report.id_estado],
+      estado: estados[report.id_state],
       likes: report.likes,
-      like: <LikeButton id_bug={report.id} id_user={2}></LikeButton>,   //// HARDCODEADO EL ID DEL USUARIO :C
-      id_producto: report.id_producto
+      like: <LikeButton id_bug={report.id} id_user={1}></LikeButton>,   //// HARDCODEADO EL ID DEL USUARIO :C
+      id_producto: report.id_product
     }
   });
 
@@ -142,15 +142,15 @@ export default function SearchBar() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-      fetch("http://127.0.0.1:5000/products/all")
+      fetch("http://127.0.0.1:5000/product/get/all")
         .then((response) => response.json())
         .then((data) => setProducts(data));
-    }, []);
+    }, []); 
 
     //const productos = products.filter((producto: producto) => producto.id_encargado === 2).map((item: producto) => { version de linea anterior con filtro
     const productos = products.map((item: producto) => {
       return {
-        nombre: item.nombre, id: item.id
+        nombre: item.name, id: item.id
       }
     });
 

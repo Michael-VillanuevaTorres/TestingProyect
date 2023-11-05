@@ -1,5 +1,5 @@
 class Comment {
-    contenido: string;
+    content: string;
     date: string;
     id: string;
     constructor(
@@ -7,7 +7,7 @@ class Comment {
       date = "vacio",
       id = "vacio"
     ) {
-      this.contenido = contenido;
+      this.content = contenido;
       this.date = date;
       this.id = id;
     }
