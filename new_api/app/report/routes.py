@@ -140,8 +140,9 @@ def get_number_of_reports():
 
 @app.route('/get/all', methods=['GET'])
 def get_all_reports():
-    reports = Report.query.all()
-    reports_json = [report_to_list(report) for report in reports]
+    reports = db.session.query(Report).all()
+    
+    reports_json = [report.serialize() for report in reports]
 
     return jsonify(reports_json), 200
 
@@ -151,6 +152,8 @@ def get_all_reports_from_product():
     if Product.query.filter_by(id=id_product).first() == None:
         return jsonify({'message': 'The id_product is not in the database'}), 400
     reports = Report.query.filter_by(id_product=id_product).all()
+    print(reports)
+    
     #revisar si se quiere asi o que solamente entregue una lista vacia
     if len(reports) == 0:
         return jsonify({'message': 'There are no reports with that id_product'}), 400
@@ -373,7 +376,7 @@ def commit_like(report,id_user, id_report):
     db.session.commit() 
 
 def commit_report(title,description,id_product,id_user):
-    report = Report(title, description, id_product,id_user)
+    report = Report(title=title, description=description, id_product=id_product, id_user=id_user)
     db.session.add(report)
     db.session.commit()
     

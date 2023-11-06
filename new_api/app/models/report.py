@@ -19,6 +19,20 @@ class Report(db.Model):
         self.description = description
         self.id_product = id_product
         self.id_user = id_user
+        
+    def serialize(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'id_developer': self.id_developer,
+            'id_state': self.id_state,
+            'id_priority': self.id_priority,
+            'likes': self.likes,
+            'id_product': self.id_product,
+            'date': self.date,
+            'id_user': self.id_user
+        }
     
     def add_state(self, id_state):
         self.id_state = id_state
