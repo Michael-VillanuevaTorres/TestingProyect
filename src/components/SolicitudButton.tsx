@@ -22,7 +22,7 @@ const SolicitudButton: React.FunctionComponent<ISolicitudButtonProps> = ({id_rep
   const { register, handleSubmit,formState: { errors } } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
       setButtonDisabled(true); // Disable the button
-      const url = `http://127.0.0.1:5000/reasignacion/add/?id_report=${id_report}&id_developer=${id_dev}`;
+      const url = `http://127.0.0.1:5000/reassignment/add?id_report=${id_report}&id_developer=${id_dev}`;
       const response = await fetch(url, {
         method: "POST",
         headers: {

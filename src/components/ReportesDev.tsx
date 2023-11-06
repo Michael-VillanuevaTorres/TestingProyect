@@ -11,28 +11,28 @@ interface IReportesDev {
 type reporte = {
   id: number;
   title:string;
-  descripcion:string;
+  description:string;
   likes:number;
   date:string;
-  id_estado: number;
-  id_prioridad: number;
-  id_producto: number;
+  id_state: number;
+  id_priority: number;
+  id_product: number;
 };
 type prioridad = {
   id: number;
-  nombre: string;
+  name: string;
 };
 
 interface Estado {
   id: number;
-  nombre: string;
+  name: string;
 }
 
 
 
 interface Producto {
   id: number;
-  nombre: string;
+  name: string;
 }
 
 type productoDictionary = Record<number, string>;
@@ -42,12 +42,12 @@ const getProductos = (): productoDictionary => {
   const [productos, setProductos] = useState<productoDictionary>({});
 
   const fetchProductos = () => {
-    fetch("http://127.0.0.1:5000/products/all")
+    fetch("http://127.0.0.1:5000/product/get/all")
       .then((response) => response.json())
       .then((data: Producto[]) => {
         const productDictionary: productoDictionary = {};
         data.forEach((producto) => {
-          productDictionary[producto.id] = producto.nombre;
+          productDictionary[producto.id] = producto.name;
         });
         setProductos(productDictionary);
       });
@@ -61,21 +61,16 @@ const getProductos = (): productoDictionary => {
 };
 
 
-
-
-
-
-
 const getEstados = (): EstadoDictionary => {
   const [estados, setEstados] = useState<EstadoDictionary>({});
 
   const fetchEstados = () => {
-    fetch("http://127.0.0.1:5000/reports/estados/all")
+    fetch("http://127.0.0.1:5000/report/state/all")
       .then((response) => response.json())
       .then((data: Estado[]) => {
         const estadosDictionary: EstadoDictionary = {};
         data.forEach((estado) => {
-          estadosDictionary[estado.id] = estado.nombre;
+          estadosDictionary[estado.id] = estado.name;
         });
         setEstados(estadosDictionary);
       });
@@ -89,7 +84,7 @@ const getEstados = (): EstadoDictionary => {
 };
 
 
-const id_dev = 5;
+const id_dev = 1;
 
 const getData = () => {
 
@@ -101,14 +96,16 @@ const getData = () => {
   const fetchUserData = async () => {
     try {
       const [response1, response2, response3] = await Promise.all([
-        fetch("http://127.0.0.1:5000/dev/reportes/?id_dev=" + id_dev),
-        fetch("http://127.0.0.1:5000/products/all"),
-        fetch("http://127.0.0.1:5000/reports/estados/all")
+        fetch("http://127.0.0.1:5000/developer/reports?id_dev=" + id_dev),
+        fetch("http://127.0.0.1:5000/product/get/all"),
+        fetch("http://127.0.0.1:5000/report/state/all")
       ]);
 
       const data1 = await response1.json();
       const data2 = await response2.json();
       const data3 = await response3.json();
+      
+      console.log(data1);
 
       setDatosReporte(data1);
       setDatosProductos(data2);
@@ -133,7 +130,7 @@ const getPrioridades = (): prioridad[] => {
   useEffect(() => {
     const fetchPrioridades = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/reports/prioridad/all');
+        const response = await fetch('http://127.0.0.1:5000/report/priority/all');
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);
@@ -162,25 +159,25 @@ const ReportesDev: React.FunctionComponent<IReportesDev> = (props) => {
     if (!prio) {
       return <h5 className="prioridadCero">NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
-      return <h5 className="prioridadCero">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadCero">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 1) {
-      return <h5 className="prioridadUno">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadUno">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 2) {
-      return <h5 className="prioridadDos">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadDos">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 3) {
-      return <h5 className="prioridadTres">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadTres">{prio.name.toUpperCase()}</h5>;
     } else {
       return <h5 className="prioridadCero">NO ASIGNADO</h5>;
     }
   };
   //REVISAR LOS ESTADOS REHACER LA VISTA
   const reports = datosReporte.map((report: reporte) => {
-    const estadoNombre = estados[report.id_estado];
-    const productoNombre = productos[report.id_producto];
+    const estadoNombre = estados[report.id_state];
+    const productoNombre = productos[report.id_product];
     return {
       titulo: <Button href={"/VerReporteDev/" + report.id} variant="link">{report.title}</Button>,
-      prioridad: getPrioridadNombre(report.id_prioridad),
-      estado: estadoNombre.toUpperCase(),
+      prioridad: getPrioridadNombre(report.id_priority),
+      estado: estadoNombre,
       likes: report.likes,
       fecha: report.date,
       producto: productoNombre,

@@ -37,7 +37,7 @@ const ReasignacionButton: React.FunctionComponent<IReasignacionButtonProps> = ({
   const { register, handleSubmit,formState: { errors } } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {  
   
-    const url = "http://127.0.0.1:5000/reports/add/developer/?id_report="+id_report+"&id_dev="+data.developer;
+    const url = "http://127.0.0.1:5000/report/add/developer?id_report="+id_report+"&id_dev="+data.developer;
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -56,7 +56,7 @@ const ReasignacionButton: React.FunctionComponent<IReasignacionButtonProps> = ({
 
 
   const Negar = async () => {
-    const url = "http://127.0.0.1:5000/reasignacion/delete/?id_report="+id_report+"&id_dev="+id_developer;
+    const url = "http://127.0.0.1:5000/reassigment/delete?id_report="+id_report+"&id_dev="+id_developer;
     const response = await fetch(url, {
       method: "DELETE",
       headers: {

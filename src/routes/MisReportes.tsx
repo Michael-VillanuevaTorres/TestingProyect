@@ -13,14 +13,14 @@ type reporte = {
     description: string;
     likes: number;
     date: string;
-    id_estado: number;
-    id_prioridad: number;
-    id_producto: number;
+    id_state: number;
+    id_prioriry: number;
+    id_product: number;
 };
 
 interface Estado {
     id: number;
-    nombre: string;
+    name: string;
 }
 
 type EstadoDictionary = Record<number, string>;
@@ -29,12 +29,12 @@ const getEstados = (): EstadoDictionary => {
     const [estados, setEstados] = useState<EstadoDictionary>({});
 
     const fetchEstados = () => {
-        fetch("http://127.0.0.1:5000/reports/estados/all")
+        fetch("http://127.0.0.1:5000/report/state/all")
             .then((response) => response.json())
             .then((data: Estado[]) => {
                 const estadosDictionary: EstadoDictionary = {};
                 data.forEach((estado) => {
-                    estadosDictionary[estado.id] = estado.nombre;
+                    estadosDictionary[estado.id] = estado.name;
                 });
                 setEstados(estadosDictionary);
             });
@@ -54,7 +54,7 @@ const MisReportes: React.FunctionComponent<IMisReportesProps> = (props) => {
     const [likedReports, setLikedReports] = useState<reporte[]>([]);
 
     const fetchData = () => {
-        fetch(`http://127.0.0.1:5000/user/reports/?id_user=2`)
+        fetch(`http://127.0.0.1:5000/user/reports?id_user=1`)
             .then((response) => response.json())
             .then((data) => {
                 setReports(data);
@@ -72,7 +72,7 @@ const MisReportes: React.FunctionComponent<IMisReportesProps> = (props) => {
     }, []);
 
     const fetchDataLikes = () => {
-        fetch(`http://127.0.0.1:5000/user/liked/?id_user=2`)
+        fetch(`http://127.0.0.1:5000/user/likes?id_user=1`)
             .then((response) => response.json())
             .then((data) => {
                 setLikedReports(data);
@@ -102,7 +102,7 @@ const MisReportes: React.FunctionComponent<IMisReportesProps> = (props) => {
             </Button>
         ),
         fecha: report.date,
-        estado: estados[report.id_estado],
+        estado: estados[report.id_state],
         likes: report.likes
     }));
 
@@ -140,7 +140,7 @@ const MisReportes: React.FunctionComponent<IMisReportesProps> = (props) => {
             </Button>
         ),
         fecha: report.date,
-        estado: estados[report.id_estado],
+        estado: estados[report.id_state],
         likes: report.likes
     }));
 

@@ -11,9 +11,9 @@ type FormValues = {
 };
 
 type product_form = {
-  nombre: string;
+  name: string;
   id: number;
-  id_encargado: number;
+  id_developer: number;
 }
 
 
@@ -22,7 +22,7 @@ const getProducts = () => {
   const [products, setProducts] = useState([]);
 
 useEffect(() => {
-  fetch("http://127.0.0.1:5000/products/all")
+  fetch("http://127.0.0.1:5000/product/get/all")
     .then((response) => response.json())
     .then((data) => setProducts(data));
 }, []);
@@ -32,7 +32,7 @@ return products;
 function Form(): JSX.Element {
   const rawProducts = getProducts();
   const products = rawProducts.map((item: product_form) =>{
-    return new Product(item.nombre, item.id, item.id_encargado)
+    return new Product(item.name, item.id, item.id_developer)
   });
   const { register, handleSubmit } = useForm<FormValues>();
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ function Form(): JSX.Element {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const id_producto = data.id_product;
     const id_cliente = 2;
-    const url = "http://127.0.0.1:5000/reports/add?id_product=" + id_producto + "&id_cliente="+ id_cliente;
+    const url = "http://127.0.0.1:5000/report/add?id_product=" + id_producto + "&id_user="+ id_cliente;
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -74,7 +74,7 @@ function Form(): JSX.Element {
           <select {...register("id_product")}>
             {products.map((product) => (
               <option key={product.id} value={product.id}>
-                {product.nombre}
+                {product.name}
               </option>
             ))}
           </select>

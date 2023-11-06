@@ -1,7 +1,14 @@
 from app.reassignment import bp as app
 from app.extensions import db
+from app.models.report import Report
+from app.models.developer import Developer
+from app.models.reassignment import Reassignment
+from app.models.report import Report
+from app.models.developer import Developer
+from app.models.reassignment import Reassignment
 
 from flask import jsonify, request
+
 
 @app.route('/add', methods=['POST'])
 def add_reassignment_petition():
@@ -30,6 +37,6 @@ def get_reassignment_reason():
     pass
 
 def commit_reassignment(id_report,id_developer, motivo):
-    reasignation = db.solicitud_reasignacion(id_report,id_developer,motivo)
-    db.session.add(reasignation)
+    reassignment = Reassignment(id_report,id_developer,motivo)
+    db.session.add(reassignment)
     db.session.commit()

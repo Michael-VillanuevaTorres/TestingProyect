@@ -23,7 +23,7 @@ class ListaRPDev extends React.Component<
   constructor(props: ParentComponentProps) {
     super(props);
     this.state = {
-      id_dev: 5, // Initial value for id_dev
+      id_dev: 1, // Initial value for id_dev
       nombre_producto: 'jarro3000v1.69',
     };
   }

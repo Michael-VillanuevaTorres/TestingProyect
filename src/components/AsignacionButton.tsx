@@ -9,17 +9,17 @@ interface IAsignacionButtonProps {
 
 type FormValues = {
   developer: string;
-  comentario: string;
+  comment: string;
 };
 type Desarollador = {
   email:string;
   id:number;
-  id_rol: number;
-  nombre: string;
+  id_role: number;
+  name: string;
 };
 type prioridad = {
   id: number;
-  nombre: string;
+  name: string;
 };
 
 const AsignacionButton: React.FunctionComponent<IAsignacionButtonProps> = ({id_report})  =>   {
@@ -31,7 +31,7 @@ const AsignacionButton: React.FunctionComponent<IAsignacionButtonProps> = ({id_r
   const { register, handleSubmit,formState: { errors } } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {  
    
-    const url = "http://127.0.0.1:5000/reports/add/developer/?id_report="+id_report+"&id_dev="+data.developer;
+    const url = "http://127.0.0.1:5000/report/add/developer/?id_report="+id_report+"&id_dev="+data.developer;
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -52,14 +52,14 @@ const AsignacionButton: React.FunctionComponent<IAsignacionButtonProps> = ({id_r
     const [desarollador, setDesarolladores] = useState([]);
   
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/products/get/developers?id_product="+2)
+    fetch("http://127.0.0.1:5000/product/get/developers/all?id_product="+1)
       .then((response) => response.json())
       .then((data) => setDesarolladores(data));
   }, []);
 
   const desarolladores = desarollador.map((item: Desarollador) =>{
     return {
-      nombre:item.nombre, id_desarollador:item.id, id_rol:item.id_rol, email:item.email
+      nombre:item.name, id_desarollador:item.id, id_rol:item.id_role, email:item.email
     }
   });
 
