@@ -77,12 +77,11 @@ def add_like_to_report():
     id_user = request.args.get('id_user')
     
     report = Report.query.get_or_404(id_report)
-    
+
     if Like.query.filter_by(id_developer=id_user, id_report=id_report).first() is not None:
         return jsonify({'message': 'The like is already in the database'}), 400
     
-    commit_like(id_user, id_report)
-    report.add_likes(1)
+    commit_like(report,id_user, id_report)
 
     return jsonify({'message': 'like added successfully.'}), 201
 
@@ -367,10 +366,11 @@ def commit_comment(description, id_report):
     db.session.add(comment)
     db.session.commit()
 
-def commit_like(id_user, id_report):
+def commit_like(report,id_user, id_report):
     like = Like(id_user,id_report)
+    report.add_likes(1)
     db.session.add(like)
-    db.session.commit()
+    db.session.commit() 
 
 def commit_report(title,description,id_product,id_user):
     report = Report(title, description, id_product,id_user)

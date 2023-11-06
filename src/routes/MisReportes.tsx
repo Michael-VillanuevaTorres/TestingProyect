@@ -54,7 +54,7 @@ const MisReportes: React.FunctionComponent<IMisReportesProps> = (props) => {
     const [likedReports, setLikedReports] = useState<reporte[]>([]);
 
     const fetchData = () => {
-        fetch(`http://127.0.0.1:5000/user/report/?id_user=1`)
+        fetch(`http://127.0.0.1:5000/user/reports?id_user=1`)
             .then((response) => response.json())
             .then((data) => {
                 setReports(data);
@@ -72,7 +72,7 @@ const MisReportes: React.FunctionComponent<IMisReportesProps> = (props) => {
     }, []);
 
     const fetchDataLikes = () => {
-        fetch(`http://127.0.0.1:5000/user/likes/?id_user=1`)
+        fetch(`http://127.0.0.1:5000/user/likes?id_user=1`)
             .then((response) => response.json())
             .then((data) => {
                 setLikedReports(data);

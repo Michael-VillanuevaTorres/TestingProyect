@@ -13,28 +13,28 @@ import DropdownPrioridad from "./DropdownPrioridad"
 type reporte = {
   id: number;
   title:string;
-  descripcion:string;
+  description:string;
   likes:number;
   date:string;
-  id_estado: number;
-  id_prioridad: number;
-  id_producto: number;
+  id_state: number;
+  id_priority: number;
+  id_product: number;
 };
 
 type producto = {
-  nombre: string;
+  name: string;
   id: number;
-  id_encargado: number;
+  id_state: number;
 }
 
 interface Estado {
   id: number;
-  nombre: string;
+  name: string;
 }
 
 type prioridad = {
   id: number;
-  nombre: string;
+  name: string;
 };
 
 type EstadoDictionary = Record<number, string>;
@@ -43,12 +43,12 @@ const getEstados = (): EstadoDictionary => {
   const [estados, setEstados] = useState<EstadoDictionary>({});
 
   const fetchEstados = () => {
-    fetch("http://127.0.0.1:5000/reports/estados/all")
+    fetch("http://127.0.0.1:5000/report/state/all")
       .then((response) => response.json())
       .then((data: Estado[]) => {
         const estadosDictionary: EstadoDictionary = {};
         data.forEach((estado) => {
-          estadosDictionary[estado.id] = estado.nombre;
+          estadosDictionary[estado.id] = estado.name;
         });
         setEstados(estadosDictionary);
       });
@@ -67,7 +67,7 @@ const getData = () => {
   const [users, setUsers] = useState([]);
 
   const fetchUserData = () => {
-    fetch("http://127.0.0.1:5000/reports/all")
+    fetch("http://127.0.0.1:5000/report/get/all")
       .then((response) => {
         return response.json();
       })
@@ -97,7 +97,7 @@ const getPrioridades = (): prioridad[] => {
   useEffect(() => {
     const fetchPrioridades = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/reports/prioridad/all');
+        const response = await fetch('http://127.0.0.1:5000/report/priority/all');
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);
@@ -121,20 +121,20 @@ export default function SearchBar() {
   const prioridades = getPrioridades();
   const [id_product, setId_product] = useState(1);
   const [query, setQuery] = useState("");
-  const [name_product, setName] = useState("jarro3000v1.69");
+  const [name_product, setName] = useState("default_product");
   const filteredItems = getFilteredItems(query, users);
   const getPrioridadNombre =(id:number) =>{
     const  prio = prioridades.find((item: prioridad) => item.id === id);
     if (!prio) {
       return <h5 className="prioridadCero">NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
-      return <h5 className="prioridadCero">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadCero">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 1) {
-      return <h5 className="prioridadUno">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadUno">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 2) {
-      return <h5 className="prioridadDos">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadDos">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 3) {
-      return <h5 className="prioridadTres">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadTres">{prio.name.toUpperCase()}</h5>;
     } else {
       return <h5 className="prioridadCero">NO ASIGNADO</h5>;
     }
@@ -143,10 +143,10 @@ export default function SearchBar() {
     return {
       titulo: <Button href={"/VerReporteEnv/" + report.id} variant="link">{report.title}</Button>,
       fecha: report.date,
-      estado: estados[report.id_estado],
+      estado: estados[report.id_state],
       likes: report.likes,
-      id_producto: report.id_producto,
-      prioridad: getPrioridadNombre(report.id_prioridad),
+      id_producto: report.id_product,
+      prioridad: getPrioridadNombre(report.id_priority),
       CambioPrioridad : <DropdownPrioridad  id_report={report.id}></DropdownPrioridad>
     }
   });
@@ -196,7 +196,7 @@ export default function SearchBar() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-      fetch("http://127.0.0.1:5000/products/all")
+      fetch("http://127.0.0.1:5000/product/get/all")
         .then((response) => response.json())
         .then((data) => setProducts(data));
     }, []);
@@ -204,7 +204,7 @@ export default function SearchBar() {
     //const productos = products.filter((producto: producto) => producto.id_encargado === 2).map((item: producto) => { version de linea anterior con filtro
     const productos = products.map((item: producto) => {
       return {
-        nombre: item.nombre, id: item.id
+        nombre: item.name, id: item.id
       }
     });
 

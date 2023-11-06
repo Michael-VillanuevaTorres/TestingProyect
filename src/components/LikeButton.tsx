@@ -5,7 +5,7 @@ import Bug from "./Bug";
 const LikeButton = (props: { id_bug: number; id_user:number }) => {
   const addLike = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/reports/like?id_report=${props.id_bug}&id_user=${props.id_user}`, {
+      const response = await fetch(`http://127.0.0.1:5000/report/add/like?id_report=${props.id_bug}&id_user=${props.id_user}`, {
         method: 'POST',
       });
       const data = await response.json();

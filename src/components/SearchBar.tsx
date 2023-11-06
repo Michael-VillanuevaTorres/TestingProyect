@@ -90,7 +90,7 @@ export default function SearchBar() {
   const estados = getEstados();
   const [id_product, setId_product] = useState(1);
   const [query, setQuery] = useState("");
-  const [name_product, setName] = useState("");
+  const [name_product, setName] = useState("default_product");
   const filteredItems = getFilteredItems(query, users);
   const reports = filteredItems.map((report: reporte) => {
     return {

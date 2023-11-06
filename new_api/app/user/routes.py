@@ -29,11 +29,7 @@ def get_likes_from_user():
 @app.route('/reports', methods=['GET'])
 def get_reports_from_user():
     id_user = request.args.get('id_user')
-    user = Report.query.filer_by(id=id_user).first()
     
-    if user is None:
-        return jsonify({'message': 'el user no existe'}), 400
-    
-    reports = Report.query.filter_by(id=id_user).all()
+    reports = Report.query.filter_by(id_user=id_user).all()
     reports_json = [report_to_list(report) for report in reports]
     return jsonify(reports_json), 200
