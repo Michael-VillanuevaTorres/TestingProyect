@@ -65,7 +65,7 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
 
   const fetchNumReports = async (devId: number) => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/dev/all/report-product/?id_dev=${devId}&id_product=${id_product}`);
+      const response = await fetch(`http://127.0.0.1:5000/developer/number/product/reports/all?id_dev=${devId}&id_product=${id_product}`);
       const data = await response.json();
       return data;
     } catch (error) {
