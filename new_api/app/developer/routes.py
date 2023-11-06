@@ -24,7 +24,7 @@ def get_actives_reports_from_developer():
     
     return jsonify(reports_json), 200
 
-@app.route('number/product/reports/all', methods=['GET'])
+@app.route('/number/product/reports/all', methods=['GET'])
 def get_number_of_total_reports_and_reports_related_to_product_from_developer():
     id_dev = request.args.get('id_dev')
     id_product = int(request.args.get('id_product'))

@@ -34,7 +34,7 @@ const getPrioridades = (): prioridad[] => {
   useEffect(() => {
     const fetchPrioridades = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/reports/prioridad/all');
+        const response = await fetch('http://127.0.0.1:5000/reports/priority/all');
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);

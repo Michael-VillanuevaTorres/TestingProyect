@@ -96,7 +96,7 @@ const getData = () => {
   const fetchUserData = async () => {
     try {
       const [response1, response2, response3] = await Promise.all([
-        fetch("http://127.0.0.1:5000/developer/reports/?id_dev=" + id_dev),
+        fetch("http://127.0.0.1:5000/developer/reports?id_dev=" + id_dev),
         fetch("http://127.0.0.1:5000/product/get/all"),
         fetch("http://127.0.0.1:5000/report/state/all")
       ]);
