@@ -65,10 +65,10 @@ def get_all_reports_from_products_related_to_developer():
 @app.route('/get', methods=['GET'])
 def get_developer():
     id_dev = request.args.get('id_dev')
-    developer = Developer.query.filer_by(id=id_dev).first()
+    developer = Developer.query.filter_by(id=id_dev).first()
 
     if developer is None:
         return jsonify({'message': 'el desarollador no existe'}), 400
     
     developer_json = [developer_to_list(developer)]
-    return jsonify(developer_json)
+    return jsonify(developer_json),200

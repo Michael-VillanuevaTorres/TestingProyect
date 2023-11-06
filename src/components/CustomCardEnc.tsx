@@ -23,6 +23,7 @@ const getPrioridades = (): prioridad[] => {
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);
+          
         } else {
           console.error('Failed to fetch prioridades');
         }
@@ -44,9 +45,6 @@ function CustomCardEnv(props: { bug: Bug }) {
   const navigate = useNavigate();
   const [bugState, setBugState] = useState(props.bug.estado);
 
-  // const handleInspectBug = () => {
-  //   navigate(`/VerReporte/${props.bug.id}`);
-  // };
   const prioridades = getPrioridades();
   const getPrioridadNombre =(id:number) =>{
     const  prio = prioridades.find((item: prioridad) => item.id === id);
@@ -83,11 +81,11 @@ function CustomCardEnv(props: { bug: Bug }) {
 
   const mapBugStateToId = (bugState: string): number => {
     switch (bugState) {
-      case "pendiente":
+      case "Pendiente":
         return 1;
-      case "en proceso":
+      case "En proceso":
         return 2;
-      case "cerrado":
+      case "Cerrado":
         return 3;
       default:
         return 0;
@@ -100,45 +98,45 @@ function CustomCardEnv(props: { bug: Bug }) {
       <div className="card-body">
         <div className="bug-info-container">
         <div className="comp-comp"><DropdownPrioridad  id_report={props.bug.id}/></div>
-        <div >
-            <select
+        <div className="bug-state">
+        <select
               className="bug-state-select"
               value={bugState}
               onChange={handleBugStateChange}
             >
-              {props.bug.estado === "pendiente" && (
+              {props.bug.estado === "Pendiente" && (
                 <React.Fragment>
-                  <option value="pendiente">pendiente</option>
-                  <option value="en proceso">en proceso</option>
-                  <option value="cerrado">cerrado</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="En proceso">En proceso</option>
+                  <option value="Cerrado">Cerrado</option>
                 </React.Fragment>
               )}
-              {props.bug.estado === "en proceso" && (
+              {props.bug.estado === "En proceso" && (
                 <React.Fragment>
-                  <option value="en proceso">en proceso</option>
-                  <option value="pendiente">pendiente</option>
-                  <option value="cerrado">cerrado</option>
+                  <option value="En proceso">En proceso</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Cerrado">Cerrado</option>
                 </React.Fragment>
               )}
-              {props.bug.estado === "cerrado" && (
+              {props.bug.estado === "Cerrado" && (
                 <React.Fragment>
-                  <option value="cerrado">cerrado</option>
-                  <option value="pendiente">pendiente</option>
-                  <option value="en proceso">en proceso</option>
+                  <option value="Cerrado">Cerrado</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="En proceso">En proceso</option>
                 </React.Fragment>
               )}
-              {props.bug.estado === "no asignado" && (
+              {props.bug.estado === "No asignado" && (
                 <React.Fragment>
-                  <option value="no asignado">no asignado</option>
-                  <option value="pendiente">pendiente</option>
-                  <option value="en proceso">en proceso</option>
-                  <option value="cerrado">cerrado</option>
+                  <option value="No asignado">No asignado</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="En proceso">En proceso</option>
+                  <option value="Cerrado">Cerrado</option>
                 </React.Fragment>
               )}
             </select>
-            {"   " + props.bug.likes+" likes"}
+            
           </div>
-          
+          {"   " + props.bug.likes+" likes"}
         </div>
         <p className="titulardo">{props.bug.titulo}</p>
         <div>

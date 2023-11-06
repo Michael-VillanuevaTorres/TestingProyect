@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 type prioridad = {
   id: number;
-  nombre: string;
+  name: string;
 };
 const getPrioridades = (): prioridad[] => {
   const [prioridades, setPrioridades] = useState<prioridad[]>([]);
@@ -17,7 +17,7 @@ const getPrioridades = (): prioridad[] => {
   useEffect(() => {
     const fetchPrioridades = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/reports/prioridad/all');
+        const response = await fetch('http://127.0.0.1:5000/report/priority/all');
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);
@@ -47,15 +47,16 @@ function CustomCardDev(props: { bug: Bug }) {
   const getPrioridadNombre =(id:number) =>{
     const  prio = prioridades.find((item: prioridad) => item.id === id);
     if (!prio) {
+      
       return <h5 className="prioridadCeroCustom">NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
-      return <h5 className="prioridadCeroCustom">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadCeroCustom">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 1) {
-      return <h5 className="prioridadUnoCustom">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadUnoCustom">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 2) {
-      return <h5 className="prioridadDosCustom">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadDosCustom">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 3) {
-      return <h5 className="prioridadTresCustom">{prio.nombre.toUpperCase()}</h5>;
+      return <h5 className="prioridadTresCustom">{prio.name.toUpperCase()}</h5>;
     } else {
       return <h5 className="prioridadCeroCustom">NO ASIGNADO</h5>;
     }
@@ -71,7 +72,7 @@ function CustomCardDev(props: { bug: Bug }) {
     const newBugState = e.target.value;
     setBugState(newBugState);
     const idEstado = mapBugStateToId(newBugState);
-    const url = `http://127.0.0.1:5000/reports/update/estado?id_estado=${idEstado}&id_report=${props.bug.id}`;
+    const url = `http://127.0.0.1:5000/report/update/state?id_state=${idEstado}&id_report=${props.bug.id}`;
     try {
       const response = await fetch(url, { method: "POST" });
       if (response.ok) {
@@ -85,11 +86,11 @@ function CustomCardDev(props: { bug: Bug }) {
 
   const mapBugStateToId = (bugState: string): number => {
     switch (bugState) {
-      case "pendiente":
+      case "Pendiente":
         return 1;
-      case "en proceso":
+      case "En proceso":
         return 2;
-      case "cerrado":
+      case "Cerrado":
         return 3;
       default:
         return 0;
@@ -107,33 +108,33 @@ function CustomCardDev(props: { bug: Bug }) {
               value={bugState}
               onChange={handleBugStateChange}
             >
-              {props.bug.estado === "pendiente" && (
+              {props.bug.estado === "Pendiente" && (
                 <React.Fragment>
-                  <option value="pendiente">pendiente</option>
-                  <option value="en proceso">en proceso</option>
-                  <option value="cerrado">cerrado</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="En proceso">En proceso</option>
+                  <option value="Cerrado">Cerrado</option>
                 </React.Fragment>
               )}
-              {props.bug.estado === "en proceso" && (
+              {props.bug.estado === "En proceso" && (
                 <React.Fragment>
-                  <option value="en proceso">en proceso</option>
-                  <option value="pendiente">pendiente</option>
-                  <option value="cerrado">cerrado</option>
+                  <option value="En proceso">En proceso</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Cerrado">Cerrado</option>
                 </React.Fragment>
               )}
-              {props.bug.estado === "cerrado" && (
+              {props.bug.estado === "Cerrado" && (
                 <React.Fragment>
-                  <option value="cerrado">cerrado</option>
-                  <option value="pendiente">pendiente</option>
-                  <option value="en proceso">en proceso</option>
+                  <option value="Cerrado">Cerrado</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="En proceso">En proceso</option>
                 </React.Fragment>
               )}
-              {props.bug.estado === "no asignado" && (
+              {props.bug.estado === "No asignado" && (
                 <React.Fragment>
-                  <option value="no asignado">no asignado</option>
-                  <option value="pendiente">pendiente</option>
-                  <option value="en proceso">en proceso</option>
-                  <option value="cerrado">cerrado</option>
+                  <option value="No asignado">No asignado</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="En proceso">En proceso</option>
+                  <option value="Cerrado">Cerrado</option>
                 </React.Fragment>
               )}
             </select>

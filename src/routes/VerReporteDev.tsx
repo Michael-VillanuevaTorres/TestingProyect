@@ -32,7 +32,7 @@ type EstadoDictionary = Record<number, string>;
 
 const getCommentsdb = async (reportId: number) => {
   const fetchCommentData = async () => {
-    const ret = fetch("http://127.0.0.1:5000/comments?id_report=" + reportId)
+    const ret = fetch("http://127.0.0.1:5000/report/comments?id_report=" + reportId)
       .then((response) => {
         return response.json();
       });
@@ -84,12 +84,17 @@ const getEstados = async (): Promise<EstadoDictionary> => {
 
 const getReporte = async (id_reporte: number): Promise<Bug> => {
   const report = await getReportedb(id_reporte);
+  
   const estados = await getEstados();
-  const encargado = await fetch("http://127.0.0.1:5000/dev/info/?id_dev=" + report.id_developer)
+  const encargado = await fetch("http://127.0.0.1:5000/developer/get?id_dev=" + report.id_developer)
     .then((response) => {
       return response.json();
     });
-  return new Bug(report.id,report.id_prioridad, report.title, report.description, encargado.nombre, estados[report.id_estado], report.likes);
+    console.log(report)
+    console.log(encargado)
+    
+    return new Bug(report.id,report.id_priority, report.description,report.title, encargado.name, estados[report.id_state], report.likes);
+
 }
 
 function VerReporte() {
@@ -102,7 +107,7 @@ function VerReporte() {
   useEffect(() => {
     const fetchComments = async () => {
       const comentariolistacomentarios = await GetComments(Number(id));
-      setComments(comentariolistacomentarios.map((item: comentario) => item.contenido));
+      setComments(comentariolistacomentarios.map((item: comentario) => item.content));
       setDetcomment(comentariolistacomentarios.map((item: comentario) => item.date))
     };
 
@@ -119,7 +124,7 @@ function VerReporte() {
       return;
     }
 
-    const response = await fetch("http://127.0.0.1:5000/reports/comments?id_report=" + Number(id), {
+    const response = await fetch("http://127.0.0.1:5000/report/add/comment?id_report=" + Number(id), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
