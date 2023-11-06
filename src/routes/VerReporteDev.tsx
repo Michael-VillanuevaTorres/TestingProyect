@@ -13,7 +13,7 @@ import CustomCardDev from '../components/CustomCardDev';
 
 
 type comentario = {
-  contenido: string;
+  content: string;
   date: string;
   id: string;
 };
@@ -25,14 +25,14 @@ type contenidoReporte = {
 
 interface Estado {
   id: number;
-  nombre: string;
+  name: string;
 }
 
 type EstadoDictionary = Record<number, string>;
 
 const getCommentsdb = async (reportId: number) => {
   const fetchCommentData = async () => {
-    const ret = fetch("http://127.0.0.1:5000/comments/get?id_report=" + reportId)
+    const ret = fetch("http://127.0.0.1:5000/comments?id_report=" + reportId)
       .then((response) => {
         return response.json();
       });
@@ -49,7 +49,7 @@ const getCommentsdb = async (reportId: number) => {
 const GetComments = async (id_reporte: number): Promise<comentario[]> => {
   const comments = await getCommentsdb(id_reporte);
   const commentList = comments.map((item: comentario) => {
-    return new Comment(item.contenido, item.date, item.id);
+    return new Comment(item.content, item.date, item.id);
   });
 
   return commentList;
@@ -69,12 +69,12 @@ const getReportedb = async (reportId: number) => {
 
 const getEstados = async (): Promise<EstadoDictionary> => {
   return new Promise((resolve, reject) => {
-    fetch("http://127.0.0.1:5000/reports/estados/all")
+    fetch("http://127.0.0.1:5000/report/state/all")
       .then((response) => response.json())
       .then((data: Estado[]) => {
         const estadosDictionary: EstadoDictionary = {};
         data.forEach((estado) => {
-          estadosDictionary[estado.id] = estado.nombre;
+          estadosDictionary[estado.id] = estado.name;
         });
         resolve(estadosDictionary);
       })
