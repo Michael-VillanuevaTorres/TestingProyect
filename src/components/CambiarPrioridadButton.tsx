@@ -17,7 +17,7 @@ const CambiarPrioridadButton: React.FC<CambiarPrioridadButtonProps> = ({ id }) =
 
   const handleModalSave = async () => {
     try {
-      const url = `http://127.0.0.1:5000/reports/update/prioridad?id_report=${id}&id_prioridad=${newPrioridad}`;
+      const url = `http://127.0.0.1:5000/report/update/priority?id_report=${id}&id_prioridad=${newPrioridad}`;
       const response = await fetch(url, { method: 'POST' });
   
       if (response.ok) {

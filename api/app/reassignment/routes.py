@@ -3,9 +3,7 @@ from app.extensions import db
 from app.models.report import Report
 from app.models.developer import Developer
 from app.models.reassignment import Reassignment
-from app.models.report import Report
-from app.models.developer import Developer
-from app.models.reassignment import Reassignment
+from app.models.product import Product
 
 from flask import jsonify, request
 
@@ -30,7 +28,14 @@ def delete_reassignment_petition():
 
 @app.route('/product/all', methods=['GET'])
 def get_all_reassignment_petitions_from_product():
-    pass
+    id_product = request.args.get('id_product')
+    
+    db.get_or_404(Product, id_product)
+    
+    reassignments = db.session.query(Reassignment).join(Report).filter(Report.id_product == id_product).all()
+    
+    return jsonify([reassignment.serialize() for reassignment in reassignments]), 200
+    
 
 @app.route('/reason', methods=['GET'])
 def get_reassignment_reason():

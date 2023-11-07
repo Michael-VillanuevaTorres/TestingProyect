@@ -45,7 +45,7 @@ const getData = (id_dev: number, id_product: number) => {
   const [productInfo, setProductInfo] = useState([]);
 
   const fetchUserData = () => {
-    fetch("http://127.0.0.1:5000/dev/reportes/?id_dev=" + id_dev)
+    fetch("http://127.0.0.1:5000/developer/reports?id_dev=" + id_dev)
       .then((response) => {
         return response.json();
       })
@@ -55,7 +55,7 @@ const getData = (id_dev: number, id_product: number) => {
   };
 
   const fetchDevInfo = () => {
-    fetch("http://127.0.0.1:5000/dev/info/?id_dev=" + id_dev)
+    fetch("http://127.0.0.1:5000/developer/get?id_dev=" + id_dev)
       .then((response) => {
         return response.json();
       })
@@ -93,7 +93,7 @@ const getPrioridades = (): prioridad[] => {
   useEffect(() => {
     const fetchPrioridades = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/reports/prioridad/all');
+        const response = await fetch('http://127.0.0.1:5000/report/priority/all');
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);
@@ -141,7 +141,7 @@ const ListaDevButton: React.FunctionComponent<IListaDevButtonProps> = ({ id_dev,
   useEffect(() => {
 
   
-    fetch("http://127.0.0.1:5000/products/all")
+    fetch("http://127.0.0.1:5000/product/get/all")
       .then((response) => response.json())
       .then((data) => setProducts(data));
   }, []);
