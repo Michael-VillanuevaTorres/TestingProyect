@@ -37,7 +37,7 @@ const Reasignacion: React.FunctionComponent<IReasignacionProps> = (props) => {
  
 
   const fetchData = () => {
-    fetch("http://127.0.0.1:5000/reassignment/get/all/product?id_product="+id_product)
+    fetch("http://127.0.0.1:5000/reassignment/product/all?id_product="+id_product)
       .then((response) => {
         return response.json();
       })

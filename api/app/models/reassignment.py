@@ -12,3 +12,11 @@ class Reassignment(db.Model):
         self.id_report = id_report
         self.id_developer = id_developer
         self.reason = reason
+        
+    def serialize(self):
+        return {
+            'id_developer': self.id_developer,
+            'id_report': self.id_report,
+            'reason': self.reason,
+            'date': self.date
+        }
