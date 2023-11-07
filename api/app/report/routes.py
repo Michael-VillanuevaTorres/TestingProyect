@@ -321,7 +321,7 @@ def generate_fake_data():
     db.session.commit()
     
     # RelationshipDeveloperProduct
-    default_relationship = RelationshipDeveloperProduct(id_product=1, id_developer=1)
+    default_relationship = RelationshipDeveloperProduct( id_developer=1,id_product=1)
     db.session.add(default_relationship)
     
     # States

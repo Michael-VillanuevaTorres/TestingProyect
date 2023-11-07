@@ -17,7 +17,7 @@ def get_actives_reports_from_developer():
     if developer is None:
         return jsonify({'message': 'el desarollador no existe'}), 400
     
-    reports = Report.query.filter_by(id=id_dev).all()
+    reports = Report.query.filter_by(id_developer=id_dev).all()
     reports = [report for report in reports if report.id_state != 3]
 
     reports_json = [report_to_list(report) for report in reports]

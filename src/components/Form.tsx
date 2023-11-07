@@ -39,7 +39,7 @@ function Form(): JSX.Element {
  
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const id_producto = data.id_product;
-    const id_cliente = 2;
+    const id_cliente = 1;
     const url = "http://127.0.0.1:5000/report/add?id_product=" + id_producto + "&id_user="+ id_cliente;
     const response = await fetch(url, {
       method: "POST",
