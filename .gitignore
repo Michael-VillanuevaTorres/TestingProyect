@@ -2,7 +2,8 @@
 myvenv/
 
 node_modules/
-
+node_modules/.
+yarn
 *.pyc
 __pycache__/
 
