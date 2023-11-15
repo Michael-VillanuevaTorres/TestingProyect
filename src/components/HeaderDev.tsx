@@ -6,7 +6,7 @@ interface IHeaderProps {
 
 }
 
-const Header: React.FunctionComponent<IHeaderProps> = (props) => {
+const HeaderDev: React.FunctionComponent<IHeaderProps> = (props) => {
   return (
 
     <div className="header">
@@ -30,4 +30,4 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
   );
 };
 
-export default Header;
+export default HeaderDev;

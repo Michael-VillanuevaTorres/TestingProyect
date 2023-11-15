@@ -22,25 +22,24 @@ const DropdownPrioridad: React.FC<DropdownPrioridadProps> = ({id_report}) => {
     }
   };
   return (
-
-
-    <DropdownButton
+      <DropdownButton
       size="md"
-      id="dropdown-button-dark"
       variant="success" 
+      id="dropdown-prioridad"
       title={"Prioridad"}
       >
-        <Dropdown.Item onClick={() => handleDropdownItemClick(3,id_report)}>
+        <Dropdown.Item value="alta" onClick={() => handleDropdownItemClick(3,id_report)}>
           Alta
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => handleDropdownItemClick(2,id_report)}>
+        <Dropdown.Item value="media" onClick={() => handleDropdownItemClick(2,id_report)}>
           Media
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => handleDropdownItemClick(1,id_report)}>
+        <Dropdown.Item value="baja" onClick={() => handleDropdownItemClick(1,id_report)}>
           Baja
         </Dropdown.Item>
 
     </DropdownButton>
+    
   );
 };
 

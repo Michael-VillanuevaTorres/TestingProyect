@@ -6,7 +6,7 @@ interface IHeaderProps {
 
 }
 
-const Header: React.FunctionComponent<IHeaderProps> = (props) => {
+const HeaderEncargado: React.FunctionComponent<IHeaderProps> = (props) => {
   return (
 
     <div className="header">
@@ -16,8 +16,8 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/Asignacion">Asignacion</Nav.Link>
-              <Nav.Link href="/ReportesEnc">Todos los reportes</Nav.Link>
+              <Nav.Link id="asignacion_bar" href="/Asignacion">Asignacion</Nav.Link>
+              <Nav.Link id="todos_reportes_bar" href="/ReportesEnc">Todos los reportes</Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link href="#link">Encargado emomeza@udec.cl</Nav.Link>
@@ -30,4 +30,4 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
   );
 };
 
-export default Header;
+export default HeaderEncargado;

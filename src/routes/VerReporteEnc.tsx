@@ -3,8 +3,8 @@ import Bug from "../components/Bug";
 import React from 'react';
 import { useState, useEffect } from 'react';
 import './VerReporte.css';
-import HeaderDev from '../components/HeaderDev';
 import { useParams } from 'react-router-dom';
+import HeaderEncargado from '../components/HeaderEncargado';
 import CustomCardEnv from '../components/CustomCardEnc';
 
 
@@ -143,7 +143,7 @@ function VerReporte() {
 
   return (
     <div>
-      <HeaderDev/>
+      <HeaderEncargado/>
       <div className="main-container">
         <div>
           {report ? (

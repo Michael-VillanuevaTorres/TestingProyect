@@ -3,12 +3,12 @@ import Bug from "../components/Bug";
 import React from 'react';
 import { useState, useEffect } from 'react';
 import './VerReporte.css';
-import Header from '../components/Header';
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import CustomCard from '../components/CustomCard';
 import CustomCardDev from '../components/CustomCardDev';
+import HeaderDev from '../components/HeaderDev';
 
 
 
@@ -146,7 +146,7 @@ function VerReporte() {
 
   return (
     <div>
-      <Header />
+      <HeaderDev />
       <div className="main-container">
         <div>
           {report ? (

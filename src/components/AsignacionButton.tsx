@@ -70,7 +70,7 @@ const AsignacionButton: React.FunctionComponent<IAsignacionButtonProps> = ({id_r
 
   return (
     <>
-      <Button variant="success" onClick={handleShow}>
+      <Button id="asignacion-button" variant="success" onClick={handleShow}>
         Asignar
       </Button>
 
@@ -95,7 +95,7 @@ const AsignacionButton: React.FunctionComponent<IAsignacionButtonProps> = ({id_r
       
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button id="enviar-asignacion" variant="primary" type="submit">
                 Asignar
             </Button>
           </Form>

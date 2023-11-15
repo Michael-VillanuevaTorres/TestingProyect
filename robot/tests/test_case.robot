@@ -8,8 +8,8 @@ This is my first test case
     [Documentation]  Google test
     [Tags]  regression
 
-    Open Browser  https://www.google.com  firefox
-    Close Browser
+    Open Browser  http://localhost:5173/  Firefox
+    
 *** Keywords ***
 
 
