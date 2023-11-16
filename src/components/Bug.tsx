@@ -10,15 +10,15 @@ class Bug {
   likes: number;
   constructor(
     id = 0,
-    id_prioridad=0,
+    id_prioridad = 0,
     titulo = "vacio",
     cuerpo = "vacio",
     encargado = "vacio",
     estado = "Abierto",
-    likes = 0
+    likes = 0,
   ) {
     this.id = id;
-    this.id_prioridad=id_prioridad;
+    this.id_prioridad = id_prioridad;
     this.cuerpo = cuerpo;
     this.titulo = titulo;
     this.encargado = encargado;

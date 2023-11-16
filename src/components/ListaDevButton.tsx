@@ -1,18 +1,17 @@
-import * as React from 'react';
-import { useState, useEffect} from 'react';
-import  { Button,Modal,Form } from 'react-bootstrap';
+import * as React from "react";
+import { useState, useEffect } from "react";
+import { Button, Modal, Form } from "react-bootstrap";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
-import AsignacionButton from './AsignacionButton';
-import './ListaDevButton.css'
-import CambiarPrioridadButton from './CambiarPrioridadButton';
-
+import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
+import AsignacionButton from "./AsignacionButton";
+import "./ListaDevButton.css";
+import CambiarPrioridadButton from "./CambiarPrioridadButton";
 
 interface IListaDevButtonProps {
   id_dev: number;
   id_producto: number;
-};
+}
 
 type FormValues = {
   motivo: string;
@@ -20,10 +19,10 @@ type FormValues = {
 
 type reporte = {
   id: number;
-  title:string;
-  descripcion:string;
-  likes:number;
-  date:string;
+  title: string;
+  descripcion: string;
+  likes: number;
+  date: string;
   id_estado: number;
   id_prioridad: number;
   id_producto: number;
@@ -75,7 +74,6 @@ const getData = (id_dev: number, id_product: number) => {
   };
 
   useEffect(() => {
-  
     return () => {
       fetchUserData();
       fetchDevInfo();
@@ -86,22 +84,23 @@ const getData = (id_dev: number, id_product: number) => {
   return [datos, devInfo, productInfo];
 };
 
-
 const getPrioridades = (): prioridad[] => {
   const [prioridades, setPrioridades] = useState<prioridad[]>([]);
 
   useEffect(() => {
     const fetchPrioridades = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/report/priority/all');
+        const response = await fetch(
+          "http://127.0.0.1:5000/report/priority/all",
+        );
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);
         } else {
-          console.error('Failed to fetch prioridades');
+          console.error("Failed to fetch prioridades");
         }
       } catch (error) {
-        console.error('An error occurred while fetching prioridades:', error);
+        console.error("An error occurred while fetching prioridades:", error);
       }
     };
 
@@ -110,15 +109,16 @@ const getPrioridades = (): prioridad[] => {
 
   return prioridades;
 };
-const ListaDevButton: React.FunctionComponent<IListaDevButtonProps> = ({ id_dev, id_producto }) => {
+const ListaDevButton: React.FunctionComponent<IListaDevButtonProps> = ({
+  id_dev,
+  id_producto,
+}) => {
   const [show, setShow] = useState(false);
   const [products, setProducts] = useState([]);
   const prioridades = getPrioridades();
 
-
-
-  const getPrioridadNombre =(id:number) =>{
-    const  prio = prioridades.find((item: prioridad) => item.id === id);
+  const getPrioridadNombre = (id: number) => {
+    const prio = prioridades.find((item: prioridad) => item.id === id);
     if (!prio) {
       return <h5 className="prioridadCero">NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
@@ -134,13 +134,10 @@ const ListaDevButton: React.FunctionComponent<IListaDevButtonProps> = ({ id_dev,
     }
   };
 
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-
-  
     fetch("http://127.0.0.1:5000/product/get/all")
       .then((response) => response.json())
       .then((data) => setProducts(data));
@@ -151,82 +148,94 @@ const ListaDevButton: React.FunctionComponent<IListaDevButtonProps> = ({ id_dev,
       .filter((producto: producto) => producto.id_encargado === 2)
       .map((item: producto) => item.id);
   };
-  
 
   const productIds = getProductIds();
-  const [datos,devInfo,productInfo] = getData(id_dev, id_producto);
+  const [datos, devInfo, productInfo] = getData(id_dev, id_producto);
 
   const reports = datos
-    .filter((report :reporte) => report.id_producto == (id_producto))
+    .filter((report: reporte) => report.id_producto == id_producto)
     .map((report: reporte) => {
       return {
-        titulo: <Button href={"/VerReporteEnv/" + report.id} variant="link">{report.title}</Button>,
+        titulo: (
+          <Button href={"/VerReporteEnv/" + report.id} variant="link">
+            {report.title}
+          </Button>
+        ),
         prioridad: getPrioridadNombre(report.id_prioridad),
         likes: report.likes,
         fecha: report.date,
         producto: report.id_producto,
-        reasignacion: <AsignacionButton id_report={report.id}></AsignacionButton>,
-        cambiarprioridad: <CambiarPrioridadButton id={report.id}></CambiarPrioridadButton>
+        reasignacion: (
+          <AsignacionButton id_report={report.id}></AsignacionButton>
+        ),
+        cambiarprioridad: (
+          <CambiarPrioridadButton id={report.id}></CambiarPrioridadButton>
+        ),
       };
     });
 
   const data = {
     columns: [
       {
-        label: 'Titulo',
-        field: 'titulo',
-        sort: 'asc'
+        label: "Titulo",
+        field: "titulo",
+        sort: "asc",
       },
       {
-        label: 'Prioridad',
-        field: 'prioridad',
-        sort: 'asc'
-
+        label: "Prioridad",
+        field: "prioridad",
+        sort: "asc",
       },
       {
-        label: 'Likes',
-        field: 'likes',
-        sort: 'asc'
+        label: "Likes",
+        field: "likes",
+        sort: "asc",
       },
       {
-        label: 'Fecha',
-        field: 'fecha',
-        sort: 'asc'
+        label: "Fecha",
+        field: "fecha",
+        sort: "asc",
       },
       {
-        label: 'Producto',
-        field: 'producto',
-        sort: 'asc'
+        label: "Producto",
+        field: "producto",
+        sort: "asc",
       },
       {
-        label: 'Reasignar',
-        field: 'reasignacion',
-        sort: 'asc'
-      }
+        label: "Reasignar",
+        field: "reasignacion",
+        sort: "asc",
+      },
     ],
-    rows: reports
+    rows: reports,
   };
-
 
   return (
     <>
       <Button variant="success" onClick={handleShow}>
-      Asignados
+        Asignados
       </Button>
 
-      <Modal show={show} onHide={handleClose} dialogClassName="modal-dialog modal-xl">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        dialogClassName="modal-dialog modal-xl"
+      >
         <Modal.Header closeButton>
-          <Modal.Title className="text-black">Reportes asignados al desarrollador {devInfo['nombre']} en el proyecto {productInfo['nombre']}</Modal.Title>
+          <Modal.Title className="text-black">
+            Reportes asignados al desarrollador {devInfo["nombre"]} en el
+            proyecto {productInfo["nombre"]}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <MDBTable scrollY maxHeight='70vh'>
-                <MDBTableHead columns={data.columns} />
-                <MDBTableBody rows={data.rows} />
-        </MDBTable>
+          <MDBTable scrollY maxHeight="70vh">
+            <MDBTableHead columns={data.columns} />
+            <MDBTableBody rows={data.rows} />
+          </MDBTable>
         </Modal.Body>
       </Modal>
     </>
   );
-}
+};
 
 export default ListaDevButton;

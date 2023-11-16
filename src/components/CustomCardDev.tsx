@@ -17,15 +17,17 @@ const getPrioridades = (): prioridad[] => {
   useEffect(() => {
     const fetchPrioridades = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/report/priority/all');
+        const response = await fetch(
+          "http://127.0.0.1:5000/report/priority/all",
+        );
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);
         } else {
-          console.error('Failed to fetch prioridades');
+          console.error("Failed to fetch prioridades");
         }
       } catch (error) {
-        console.error('An error occurred while fetching prioridades:', error);
+        console.error("An error occurred while fetching prioridades:", error);
       }
     };
 
@@ -35,19 +37,15 @@ const getPrioridades = (): prioridad[] => {
   return prioridades;
 };
 
-
-
-
 function CustomCardDev(props: { bug: Bug }) {
   let tittle = props.bug.titulo;
   const navigate = useNavigate();
   const [bugState, setBugState] = useState(props.bug.estado);
 
   const prioridades = getPrioridades();
-  const getPrioridadNombre =(id:number) =>{
-    const  prio = prioridades.find((item: prioridad) => item.id === id);
+  const getPrioridadNombre = (id: number) => {
+    const prio = prioridades.find((item: prioridad) => item.id === id);
     if (!prio) {
-      
       return <h5 className="prioridadCeroCustom">NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
       return <h5 className="prioridadCeroCustom">{prio.name.toUpperCase()}</h5>;
@@ -62,13 +60,13 @@ function CustomCardDev(props: { bug: Bug }) {
     }
   };
 
-
-
   // const handleInspectBug = () => {
   //   navigate(`/VerReporte/${props.bug.id}`);
   // };
 
-  const handleBugStateChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleBugStateChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
     const newBugState = e.target.value;
     setBugState(newBugState);
     const idEstado = mapBugStateToId(newBugState);
@@ -77,10 +75,10 @@ function CustomCardDev(props: { bug: Bug }) {
       const response = await fetch(url, { method: "POST" });
       if (response.ok) {
       } else {
-        console.log("error al cambiar estado")
+        console.log("error al cambiar estado");
       }
     } catch (error) {
-      console.log("error al cambiar estado")
+      console.log("error al cambiar estado");
     }
   };
 
@@ -138,19 +136,15 @@ function CustomCardDev(props: { bug: Bug }) {
                 </React.Fragment>
               )}
             </select>
-            
           </div>
-          {"  " + props.bug.likes+" likes"}
+          {"  " + props.bug.likes + " likes"}
         </div>
         <p className="titulardo">{props.bug.titulo}</p>
-        <div>
-        {getPrioridadNombre(props.bug.id_prioridad)}
-        </div>
+        <div>{getPrioridadNombre(props.bug.id_prioridad)}</div>
         <h1 className="space-taker"></h1>
         <hr className="tittle-separator"></hr>
         <p>{props.bug.cuerpo}</p>
-        <div className="text-right">
-        </div>
+        <div className="text-right"></div>
       </div>
     </div>
   );

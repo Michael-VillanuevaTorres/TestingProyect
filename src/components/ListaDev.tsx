@@ -1,21 +1,21 @@
-import * as React from 'react';
-import {Stack, Card, Container } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
-import ListaDevButtonEncargado from './ListaDevButtonEncargado';
+import * as React from "react";
+import { Stack, Card, Container } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
+import ListaDevButtonEncargado from "./ListaDevButtonEncargado";
 import "./ReportTable.css";
 import "./PrioridadesModal.css";
-import Product from './Product';
-import ListaDevButton from './ListaDevButton';
+import Product from "./Product";
+import ListaDevButton from "./ListaDevButton";
 
-interface IListaDevProps { }
+interface IListaDevProps {}
 
 type Dev = {
   id: number;
   name: string;
   email: string;
   num_reportes: string;
-}
+};
 type prioridad = {
   id: number;
   name: string;
@@ -25,8 +25,7 @@ type producto = {
   name: string;
   id: number;
   id_developer: number;
-}
-
+};
 
 const useDevData = (url: string, id_product: number) => {
   const [datos, setUsers] = useState<Dev[]>([]);
@@ -38,12 +37,11 @@ const useDevData = (url: string, id_product: number) => {
         const data = await response.json();
         setUsers(data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-
 
     return () => {
       fetchData();
@@ -61,18 +59,22 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
     setId_product(parseInt(event.target.value, 10));
   };
 
-  const datos = useDevData('http://127.0.0.1:5000/product/get/developers/all', id_product);
+  const datos = useDevData(
+    "http://127.0.0.1:5000/product/get/developers/all",
+    id_product,
+  );
 
   const fetchNumReports = async (devId: number) => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/developer/number/product/reports/all?id_dev=${devId}&id_product=${id_product}`);
+      const response = await fetch(
+        `http://127.0.0.1:5000/developer/number/product/reports/all?id_dev=${devId}&id_product=${id_product}`,
+      );
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error('Error fetching num_reports data:', error);
+      console.error("Error fetching num_reports data:", error);
     }
   };
-
 
   const fetchDevData = async () => {
     const devs = datos.map(async (dev: Dev) => {
@@ -81,8 +83,14 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
       return {
         nombre: dev.name,
         email: dev.email,
-        num_reportes: num_rep.total_reports + ' (' + num_rep.product_reports + ')',
-        modal: <ListaDevButton id_dev={dev.id} id_producto={id_product}></ListaDevButton>,
+        num_reportes:
+          num_rep.total_reports + " (" + num_rep.product_reports + ")",
+        modal: (
+          <ListaDevButton
+            id_dev={dev.id}
+            id_producto={id_product}
+          ></ListaDevButton>
+        ),
       };
     });
 
@@ -90,74 +98,74 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
     return updatedDevs;
   };
 
-  
-
   useEffect(() => {
     const fetchData = async () => {
       const updatedDevs = await fetchDevData();
       setDevs(updatedDevs);
     };
     fetchData();
-    console.log("se realiza la actualizacion")
+    console.log("se realiza la actualizacion");
   }, [datos, id_product]);
 
   const getProducts = () => {
     const [products, setProducts] = useState([]);
-  
+
     useEffect(() => {
       fetch("http://127.0.0.1:5000/product/get/all")
         .then((response) => response.json())
         .then((data) => setProducts(data));
     }, []);
-    
-    const productos = products.filter((producto:producto) => producto.id_developer === 1).map((item: producto) =>{
-      return {
-        nombre:item.name, id:item.id
-        }
+
+    const productos = products
+      .filter((producto: producto) => producto.id_developer === 1)
+      .map((item: producto) => {
+        return {
+          nombre: item.name,
+          id: item.id,
+        };
       });
-      console.log(productos)
+    console.log(productos);
     return productos;
   };
 
-  useEffect(() => {
-    
-  }, []);
-
+  useEffect(() => {}, []);
 
   const data = {
     columns: [
       {
-        label: 'Nombre',
-        field: 'nombre',
-        sort: 'asc',
+        label: "Nombre",
+        field: "nombre",
+        sort: "asc",
       },
       {
-        label: 'Email',
-        field: 'email',
-        sort: 'asc',
+        label: "Email",
+        field: "email",
+        sort: "asc",
       },
       {
-        label: 'Reportes \n (Producto)',
-        field: 'num_reportes',
-        sort: 'asc',
+        label: "Reportes \n (Producto)",
+        field: "num_reportes",
+        sort: "asc",
       },
       {
-        label: 'Reportes Asignados',
-        field: 'modal',
-        sort: 'asc',
+        label: "Reportes Asignados",
+        field: "modal",
+        sort: "asc",
       },
     ],
     rows: devs,
   };
 
-  const products=getProducts();
+  const products = getProducts();
   return (
     <Container>
-      <Card style={{ width: '43rem', height: '20rem'}}>
+      <Card style={{ width: "43rem", height: "20rem" }}>
         <Card.Body>
           <Stack direction="horizontal" gap={3}>
-            <div >
-              <Card.Title className="text-black">Desarrolladores de :</Card.Title>
+            <div>
+              <Card.Title className="text-black">
+                Desarrolladores de :
+              </Card.Title>
             </div>
             <div>
               <select name="Producto" onChange={selectChange}>
@@ -170,11 +178,11 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
             </div>
           </Stack>
 
-          <div style={{ width: '41rem', height: '15rem', overflowY: 'scroll' }}>
-                <MDBTable >
-                  <MDBTableHead  columns={data.columns} />
-                  <MDBTableBody rows={data.rows } />
-                </MDBTable>
+          <div style={{ width: "41rem", height: "15rem", overflowY: "scroll" }}>
+            <MDBTable>
+              <MDBTableHead columns={data.columns} />
+              <MDBTableBody rows={data.rows} />
+            </MDBTable>
           </div>
         </Card.Body>
       </Card>

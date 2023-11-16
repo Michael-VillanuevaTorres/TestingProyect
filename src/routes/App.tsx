@@ -8,11 +8,10 @@ function App() {
     <body className="body-listado">
       <div>
         <Header></Header>
-       </div>
-      <div className="Content">
-      <SearchBar></SearchBar>
       </div>
-      
+      <div className="Content">
+        <SearchBar></SearchBar>
+      </div>
     </body>
   );
 }

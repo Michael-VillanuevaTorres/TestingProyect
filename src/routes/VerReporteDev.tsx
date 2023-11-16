@@ -1,16 +1,14 @@
-import Comment from '../components/Comment';
+import Comment from "../components/Comment";
 import Bug from "../components/Bug";
-import React from 'react';
-import { useState, useEffect } from 'react';
-import './VerReporte.css';
-import Header from '../components/Header';
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { BrowserRouter as Router } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import CustomCard from '../components/CustomCard';
-import CustomCardDev from '../components/CustomCardDev';
-
-
+import React from "react";
+import { useState, useEffect } from "react";
+import "./VerReporte.css";
+import Header from "../components/Header";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { BrowserRouter as Router } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import CustomCard from "../components/CustomCard";
+import CustomCardDev from "../components/CustomCardDev";
 
 type comentario = {
   content: string;
@@ -21,7 +19,7 @@ type comentario = {
 type contenidoReporte = {
   titulo: string;
   descripcion: string;
-}
+};
 
 interface Estado {
   id: number;
@@ -32,10 +30,11 @@ type EstadoDictionary = Record<number, string>;
 
 const getCommentsdb = async (reportId: number) => {
   const fetchCommentData = async () => {
-    const ret = fetch("http://127.0.0.1:5000/report/comments?id_report=" + reportId)
-      .then((response) => {
-        return response.json();
-      });
+    const ret = fetch(
+      "http://127.0.0.1:5000/report/comments?id_report=" + reportId,
+    ).then((response) => {
+      return response.json();
+    });
 
     return ret;
   };
@@ -44,7 +43,6 @@ const getCommentsdb = async (reportId: number) => {
 
   return comments;
 };
-
 
 const GetComments = async (id_reporte: number): Promise<comentario[]> => {
   const comments = await getCommentsdb(id_reporte);
@@ -57,10 +55,11 @@ const GetComments = async (id_reporte: number): Promise<comentario[]> => {
 
 const getReportedb = async (reportId: number) => {
   const fetchReportData = async () => {
-    const ret = fetch("http://127.0.0.1:5000/report/get?id_report=" + reportId)
-      .then((response) => {
-        return response.json();
-      });
+    const ret = fetch(
+      "http://127.0.0.1:5000/report/get?id_report=" + reportId,
+    ).then((response) => {
+      return response.json();
+    });
     return ret;
   };
   const report = await fetchReportData();
@@ -84,22 +83,30 @@ const getEstados = async (): Promise<EstadoDictionary> => {
 
 const getReporte = async (id_reporte: number): Promise<Bug> => {
   const report = await getReportedb(id_reporte);
-  
-  const estados = await getEstados();
-  const encargado = await fetch("http://127.0.0.1:5000/developer/get?id_dev=" + report.id_developer)
-    .then((response) => {
-      return response.json();
-    });
-    console.log(report)
-    console.log(encargado)
-    
-    return new Bug(report.id,report.id_priority, report.description,report.title, encargado.name, estados[report.id_state], report.likes);
 
-}
+  const estados = await getEstados();
+  const encargado = await fetch(
+    "http://127.0.0.1:5000/developer/get?id_dev=" + report.id_developer,
+  ).then((response) => {
+    return response.json();
+  });
+  console.log(report);
+  console.log(encargado);
+
+  return new Bug(
+    report.id,
+    report.id_priority,
+    report.description,
+    report.title,
+    encargado.name,
+    estados[report.id_state],
+    report.likes,
+  );
+};
 
 function VerReporte() {
   const { id } = useParams();
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   const [comments, setComments] = useState<string[]>([]);
   const [report, setReport] = useState<Bug | undefined>(undefined);
   const [detcomment, setDetcomment] = useState<string[]>([]);
@@ -107,34 +114,41 @@ function VerReporte() {
   useEffect(() => {
     const fetchComments = async () => {
       const comentariolistacomentarios = await GetComments(Number(id));
-      setComments(comentariolistacomentarios.map((item: comentario) => item.content));
-      setDetcomment(comentariolistacomentarios.map((item: comentario) => item.date))
+      setComments(
+        comentariolistacomentarios.map((item: comentario) => item.content),
+      );
+      setDetcomment(
+        comentariolistacomentarios.map((item: comentario) => item.date),
+      );
     };
 
     const fetchReport = async () => {
       const auxReport = await getReporte(Number(id));
       setReport(auxReport);
-    }
+    };
     fetchReport();
     fetchComments();
   }, []);
 
   const onClickHandler = async () => {
-    if (comment.trim() === '') {
+    if (comment.trim() === "") {
       return;
     }
 
-    const response = await fetch("http://127.0.0.1:5000/report/add/comment?id_report=" + Number(id), {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      "http://127.0.0.1:5000/report/add/comment?id_report=" + Number(id),
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: comment }),
       },
-      body: JSON.stringify({ text: comment }),
-    });
+    );
 
     if (response.ok) {
       setComments((comments) => [comment, ...comments] as never[]);
-      setComment('');
+      setComment("");
     } else {
       console.error("Failed to post comment");
     }
@@ -148,22 +162,14 @@ function VerReporte() {
     <div>
       <Header />
       <div className="main-container">
-        <div>
-          {report ? (
-            <CustomCardDev bug={report} />
-          ) : (
-            <p>Loading...</p>
-          )
-          }
-        </div>
+        <div>{report ? <CustomCardDev bug={report} /> : <p>Loading...</p>}</div>
 
         <div className="comment-section">
           {comments.map((text, index) => (
             <div className="comment-container" key={index}>
               <strong>Anónimo, {detcomment[index]}</strong>
-              <div className='comment-container2'>
-                <h4 className="comment-text">
-                </h4>
+              <div className="comment-container2">
+                <h4 className="comment-text"></h4>
                 <div className="comment-content">{text}</div>
               </div>
             </div>
@@ -179,8 +185,6 @@ function VerReporte() {
               Submit
             </button>
           </div>
-
-
         </div>
       </div>
     </div>

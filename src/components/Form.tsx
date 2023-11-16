@@ -1,8 +1,8 @@
 import * as React from "react";
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { Col,Row } from 'react-bootstrap';
+import { Col, Row } from "react-bootstrap";
 import Product from "./Product";
 type FormValues = {
   title: string;
@@ -14,39 +14,44 @@ type product_form = {
   name: string;
   id: number;
   id_developer: number;
-}
-
-
+};
 
 const getProducts = () => {
   const [products, setProducts] = useState([]);
 
-useEffect(() => {
-  fetch("http://127.0.0.1:5000/product/get/all")
-    .then((response) => response.json())
-    .then((data) => setProducts(data));
-}, []);
-return products;
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/product/get/all")
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
+  }, []);
+  return products;
 };
 
 function Form(): JSX.Element {
   const rawProducts = getProducts();
-  const products = rawProducts.map((item: product_form) =>{
-    return new Product(item.name, item.id, item.id_developer)
+  const products = rawProducts.map((item: product_form) => {
+    return new Product(item.name, item.id, item.id_developer);
   });
   const { register, handleSubmit } = useForm<FormValues>();
   const navigate = useNavigate();
- 
+
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const id_producto = data.id_product;
     const id_cliente = 1;
-    const url = "http://127.0.0.1:5000/report/add?id_product=" + id_producto + "&id_user="+ id_cliente;
+    const url =
+      "http://127.0.0.1:5000/report/add?id_product=" +
+      id_producto +
+      "&id_user=" +
+      id_cliente;
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({title:data.title,description:data.description}),
+      body: JSON.stringify({
+        title: data.title,
+        description: data.description,
+      }),
     });
 
     if (!response.ok) {
@@ -56,40 +61,46 @@ function Form(): JSX.Element {
     }
   };
 
-
   return (
     <div style={{ display: "flex" }}>
       <br />
       <form onSubmit={handleSubmit(onSubmit)} className="form-react">
         <Col>
-        <div className="form-title">
-          <h2 className="space-taker"></h2>
-          <label>Titulo</label>
-          <input placeholder="No puedo .. / Error al ... / Cuando ..." type="text" {...register("title")} />
-        </div>
+          <div className="form-title">
+            <h2 className="space-taker"></h2>
+            <label>Titulo</label>
+            <input
+              placeholder="No puedo .. / Error al ... / Cuando ..."
+              type="text"
+              {...register("title")}
+            />
+          </div>
         </Col>
         <Col>
-        <div className="form-product">
-          <label>Producto</label>
-          <select {...register("id_product")}>
-            {products.map((product) => (
-              <option key={product.id} value={product.id}>
-                {product.name}
-              </option>
-            ))}
-          </select>
-        </div>
+          <div className="form-product">
+            <label>Producto</label>
+            <select {...register("id_product")}>
+              {products.map((product) => (
+                <option key={product.id} value={product.id}>
+                  {product.name}
+                </option>
+              ))}
+            </select>
+          </div>
         </Col>
-        
+
         <div className="form-description">
           <label>Descripcion</label>
-          <textarea placeholder="Pasos para recrear el Bug:
+          <textarea
+            placeholder="Pasos para recrear el Bug:
           1.- ...
           2.- ...
           3.- ...
 
           Con este Bug no puedo ... .
-          " {...register("description")}></textarea>
+          "
+            {...register("description")}
+          ></textarea>
         </div>
         <button type="submit">Send</button>
       </form>

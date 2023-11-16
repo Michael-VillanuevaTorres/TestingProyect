@@ -1,5 +1,5 @@
 .search-container {
-  display:block;
+  display: block;
   box-sizing: border-box;
   position: relative;
   top: 0;
@@ -11,25 +11,21 @@
   line-height: 21px;
 }
 
-.titulo{
+.titulo {
   text-align: center;
   margin: 40px;
 }
 
-.text-black{
+.text-black {
   text-align: center;
   line-height: 35px;
-
 }
 
-.body-card{
+.body-card {
   text-align: center;
 }
 
-
-.tabla{
+.tabla {
   min-height: 80px;
   min-width: 1200px;
-
 }
-

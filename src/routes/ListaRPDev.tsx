@@ -1,13 +1,12 @@
 import React from "react";
 import DropdownDeveloperButton from "../components/DropdownProductButton";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Header from "../components/Header";
-import "./App.css"
-import "../components/ReportTable.css"
+import "./App.css";
+import "../components/ReportTable.css";
 import ListaReportesProductoDev from "../components/ListaReportesProductoDev";
-
 
 type ParentComponentProps = {};
 
@@ -24,7 +23,7 @@ class ListaRPDev extends React.Component<
     super(props);
     this.state = {
       id_dev: 5, // Initial value for id_dev
-      nombre_producto: 'jarro3000v1.69',
+      nombre_producto: "jarro3000v1.69",
     };
   }
 
@@ -37,14 +36,12 @@ class ListaRPDev extends React.Component<
 
     return (
       <div className="center">
-        <h1 className="space-taker">    </h1>
-        <div >
-          <ListaReportesProductoDev
-          />
+        <h1 className="space-taker"> </h1>
+        <div>
+          <ListaReportesProductoDev/>
         </div>
       </div>
     );
-    
   }
 }
 

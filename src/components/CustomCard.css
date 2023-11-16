@@ -1,4 +1,3 @@
-
 .scroll-cards__item {
   --offset: 0.5em;
   color: #000;
@@ -17,116 +16,111 @@
   flex-shrink: 0;
   justify-content: flex-start;
 }
-  
-  .titulardo{
-    font-size: 2em;
-    margin: 0;
-    line-height: 1pt;
-    margin-top:-1.8%;
 
-  }
-  h2 {
-    font-size: 2em;
-    margin: 0;
-    line-height: 1pt;
+.titulardo {
+  font-size: 2em;
+  margin: 0;
+  line-height: 1pt;
+  margin-top: -1.8%;
+}
+h2 {
+  font-size: 2em;
+  margin: 0;
+  line-height: 1pt;
+}
 
-  }
+.bug-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 
-  .bug-info-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
+.like-Button {
+  font-size: 10px;
+  padding: 0.2rem 0.4rem;
+}
 
-  .like-Button {
-    font-size: 10px;
-    padding: 0.20rem 0.40rem;
-  }
-  
-  .bug-state{
-    background-color: rgb(187, 74, 74);
-    font-size: 1.25em;
-    text-transform: uppercase;
-    margin: 0;
-    text-align: right;
-    line-height: 0pt;
-  }
-  p {
-    font-size: 1.25em;
-    padding-top:20px ;
-  }
-  hr.tittle-separator{
-    border: 5px solid rgb(0, 0, 0);
-    border-radius: 2px;
-    margin-top:2%;
-  }
-  h1.space-taker{
-    height: 10px;
-  }
-  .btn-inspect{
-  
-    margin: 0;
-    position: sticky;
-    top: 100%;
-    left: 85%;
-    background-color: rgb(55, 41, 94);
-    -ms-transform: translate(0,  88%);
-    transform: translate( 0%, 88%);
-    }
-    
-    .bug-state {
-      background-color: #cac3d7;
-      color: #333;
-      font-size: 1rem;
-      padding: 8px;
-      border: 1px solid #cac3d7;
-      border-radius: 4px;
-    }
-    .bug-state-select {
-      position: relative;
-      z-index: 1;
-    }
-    
-    .bug-state-select option {
-      position: relative;
-      z-index: 2;
-    }
-    .prioridadCeroCustom{
-      background-color: rgb(94, 148, 87);
-      text-align: center;
-      border-radius: 25px;
-      border: 2px solid #585757;
-      max-width: 10%;
-      margin-top: -3.5%;
-      margin-left: 0%;
-      font-size: 90%;
-  }
-  .prioridadUnoCustom{
-      background-color: rgb(77, 206, 3);
-      text-align: center;
-      border-radius: 25px;
-      border: 2px solid #504d4d;
-      max-width: 7%;
-      margin-top: -3.5%;
+.bug-state {
+  background-color: rgb(187, 74, 74);
+  font-size: 1.25em;
+  text-transform: uppercase;
+  margin: 0;
+  text-align: right;
+  line-height: 0pt;
+}
+p {
+  font-size: 1.25em;
+  padding-top: 20px;
+}
+hr.tittle-separator {
+  border: 5px solid rgb(0, 0, 0);
+  border-radius: 2px;
+  margin-top: 2%;
+}
+h1.space-taker {
+  height: 10px;
+}
+.btn-inspect {
+  margin: 0;
+  position: sticky;
+  top: 100%;
+  left: 85%;
+  background-color: rgb(55, 41, 94);
+  -ms-transform: translate(0, 88%);
+  transform: translate(0%, 88%);
+}
 
-  }
-  .prioridadDosCustom{
-      background-color: rgb(224, 221, 46);
-      text-align: center;
-      border-radius: 25px;
-      border: 2px solid #4d4a4a;
-      margin-top: -3.5%;
+.bug-state {
+  background-color: #cac3d7;
+  color: #333;
+  font-size: 1rem;
+  padding: 8px;
+  border: 1px solid #cac3d7;
+  border-radius: 4px;
+}
+.bug-state-select {
+  position: relative;
+  z-index: 1;
+}
 
-      max-width: 7%;
-  }
-  
-  .prioridadTresCustom{
-      background-color: rgb(248, 6, 6);
-      text-align: center;
-      border-radius: 25px;
-      margin-top: -3.5%;
+.bug-state-select option {
+  position: relative;
+  z-index: 2;
+}
+.prioridadCeroCustom {
+  background-color: rgb(94, 148, 87);
+  text-align: center;
+  border-radius: 25px;
+  border: 2px solid #585757;
+  max-width: 10%;
+  margin-top: -3.5%;
+  margin-left: 0%;
+  font-size: 90%;
+}
+.prioridadUnoCustom {
+  background-color: rgb(77, 206, 3);
+  text-align: center;
+  border-radius: 25px;
+  border: 2px solid #504d4d;
+  max-width: 7%;
+  margin-top: -3.5%;
+}
+.prioridadDosCustom {
+  background-color: rgb(224, 221, 46);
+  text-align: center;
+  border-radius: 25px;
+  border: 2px solid #4d4a4a;
+  margin-top: -3.5%;
 
-      border: 2px solid #757171;
-      max-width: 7%;
-  }
-  
+  max-width: 7%;
+}
+
+.prioridadTresCustom {
+  background-color: rgb(248, 6, 6);
+  text-align: center;
+  border-radius: 25px;
+  margin-top: -3.5%;
+
+  border: 2px solid #757171;
+  max-width: 7%;
+}

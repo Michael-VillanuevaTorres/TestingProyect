@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
 interface CambiarPrioridadButtonProps {
   id: number;
 }
 
-const CambiarPrioridadButton: React.FC<CambiarPrioridadButtonProps> = ({ id }) => {
+const CambiarPrioridadButton: React.FC<CambiarPrioridadButtonProps> = ({
+  id,
+}) => {
   const [showModal, setShowModal] = useState(false);
-  const [newPrioridad, setNewPrioridad] = useState(1); 
+  const [newPrioridad, setNewPrioridad] = useState(1);
   const handleModalClose = () => {
     setShowModal(false);
     setNewPrioridad(1);
@@ -18,17 +20,17 @@ const CambiarPrioridadButton: React.FC<CambiarPrioridadButtonProps> = ({ id }) =
   const handleModalSave = async () => {
     try {
       const url = `http://127.0.0.1:5000/report/update/priority?id_report=${id}&id_prioridad=${newPrioridad}`;
-      const response = await fetch(url, { method: 'POST' });
-  
+      const response = await fetch(url, { method: "POST" });
+
       if (response.ok) {
-        console.log('Priority updated successfully');
+        console.log("Priority updated successfully");
       } else {
-        console.error('Failed to update priority');
+        console.error("Failed to update priority");
       }
     } catch (error) {
-      console.error('An error occurred while updating priority:', error);
+      console.error("An error occurred while updating priority:", error);
     }
-  
+
     handleModalClose();
   };
   return (

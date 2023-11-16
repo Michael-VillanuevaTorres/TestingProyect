@@ -10,8 +10,8 @@ import VerReporteEnv from "./routes/VerReporteEnc";
 import Asignacion from "./routes/Asignacion";
 import MisLikes from "./routes/MisLikes";
 import MisReportes from "./routes/MisReportes";
-import Dev from "./routes/Dev"
-import ListaDesarrolladores from "./routes/ListaDesarrolladores"
+import Dev from "./routes/Dev";
+import ListaDesarrolladores from "./routes/ListaDesarrolladores";
 import MenuReasignacion from "./routes/MenuReasignacion";
 import ListaRPDev from "./routes/ListaRPDev";
 import { Container } from "react-bootstrap";
@@ -66,21 +66,20 @@ const router = createBrowserRouter([
   },
   {
     path: "/ListaRPDev",
-    element: <ListaRPDev/>,
+    element: <ListaRPDev />,
   },
   {
     path: "/Reportes",
-    element: <Reportes/>,
-  }
-  ,
+    element: <Reportes />,
+  },
   {
     path: "/ReportesEnc",
-    element: <ReportesEnc/>,
-  }
+    element: <ReportesEnc />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

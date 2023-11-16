@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { Card, Container, Button } from 'react-bootstrap';
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
-import "../routes/App.css"
-import "./ReportTable.css"
+import { Card, Container, Button } from "react-bootstrap";
+import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
+import "../routes/App.css";
+import "./ReportTable.css";
 import LikeButton from "./LikeButton";
 
 type reporte = {
@@ -11,11 +11,11 @@ type reporte = {
   description: string;
   id_estado: number;
   id: number;
-  id_prioridad:number;
+  id_prioridad: number;
   id_producto: number;
   likes: number;
   title: string;
-}
+};
 type prioridad = {
   id: number;
   nombre: string;
@@ -23,7 +23,7 @@ type prioridad = {
 type EstadoDictionary = { [id: number]: string };
 
 interface ReportTableProps {
-  Items: reporte[]
+  Items: reporte[];
   id_product: number;
   estados: EstadoDictionary;
 }
@@ -34,15 +34,17 @@ const getPrioridades = (): prioridad[] => {
   useEffect(() => {
     const fetchPrioridades = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/reports/priority/all');
+        const response = await fetch(
+          "http://127.0.0.1:5000/reports/priority/all",
+        );
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);
         } else {
-          console.error('Failed to fetch prioridades');
+          console.error("Failed to fetch prioridades");
         }
       } catch (error) {
-        console.error('An error occurred while fetching prioridades:', error);
+        console.error("An error occurred while fetching prioridades:", error);
       }
     };
 
@@ -52,12 +54,15 @@ const getPrioridades = (): prioridad[] => {
   return prioridades;
 };
 
-export default function ReportTable({ Items, id_product, estados}: ReportTableProps) {
+export default function ReportTable({
+  Items,
+  id_product,
+  estados,
+}: ReportTableProps) {
   const prioridades = getPrioridades();
 
-
-  const getPrioridadNombre =(id:number) =>{
-    const  prio = prioridades.find((item: prioridad) => item.id === id);
+  const getPrioridadNombre = (id: number) => {
+    const prio = prioridades.find((item: prioridad) => item.id === id);
     if (!prio) {
       return <h5 className="prioridadCero">NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
@@ -75,68 +80,69 @@ export default function ReportTable({ Items, id_product, estados}: ReportTablePr
 
   const reports = Items.map((report: reporte) => {
     return {
-      titulo: <Button href={"/VerReporte/" + report.id} variant="link">{report.title}</Button>,
+      titulo: (
+        <Button href={"/VerReporte/" + report.id} variant="link">
+          {report.title}
+        </Button>
+      ),
       prioridad: getPrioridadNombre(report.id_prioridad),
       fecha: report.date,
       estado: report.id_estado,
       likes: report.likes,
       like: <LikeButton id_bug={report.id} />,
-      id_producto: report.id_producto
-    }
+      id_producto: report.id_producto,
+    };
   });
-  
-  const data = {
 
+  const data = {
     columns: [
       {
-        label: 'Titulo',
-        field: 'titulo',
-        sort: 'asc'
+        label: "Titulo",
+        field: "titulo",
+        sort: "asc",
       },
       {
-        label: 'Prioridad',
-        field: 'prioridad',
-        sort: 'asc'
-
+        label: "Prioridad",
+        field: "prioridad",
+        sort: "asc",
       },
       {
-        label: 'Fecha',
-        field: 'fecha',
-        sort: 'asc'
+        label: "Fecha",
+        field: "fecha",
+        sort: "asc",
       },
       {
-        label: 'Estado',
-        field: 'estado',
-        sort: 'asc'
+        label: "Estado",
+        field: "estado",
+        sort: "asc",
       },
       {
-        label: 'Likes',
-        field: 'likes',
-        sort: 'asc'
+        label: "Likes",
+        field: "likes",
+        sort: "asc",
       },
       {
-        label: '',
-        field: 'like',
-        sort: 'asc'
-      }
+        label: "",
+        field: "like",
+        sort: "asc",
+      },
     ],
-    rows: reports
+    rows: reports,
   };
 
-  
-
-
   return (
-      <ul>
-        <Container className="search-container">
-          <Card>
-            <Card.Body>
-              <Card.Title className="text-black">Reportes</Card.Title>
-              <div style={{ maxHeight: '55vh', overflowY: 'scroll' }}>
-                <MDBTable>
-                  <MDBTableHead columns={data.columns} />
-                  <MDBTableBody>
-                    {data.rows.filter((row) => row.id_producto === id_product).map((row, index) => (
+    <ul>
+      <Container className="search-container">
+        <Card>
+          <Card.Body>
+            <Card.Title className="text-black">Reportes</Card.Title>
+            <div style={{ maxHeight: "55vh", overflowY: "scroll" }}>
+              <MDBTable>
+                <MDBTableHead columns={data.columns} />
+                <MDBTableBody>
+                  {data.rows
+                    .filter((row) => row.id_producto === id_product)
+                    .map((row, index) => (
                       <tr key={index} data-custom="hidden data">
                         <td>{row.titulo}</td>
                         <td>{row.prioridad}</td>
@@ -146,12 +152,12 @@ export default function ReportTable({ Items, id_product, estados}: ReportTablePr
                         <td>{row.like}</td>
                       </tr>
                     ))}
-                  </MDBTableBody>
-                </MDBTable>
-              </div>
-            </Card.Body>
-          </Card>
-        </Container>
-      </ul>
+                </MDBTableBody>
+              </MDBTable>
+            </div>
+          </Card.Body>
+        </Card>
+      </Container>
+    </ul>
   );
 }

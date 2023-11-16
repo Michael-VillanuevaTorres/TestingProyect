@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Bug from "./Bug";
 import LikeButton from "./LikeButton";
 import "../routes/App.css";
@@ -6,8 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import "./CustomCard.css";
 import VerReporte from "../routes/VerReporte";
 import { useNavigate } from "react-router-dom";
-import DropdownPrioridad from './DropdownPrioridad';
-
+import DropdownPrioridad from "./DropdownPrioridad";
 
 type prioridad = {
   id: number;
@@ -19,16 +18,17 @@ const getPrioridades = (): prioridad[] => {
   useEffect(() => {
     const fetchPrioridades = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/report/priority/all');
+        const response = await fetch(
+          "http://127.0.0.1:5000/report/priority/all",
+        );
         if (response.ok) {
           const data = await response.json();
           setPrioridades(data);
-          
         } else {
-          console.error('Failed to fetch prioridades');
+          console.error("Failed to fetch prioridades");
         }
       } catch (error) {
-        console.error('An error occurred while fetching prioridades:', error);
+        console.error("An error occurred while fetching prioridades:", error);
       }
     };
 
@@ -38,16 +38,14 @@ const getPrioridades = (): prioridad[] => {
   return prioridades;
 };
 
-
-
 function CustomCardEnv(props: { bug: Bug }) {
   let tittle = props.bug.titulo;
   const navigate = useNavigate();
   const [bugState, setBugState] = useState(props.bug.estado);
 
   const prioridades = getPrioridades();
-  const getPrioridadNombre =(id:number) =>{
-    const  prio = prioridades.find((item: prioridad) => item.id === id);
+  const getPrioridadNombre = (id: number) => {
+    const prio = prioridades.find((item: prioridad) => item.id === id);
     if (!prio) {
       return <h5 className="prioridadCeroCustom">NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
@@ -63,7 +61,9 @@ function CustomCardEnv(props: { bug: Bug }) {
     }
   };
 
-  const handleBugStateChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleBugStateChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
     const newBugState = e.target.value;
     setBugState(newBugState);
     const idEstado = mapBugStateToId(newBugState);
@@ -72,10 +72,10 @@ function CustomCardEnv(props: { bug: Bug }) {
       const response = await fetch(url, { method: "POST" });
       if (response.ok) {
       } else {
-        console.log("error al cambiar estado")
+        console.log("error al cambiar estado");
       }
     } catch (error) {
-      console.log("error al cambiar estado")
+      console.log("error al cambiar estado");
     }
   };
 
@@ -97,9 +97,11 @@ function CustomCardEnv(props: { bug: Bug }) {
       <div className="card-header"></div>
       <div className="card-body">
         <div className="bug-info-container">
-        <div className="comp-comp"><DropdownPrioridad  id_report={props.bug.id}/></div>
-        <div className="bug-state">
-        <select
+          <div className="comp-comp">
+            <DropdownPrioridad id_report={props.bug.id} />
+          </div>
+          <div className="bug-state">
+            <select
               className="bug-state-select"
               value={bugState}
               onChange={handleBugStateChange}
@@ -134,19 +136,15 @@ function CustomCardEnv(props: { bug: Bug }) {
                 </React.Fragment>
               )}
             </select>
-            
           </div>
-          {"   " + props.bug.likes+" likes"}
+          {"   " + props.bug.likes + " likes"}
         </div>
         <p className="titulardo">{props.bug.titulo}</p>
-        <div>
-        {getPrioridadNombre(props.bug.id_prioridad)}
-        </div>
+        <div>{getPrioridadNombre(props.bug.id_prioridad)}</div>
         <h1 className="space-taker"></h1>
         <hr className="tittle-separator"></hr>
         <p>{props.bug.cuerpo}</p>
-        <div className="text-right">
-        </div>
+        <div className="text-right"></div>
       </div>
     </div>
   );
