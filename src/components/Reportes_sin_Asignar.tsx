@@ -193,7 +193,7 @@ const Reportes_sin_Asignar: React.FunctionComponent<IReportes_sin_AsignarProps> 
                 </Card.Title>   
                 </div>
                 <div >
-                  <select name="Producto" onChange={selectChange} >
+                  <select id="producto_asignacion" name="Producto" onChange={selectChange} >
                     {products.map((product) => (
                       <option key={product.id} value={product.id}>
                         {product.nombre}

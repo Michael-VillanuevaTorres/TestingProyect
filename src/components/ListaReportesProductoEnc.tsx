@@ -141,7 +141,7 @@ export default function SearchBar() {
   };
   const reports = filteredItems.map((report: reporte) => {
     return {
-      titulo: <Button href={"/VerReporteEnv/" + report.id} variant="link">{report.title}</Button>,
+      titulo: <Button id={report.title} href={"/VerReporteEnv/" + report.id} variant="link">{report.title}</Button>,
       fecha: report.date,
       estado: estados[report.id_state],
       likes: report.likes,
@@ -227,7 +227,7 @@ export default function SearchBar() {
           title={name_product}
           >
           {products.map((product) => (
-            <Dropdown.Item onClick={() => {(setId_product(product.id));  (setName(product.nombre))}}>
+            <Dropdown.Item id={product.nombre} onClick={() => {(setId_product(product.id));  (setName(product.nombre))}}>
               {product.nombre}
             </Dropdown.Item>
           ))}

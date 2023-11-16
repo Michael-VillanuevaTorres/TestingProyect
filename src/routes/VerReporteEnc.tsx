@@ -167,11 +167,12 @@ function VerReporte() {
           <div className="comment-flexbox">
             <h1 className="comment-text">Deja tu comentario</h1>
             <textarea
+              id='comentarios'
               value={comment}
               onChange={onChangeHandler}
               className="input-box"
             />
-            <button onClick={onClickHandler} className="comment-button">
+            <button id='submit' onClick={onClickHandler} className="comment-button">
               Submit
             </button>
           </div>
