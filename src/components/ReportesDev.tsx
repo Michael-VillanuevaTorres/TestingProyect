@@ -235,7 +235,7 @@ const ReportesDev: React.FunctionComponent<IReportesDev> = (props) => {
             Reportes asignados actualmente
           </Card.Title>
           <div style={{ width: "75rem", height: "36rem", overflowY: "scroll" }}>
-            <MDBTable>
+            <MDBTable id={`dev-${id_dev}`}>
               <MDBTableHead columns={data.columns} />
               <MDBTableBody rows={data.rows} />
             </MDBTable>

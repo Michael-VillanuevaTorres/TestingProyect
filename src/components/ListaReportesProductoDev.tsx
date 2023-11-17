@@ -261,13 +261,12 @@ export default function SearchBar() {
                       {data.rows
                         .filter((row) => row.id_producto === id_product)
                         .map((row, index) => (
-                          <tr key={index} data-custom="hidden data">
+                          <tr key={index} className={`product-${row.id_producto}`} data-custom="hidden data">
                             <td>{row.titulo}</td>
                             <td>{row.fecha}</td>
                             <td>{row.estado}</td>
                             <td>{row.likes}</td>
                             <td>{row.prioridad}</td>
-                            <td className='row-id-product'>{row.id_producto}</td>
                           </tr>
                         ))}
                     </MDBTableBody>
