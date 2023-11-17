@@ -25,7 +25,7 @@ const DropdownPrioridad: React.FC<DropdownPrioridadProps> = ({id_report}) => {
       <DropdownButton
       size="md"
       variant="success" 
-      id="dropdown-prioridad"
+      id={"dropdown-prioridad-report"+id_report}
       title={"Prioridad"}
       >
         <Dropdown.Item id='Alta' onClick={() => handleDropdownItemClick(3,id_report)}>

@@ -70,7 +70,7 @@ const AsignacionButton: React.FunctionComponent<IAsignacionButtonProps> = ({id_r
 
   return (
     <>
-      <Button id="asignacion-button" variant="success" onClick={handleShow}>
+      <Button id={"asignacion-button"+id_report} variant="success" onClick={handleShow}>
         Asignar
       </Button>
 

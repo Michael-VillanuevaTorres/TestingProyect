@@ -7,6 +7,7 @@ import "./ReportTable.css";
 import "./PrioridadesModal.css";
 import Product from './Product';
 import ListaDevButton from './ListaDevButton';
+type Modal = React.ReactNode; 
 
 interface IListaDevProps { }
 
@@ -15,6 +16,7 @@ type Dev = {
   name: string;
   email: string;
   num_reportes: string;
+  modal: Modal;
 }
 type prioridad = {
   id: number;
@@ -79,6 +81,7 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
       const num_rep = await fetchNumReports(dev.id);
 
       return {
+        id:dev.id,
         nombre: dev.name,
         email: dev.email,
         num_reportes: num_rep.total_reports + ' (' + num_rep.product_reports + ')',
@@ -137,12 +140,12 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
         sort: 'asc',
       },
       {
-        label: 'Reportes \n (Producto)',
+        label: 'Reportes(Producto)',
         field: 'num_reportes',
         sort: 'asc',
       },
       {
-        label: 'Reportes Asignados',
+        label: 'Reportes',
         field: 'modal',
         sort: 'asc',
       },
@@ -160,7 +163,7 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
               <Card.Title className="text-black">Desarrolladores de :</Card.Title>
             </div>
             <div>
-              <select name="Producto" onChange={selectChange}>
+              <select id='producto_desarolladores' name="Producto" onChange={selectChange}>
                 {products.map((product) => (
                   <option key={product.id} value={product.id}>
                     {product.nombre}
@@ -173,7 +176,16 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
           <div style={{ width: '41rem', height: '15rem', overflowY: 'scroll' }}>
                 <MDBTable >
                   <MDBTableHead  columns={data.columns} />
-                  <MDBTableBody rows={data.rows } />
+                  <MDBTableBody>
+                    {data.rows.filter((row) => row).map((row, index) => (
+                      <tr className={"row-developer"+row.id} key={index} data-custom="hidden data">
+                        <td className={"nombre"+row.id} >{row.nombre}</td>
+                        <td className={"email"+row.id}>{row.email}</td>
+                        <td className={"num_reportes"+row.id}>{row.num_reportes}</td>
+                        <td className={"modal"+row.id}>{row.modal}</td>
+                      </tr>
+                    ))}
+                  </MDBTableBody>
                 </MDBTable>
           </div>
         </Card.Body>

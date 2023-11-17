@@ -166,8 +166,7 @@ const ListaDevButton: React.FunctionComponent<IListaDevButtonProps> = ({ id_dev,
         likes: report.likes,
         fecha: report.date,
         producto: report.id_product,
-        reasignacion: <AsignacionButton id_report={report.id}></AsignacionButton>,
-        cambiarprioridad: <CambiarPrioridadButton id={report.id}></CambiarPrioridadButton>
+        reasignacion: <AsignacionButton id_report={report.id}></AsignacionButton>
       };
     });
 

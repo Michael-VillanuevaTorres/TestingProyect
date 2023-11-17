@@ -1,278 +1,584 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.9.6 on darwin)" generated="20231116 00:41:21.422" rpa="false" schemaversion="4">
-<suite id="s1" name="Reportes" source="/Users/michaelvt/Documents/GitHub/TestingProyect/robot/tests/encargado/reportes.robot">
-<test id="s1-t1" name="This is my first test case" line="9">
+<robot generator="Robot 6.1.1 (Python 3.9.6 on darwin)" generated="20231117 01:35:31.247" rpa="false" schemaversion="4">
+<suite id="s1" name="Prioridad" source="/Users/michaelvt/Documents/GitHub/TestingProyect/robot/tests/encargado/prioridad.robot">
+<test id="s1-t1" name="This is my first test case" line="16">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>http://localhost:5173/Asignacion</arg>
 <arg>Firefox</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20231116 00:41:21.501" level="INFO">Opening browser 'Firefox' to base url 'http://localhost:5173/Asignacion'.</msg>
-<status status="PASS" starttime="20231116 00:41:21.501" endtime="20231116 00:41:23.534"/>
+<msg timestamp="20231117 01:35:31.328" level="INFO">Opening browser 'Firefox' to base url 'http://localhost:5173/Asignacion'.</msg>
+<status status="PASS" starttime="20231117 01:35:31.328" endtime="20231117 01:35:33.227"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20231116 00:41:23.534" endtime="20231116 00:41:23.996"/>
+<status status="PASS" starttime="20231117 01:35:33.227" endtime="20231117 01:35:33.692"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:24.997" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:23.996" endtime="20231116 00:41:24.997"/>
+<msg timestamp="20231117 01:35:34.693" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:33.692" endtime="20231117 01:35:34.694"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:35.696" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:34.694" endtime="20231117 01:35:35.697"/>
+</kw>
+<kw name="Select Cambiar_producto_Asignacion">
+<kw name="Select From List By Value" library="SeleniumLibrary">
+<arg>id:producto_asignacion</arg>
+<arg>1</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20231117 01:35:35.702" level="INFO">Selecting options from selection list 'id:producto_asignacion' by value 1.</msg>
+<status status="PASS" starttime="20231117 01:35:35.699" endtime="20231117 01:35:35.732"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1.5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:37.233" level="INFO">Slept 1 second 500 milliseconds</msg>
+<status status="PASS" starttime="20231117 01:35:35.732" endtime="20231117 01:35:37.234"/>
+</kw>
+<kw name="Select From List By Value" library="SeleniumLibrary">
+<arg>id:producto_asignacion</arg>
+<arg>2</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20231117 01:35:37.236" level="INFO">Selecting options from selection list 'id:producto_asignacion' by value 2.</msg>
+<status status="PASS" starttime="20231117 01:35:37.235" endtime="20231117 01:35:37.510"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:38.511" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:37.510" endtime="20231117 01:35:38.512"/>
+</kw>
+<kw name="Select From List By Value" library="SeleniumLibrary">
+<arg>id:producto_asignacion</arg>
+<arg>1</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20231117 01:35:38.514" level="INFO">Selecting options from selection list 'id:producto_asignacion' by value 1.</msg>
+<status status="PASS" starttime="20231117 01:35:38.512" endtime="20231117 01:35:38.745"/>
+</kw>
+<status status="PASS" starttime="20231117 01:35:35.698" endtime="20231117 01:35:38.745"/>
+</kw>
+<kw name="Select PrioridadBaja">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:dropdown-prioridad-report1</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20231117 01:35:38.748" level="INFO">Clicking button 'id:dropdown-prioridad-report1'.</msg>
+<status status="PASS" starttime="20231117 01:35:38.746" endtime="20231117 01:35:38.980"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:39.983" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:38.980" endtime="20231117 01:35:39.983"/>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>id:Baja</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20231117 01:35:39.984" level="INFO">Clicking link 'id:Baja'.</msg>
+<status status="PASS" starttime="20231117 01:35:39.983" endtime="20231117 01:35:40.196"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:41.199" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:40.196" endtime="20231117 01:35:41.199"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:42.200" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:41.200" endtime="20231117 01:35:42.201"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20231117 01:35:42.201" endtime="20231117 01:35:42.332"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:43.333" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:42.333" endtime="20231117 01:35:43.333"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>id:Baja1</arg>
+<arg>BAJA</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20231117 01:35:43.336" level="INFO">Verifying element 'id:Baja1' contains exact text 'BAJA'.</msg>
+<status status="PASS" starttime="20231117 01:35:43.334" endtime="20231117 01:35:43.347"/>
+</kw>
+<status status="PASS" starttime="20231117 01:35:38.746" endtime="20231117 01:35:43.348"/>
+</kw>
+<kw name="Select Cambiar_producto_Asignacion">
+<kw name="Select From List By Value" library="SeleniumLibrary">
+<arg>id:producto_asignacion</arg>
+<arg>1</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20231117 01:35:43.349" level="INFO">Selecting options from selection list 'id:producto_asignacion' by value 1.</msg>
+<status status="PASS" starttime="20231117 01:35:43.348" endtime="20231117 01:35:43.362"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1.5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:44.864" level="INFO">Slept 1 second 500 milliseconds</msg>
+<status status="PASS" starttime="20231117 01:35:43.362" endtime="20231117 01:35:44.864"/>
+</kw>
+<kw name="Select From List By Value" library="SeleniumLibrary">
+<arg>id:producto_asignacion</arg>
+<arg>2</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20231117 01:35:44.866" level="INFO">Selecting options from selection list 'id:producto_asignacion' by value 2.</msg>
+<status status="PASS" starttime="20231117 01:35:44.865" endtime="20231117 01:35:45.120"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:46.122" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:45.121" endtime="20231117 01:35:46.122"/>
+</kw>
+<kw name="Select From List By Value" library="SeleniumLibrary">
+<arg>id:producto_asignacion</arg>
+<arg>1</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20231117 01:35:46.123" level="INFO">Selecting options from selection list 'id:producto_asignacion' by value 1.</msg>
+<status status="PASS" starttime="20231117 01:35:46.122" endtime="20231117 01:35:46.374"/>
+</kw>
+<status status="PASS" starttime="20231117 01:35:43.348" endtime="20231117 01:35:46.375"/>
+</kw>
+<kw name="Select PrioridadAlta">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:dropdown-prioridad-report1</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20231117 01:35:46.377" level="INFO">Clicking button 'id:dropdown-prioridad-report1'.</msg>
+<status status="PASS" starttime="20231117 01:35:46.376" endtime="20231117 01:35:46.619"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:47.621" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:46.620" endtime="20231117 01:35:47.622"/>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>id:Alta</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20231117 01:35:47.623" level="INFO">Clicking link 'id:Alta'.</msg>
+<status status="PASS" starttime="20231117 01:35:47.622" endtime="20231117 01:35:47.850"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:48.852" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:47.850" endtime="20231117 01:35:48.853"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:49.856" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:48.853" endtime="20231117 01:35:49.856"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20231117 01:35:49.856" endtime="20231117 01:35:50.001"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:35:51.002" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:50.002" endtime="20231117 01:35:51.003"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>id:Alta1</arg>
+<arg>ALTA</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20231117 01:35:51.006" level="INFO">Verifying element 'id:Alta1' contains exact text 'ALTA'.</msg>
+<status status="PASS" starttime="20231117 01:35:51.003" endtime="20231117 01:35:51.023"/>
+</kw>
+<status status="PASS" starttime="20231117 01:35:46.375" endtime="20231117 01:35:51.024"/>
 </kw>
 <kw name="Select MisReportes">
 <kw name="Click Link" library="SeleniumLibrary">
 <arg>id:todos_reportes_bar</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:25.000" level="INFO">Clicking link 'id:todos_reportes_bar'.</msg>
-<status status="PASS" starttime="20231116 00:41:24.999" endtime="20231116 00:41:25.139"/>
+<msg timestamp="20231117 01:35:51.026" level="INFO">Clicking link 'id:todos_reportes_bar'.</msg>
+<status status="PASS" starttime="20231117 01:35:51.025" endtime="20231117 01:35:51.143"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:26.141" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:25.139" endtime="20231116 00:41:26.142"/>
+<msg timestamp="20231117 01:35:52.145" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:51.143" endtime="20231117 01:35:52.146"/>
 </kw>
-<status status="PASS" starttime="20231116 00:41:24.998" endtime="20231116 00:41:26.142"/>
+<status status="PASS" starttime="20231117 01:35:51.024" endtime="20231117 01:35:52.146"/>
 </kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>1</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:27.145" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:26.143" endtime="20231116 00:41:27.145"/>
-</kw>
-<kw name="Select Cambiar_producto">
+<kw name="Select Cambiar_producto_Reporte">
 <kw name="Click Button" library="SeleniumLibrary">
-<arg>id:dropdown-button-dark</arg>
+<arg>id:dropdown-listaReportesEnc</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:27.149" level="INFO">Clicking button 'id:dropdown-button-dark'.</msg>
-<status status="PASS" starttime="20231116 00:41:27.147" endtime="20231116 00:41:27.382"/>
+<msg timestamp="20231117 01:35:52.148" level="INFO">Clicking button 'id:dropdown-listaReportesEnc'.</msg>
+<status status="PASS" starttime="20231117 01:35:52.147" endtime="20231117 01:35:52.387"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1.5</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:28.884" level="INFO">Slept 1 second 500 milliseconds</msg>
-<status status="PASS" starttime="20231116 00:41:27.382" endtime="20231116 00:41:28.885"/>
+<msg timestamp="20231117 01:35:53.889" level="INFO">Slept 1 second 500 milliseconds</msg>
+<status status="PASS" starttime="20231117 01:35:52.388" endtime="20231117 01:35:53.889"/>
 </kw>
 <kw name="Click Link" library="SeleniumLibrary">
-<arg>id:default_product</arg>
+<arg>id:producto-1</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:28.888" level="INFO">Clicking link 'id:default_product'.</msg>
-<status status="PASS" starttime="20231116 00:41:28.886" endtime="20231116 00:41:29.112"/>
+<msg timestamp="20231117 01:35:53.892" level="INFO">Clicking link 'id:producto-1'.</msg>
+<status status="PASS" starttime="20231117 01:35:53.890" endtime="20231117 01:35:54.119"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:30.114" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:29.112" endtime="20231116 00:41:30.115"/>
+<msg timestamp="20231117 01:35:55.122" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:54.119" endtime="20231117 01:35:55.122"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
-<arg>id:dropdown-button-dark</arg>
+<arg>id:dropdown-listaReportesEnc</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:30.117" level="INFO">Clicking button 'id:dropdown-button-dark'.</msg>
-<status status="PASS" starttime="20231116 00:41:30.115" endtime="20231116 00:41:30.342"/>
+<msg timestamp="20231117 01:35:55.125" level="INFO">Clicking button 'id:dropdown-listaReportesEnc'.</msg>
+<status status="PASS" starttime="20231117 01:35:55.123" endtime="20231117 01:35:55.357"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:31.346" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:30.343" endtime="20231116 00:41:31.346"/>
+<msg timestamp="20231117 01:35:56.358" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:55.357" endtime="20231117 01:35:56.358"/>
 </kw>
 <kw name="Click Link" library="SeleniumLibrary">
-<arg>id:default_product2</arg>
+<arg>id:producto-2</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:31.347" level="INFO">Clicking link 'id:default_product2'.</msg>
-<status status="PASS" starttime="20231116 00:41:31.346" endtime="20231116 00:41:31.564"/>
+<msg timestamp="20231117 01:35:56.360" level="INFO">Clicking link 'id:producto-2'.</msg>
+<status status="PASS" starttime="20231117 01:35:56.359" endtime="20231117 01:35:56.589"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:32.567" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:31.565" endtime="20231116 00:41:32.567"/>
+<msg timestamp="20231117 01:35:57.591" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:56.589" endtime="20231117 01:35:57.592"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
-<arg>id:dropdown-button-dark</arg>
+<arg>id:dropdown-listaReportesEnc</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:32.569" level="INFO">Clicking button 'id:dropdown-button-dark'.</msg>
-<status status="PASS" starttime="20231116 00:41:32.568" endtime="20231116 00:41:32.809"/>
+<msg timestamp="20231117 01:35:57.594" level="INFO">Clicking button 'id:dropdown-listaReportesEnc'.</msg>
+<status status="PASS" starttime="20231117 01:35:57.592" endtime="20231117 01:35:57.826"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:33.813" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:32.810" endtime="20231116 00:41:33.814"/>
+<msg timestamp="20231117 01:35:58.828" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:57.826" endtime="20231117 01:35:58.828"/>
 </kw>
 <kw name="Click Link" library="SeleniumLibrary">
-<arg>id:default_product</arg>
+<arg>id:producto-1</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:33.816" level="INFO">Clicking link 'id:default_product'.</msg>
-<status status="PASS" starttime="20231116 00:41:33.814" endtime="20231116 00:41:34.050"/>
-</kw>
-<status status="PASS" starttime="20231116 00:41:27.146" endtime="20231116 00:41:34.050"/>
-</kw>
-<kw name="Select Buscar_reporte">
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>custom-search-bar</arg>
-<arg>e1</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:34.052" level="INFO">Typing text 'e1' into text field 'custom-search-bar'.</msg>
-<status status="PASS" starttime="20231116 00:41:34.051" endtime="20231116 00:41:34.084"/>
+<msg timestamp="20231117 01:35:58.830" level="INFO">Clicking link 'id:producto-1'.</msg>
+<status status="PASS" starttime="20231117 01:35:58.829" endtime="20231117 01:35:59.081"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:35.085" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:34.084" endtime="20231116 00:41:35.086"/>
+<msg timestamp="20231117 01:36:00.082" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:35:59.081" endtime="20231117 01:36:00.083"/>
 </kw>
-<status status="PASS" starttime="20231116 00:41:34.050" endtime="20231116 00:41:35.086"/>
+<status status="PASS" starttime="20231117 01:35:52.146" endtime="20231117 01:36:00.083"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:01.085" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:00.083" endtime="20231117 01:36:01.085"/>
 </kw>
 <kw name="Select PrioridadBaja">
 <kw name="Click Button" library="SeleniumLibrary">
-<arg>id:dropdown-prioridad</arg>
+<arg>id:dropdown-prioridad-report1</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:35.089" level="INFO">Clicking button 'id:dropdown-prioridad'.</msg>
-<status status="PASS" starttime="20231116 00:41:35.088" endtime="20231116 00:41:35.316"/>
+<msg timestamp="20231117 01:36:01.087" level="INFO">Clicking button 'id:dropdown-prioridad-report1'.</msg>
+<status status="PASS" starttime="20231117 01:36:01.086" endtime="20231117 01:36:01.318"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:36.317" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:35.316" endtime="20231116 00:41:36.318"/>
+<msg timestamp="20231117 01:36:02.321" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:01.319" endtime="20231117 01:36:02.321"/>
 </kw>
 <kw name="Click Link" library="SeleniumLibrary">
 <arg>id:Baja</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:36.321" level="INFO">Clicking link 'id:Baja'.</msg>
-<status status="PASS" starttime="20231116 00:41:36.319" endtime="20231116 00:41:36.553"/>
+<msg timestamp="20231117 01:36:02.322" level="INFO">Clicking link 'id:Baja'.</msg>
+<status status="PASS" starttime="20231117 01:36:02.322" endtime="20231117 01:36:02.550"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:37.555" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:36.554" endtime="20231116 00:41:37.555"/>
+<msg timestamp="20231117 01:36:03.551" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:02.550" endtime="20231117 01:36:03.551"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:38.557" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:37.556" endtime="20231116 00:41:38.558"/>
+<msg timestamp="20231117 01:36:04.553" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:03.551" endtime="20231117 01:36:04.553"/>
 </kw>
 <kw name="Reload Page" library="SeleniumLibrary">
 <doc>Simulates user reloading page.</doc>
-<status status="PASS" starttime="20231116 00:41:38.558" endtime="20231116 00:41:38.688"/>
-</kw>
-<status status="PASS" starttime="20231116 00:41:35.087" endtime="20231116 00:41:38.688"/>
+<status status="PASS" starttime="20231117 01:36:04.554" endtime="20231117 01:36:04.691"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:39.691" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:38.688" endtime="20231116 00:41:39.691"/>
+<msg timestamp="20231117 01:36:05.693" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:04.691" endtime="20231117 01:36:05.694"/>
 </kw>
-<kw name="Select VerReporte">
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>id=e1</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:39.695" level="INFO">Clicking link 'id=e1'.</msg>
-<status status="PASS" starttime="20231116 00:41:39.694" endtime="20231116 00:41:39.823"/>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>id:Baja1</arg>
+<arg>BAJA</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20231117 01:36:05.696" level="INFO">Verifying element 'id:Baja1' contains exact text 'BAJA'.</msg>
+<status status="PASS" starttime="20231117 01:36:05.694" endtime="20231117 01:36:05.712"/>
+</kw>
+<status status="PASS" starttime="20231117 01:36:01.086" endtime="20231117 01:36:05.712"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:40.825" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:39.823" endtime="20231116 00:41:40.825"/>
-</kw>
-<status status="PASS" starttime="20231116 00:41:39.692" endtime="20231116 00:41:40.825"/>
+<msg timestamp="20231117 01:36:06.715" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:05.713" endtime="20231117 01:36:06.715"/>
 </kw>
 <kw name="Select PrioridadAlta">
 <kw name="Click Button" library="SeleniumLibrary">
-<arg>id:dropdown-prioridad</arg>
+<arg>id:dropdown-prioridad-report1</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:40.829" level="INFO">Clicking button 'id:dropdown-prioridad'.</msg>
-<status status="PASS" starttime="20231116 00:41:40.827" endtime="20231116 00:41:41.060"/>
+<msg timestamp="20231117 01:36:06.718" level="INFO">Clicking button 'id:dropdown-prioridad-report1'.</msg>
+<status status="PASS" starttime="20231117 01:36:06.716" endtime="20231117 01:36:06.955"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:42.063" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:41.060" endtime="20231116 00:41:42.064"/>
+<msg timestamp="20231117 01:36:07.958" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:06.956" endtime="20231117 01:36:07.958"/>
 </kw>
 <kw name="Click Link" library="SeleniumLibrary">
 <arg>id:Alta</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:42.066" level="INFO">Clicking link 'id:Alta'.</msg>
-<status status="PASS" starttime="20231116 00:41:42.064" endtime="20231116 00:41:42.286"/>
+<msg timestamp="20231117 01:36:07.960" level="INFO">Clicking link 'id:Alta'.</msg>
+<status status="PASS" starttime="20231117 01:36:07.959" endtime="20231117 01:36:08.188"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:43.288" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:42.287" endtime="20231116 00:41:43.289"/>
+<msg timestamp="20231117 01:36:09.190" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:08.188" endtime="20231117 01:36:09.191"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:44.292" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:43.289" endtime="20231116 00:41:44.292"/>
+<msg timestamp="20231117 01:36:10.192" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:09.191" endtime="20231117 01:36:10.193"/>
 </kw>
 <kw name="Reload Page" library="SeleniumLibrary">
 <doc>Simulates user reloading page.</doc>
-<status status="PASS" starttime="20231116 00:41:44.293" endtime="20231116 00:41:44.417"/>
+<status status="PASS" starttime="20231117 01:36:10.194" endtime="20231117 01:36:10.324"/>
 </kw>
-<status status="PASS" starttime="20231116 00:41:40.826" endtime="20231116 00:41:44.417"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:11.324" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:10.324" endtime="20231117 01:36:11.325"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>id:Alta1</arg>
+<arg>ALTA</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20231117 01:36:11.327" level="INFO">Verifying element 'id:Alta1' contains exact text 'ALTA'.</msg>
+<status status="PASS" starttime="20231117 01:36:11.325" endtime="20231117 01:36:11.340"/>
+</kw>
+<status status="PASS" starttime="20231117 01:36:06.716" endtime="20231117 01:36:11.341"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20231117 01:36:11.341" endtime="20231117 01:36:11.472"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:12.474" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:11.472" endtime="20231117 01:36:12.475"/>
+</kw>
+<kw name="Select VerReporte">
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>id:reporte-1</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20231117 01:36:12.478" level="INFO">Clicking link 'id:reporte-1'.</msg>
+<status status="PASS" starttime="20231117 01:36:12.476" endtime="20231117 01:36:12.606"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:13.609" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:12.607" endtime="20231117 01:36:13.609"/>
+</kw>
+<status status="PASS" starttime="20231117 01:36:12.475" endtime="20231117 01:36:13.610"/>
+</kw>
+<kw name="Select PrioridadBaja">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:dropdown-prioridad-report1</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20231117 01:36:13.613" level="INFO">Clicking button 'id:dropdown-prioridad-report1'.</msg>
+<status status="PASS" starttime="20231117 01:36:13.611" endtime="20231117 01:36:13.865"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:14.867" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:13.866" endtime="20231117 01:36:14.868"/>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>id:Baja</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20231117 01:36:14.869" level="INFO">Clicking link 'id:Baja'.</msg>
+<status status="PASS" starttime="20231117 01:36:14.868" endtime="20231117 01:36:15.096"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:16.097" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:15.096" endtime="20231117 01:36:16.098"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:17.100" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:16.099" endtime="20231117 01:36:17.101"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20231117 01:36:17.102" endtime="20231117 01:36:17.226"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:18.227" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:17.226" endtime="20231117 01:36:18.227"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>id:Baja1</arg>
+<arg>BAJA</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20231117 01:36:18.230" level="INFO">Verifying element 'id:Baja1' contains exact text 'BAJA'.</msg>
+<status status="PASS" starttime="20231117 01:36:18.228" endtime="20231117 01:36:18.248"/>
+</kw>
+<status status="PASS" starttime="20231117 01:36:13.610" endtime="20231117 01:36:18.248"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:19.249" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:18.248" endtime="20231117 01:36:19.249"/>
+</kw>
+<kw name="Select PrioridadAlta">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:dropdown-prioridad-report1</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20231117 01:36:19.252" level="INFO">Clicking button 'id:dropdown-prioridad-report1'.</msg>
+<status status="PASS" starttime="20231117 01:36:19.251" endtime="20231117 01:36:19.489"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:20.494" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:19.491" endtime="20231117 01:36:20.494"/>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>id:Alta</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20231117 01:36:20.495" level="INFO">Clicking link 'id:Alta'.</msg>
+<status status="PASS" starttime="20231117 01:36:20.494" endtime="20231117 01:36:20.715"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:21.718" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:20.715" endtime="20231117 01:36:21.718"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:22.721" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:21.719" endtime="20231117 01:36:22.721"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20231117 01:36:22.722" endtime="20231117 01:36:22.851"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 01:36:23.852" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:22.851" endtime="20231117 01:36:23.852"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>id:Alta1</arg>
+<arg>ALTA</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20231117 01:36:23.854" level="INFO">Verifying element 'id:Alta1' contains exact text 'ALTA'.</msg>
+<status status="PASS" starttime="20231117 01:36:23.853" endtime="20231117 01:36:23.864"/>
+</kw>
+<status status="PASS" starttime="20231117 01:36:19.250" endtime="20231117 01:36:23.864"/>
 </kw>
 <kw name="Select Conmentario">
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>id:comentarios</arg>
 <arg>Primer comentario</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:44.418" level="INFO">Typing text 'Primer comentario' into text field 'id:comentarios'.</msg>
-<status status="PASS" starttime="20231116 00:41:44.417" endtime="20231116 00:41:44.446"/>
+<msg timestamp="20231117 01:36:23.865" level="INFO">Typing text 'Primer comentario' into text field 'id:comentarios'.</msg>
+<status status="PASS" starttime="20231117 01:36:23.865" endtime="20231117 01:36:23.928"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:45.447" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:44.446" endtime="20231116 00:41:45.448"/>
+<msg timestamp="20231117 01:36:24.931" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:23.928" endtime="20231117 01:36:24.931"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:46.450" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:45.448" endtime="20231116 00:41:46.451"/>
+<msg timestamp="20231117 01:36:25.933" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:24.932" endtime="20231117 01:36:25.934"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>id:submit</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20231116 00:41:46.453" level="INFO">Clicking button 'id:submit'.</msg>
-<status status="PASS" starttime="20231116 00:41:46.451" endtime="20231116 00:41:46.671"/>
+<msg timestamp="20231117 01:36:25.936" level="INFO">Clicking button 'id:submit'.</msg>
+<status status="PASS" starttime="20231117 01:36:25.935" endtime="20231117 01:36:26.173"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:47.673" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:46.672" endtime="20231116 00:41:47.673"/>
+<msg timestamp="20231117 01:36:27.175" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:26.173" endtime="20231117 01:36:27.176"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231116 00:41:48.676" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231116 00:41:47.674" endtime="20231116 00:41:48.677"/>
+<msg timestamp="20231117 01:36:28.178" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 01:36:27.176" endtime="20231117 01:36:28.179"/>
 </kw>
-<status status="PASS" starttime="20231116 00:41:44.417" endtime="20231116 00:41:48.677"/>
-</kw>
-<kw name="Reload Page" library="SeleniumLibrary">
-<doc>Simulates user reloading page.</doc>
-<status status="PASS" starttime="20231116 00:41:48.678" endtime="20231116 00:41:48.798"/>
+<status status="PASS" starttime="20231117 01:36:23.864" endtime="20231117 01:36:28.179"/>
 </kw>
 <kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20231116 00:41:48.798" endtime="20231116 00:41:49.191"/>
+<status status="PASS" starttime="20231117 01:36:28.179" endtime="20231117 01:36:28.628"/>
 </kw>
 <doc>Test for "encargado"</doc>
 <tag>Functional</tag>
-<status status="PASS" starttime="20231116 00:41:21.501" endtime="20231116 00:41:49.192"/>
+<status status="PASS" starttime="20231117 01:35:31.328" endtime="20231117 01:36:28.628"/>
 </test>
-<status status="PASS" starttime="20231116 00:41:21.423" endtime="20231116 00:41:49.192"/>
+<status status="PASS" starttime="20231117 01:35:31.247" endtime="20231117 01:36:28.628"/>
 </suite>
 <statistics>
 <total>
@@ -282,7 +588,7 @@
 <stat pass="1" fail="0" skip="0">Functional</stat>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Reportes">Reportes</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Prioridad">Prioridad</stat>
 </suite>
 </statistics>
 <errors>

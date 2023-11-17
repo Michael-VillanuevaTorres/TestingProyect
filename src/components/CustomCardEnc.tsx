@@ -46,20 +46,21 @@ function CustomCardEnv(props: { bug: Bug }) {
   const [bugState, setBugState] = useState(props.bug.estado);
 
   const prioridades = getPrioridades();
-  const getPrioridadNombre =(id:number) =>{
+  const getPrioridadNombre =(id:number,id_reporte:number) =>{
+    const id_=id_reporte
     const  prio = prioridades.find((item: prioridad) => item.id === id);
     if (!prio) {
-      return <h5 className="prioridadCeroCustom">NO ASIGNADO</h5>;
+      return <h5 id={"No-asignado"+id_} className="prioridadCeroCustom" >NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
-      return <h5 className="prioridadCeroCustom">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Sin Prioridad"+id_} className="prioridadCeroCustom">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 1) {
-      return <h5 className="prioridadUnoCustom">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Baja"+id_} className="prioridadCeroCustom">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 2) {
-      return <h5 className="prioridadDosCustom">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Media"+id_} className="prioridadCeroCustom">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 3) {
-      return <h5 className="prioridadTresCustom">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Alta"+id_} className="prioridadCeroCustom">{prio.name.toUpperCase()}</h5>;
     } else {
-      return <h5 className="prioridadCeroCustom">NO ASIGNADO</h5>;
+      return <h5 id={"No-asignado"+id_} className="prioridadCeroCustom">NO ASIGNADO</h5>;
     }
   };
 
@@ -140,7 +141,7 @@ function CustomCardEnv(props: { bug: Bug }) {
         </div>
         <p className="titulardo">{props.bug.titulo}</p>
         <div>
-        {getPrioridadNombre(props.bug.id_prioridad)}
+        {getPrioridadNombre(props.bug.id_prioridad,props.bug.id)}
         </div>
         <h1 className="space-taker"></h1>
         <hr className="tittle-separator"></hr>

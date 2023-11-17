@@ -123,30 +123,31 @@ export default function SearchBar() {
   const [query, setQuery] = useState("");
   const [name_product, setName] = useState("default_product");
   const filteredItems = getFilteredItems(query, users);
-  const getPrioridadNombre =(id:number) =>{
+  const getPrioridadNombre =(id:number, id_reporte:number) =>{
+    const id_=id_reporte
     const  prio = prioridades.find((item: prioridad) => item.id === id);
     if (!prio) {
-      return <h5 className="prioridadCero">NO ASIGNADO</h5>;
+      return <h5 id={"No-asignado"+id_} className="prioridadCero" >NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
-      return <h5 className="prioridadCero">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Sin Prioridad"+id_} className="prioridadCero">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 1) {
-      return <h5 className="prioridadUno">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Baja"+id_} className="prioridadUno">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 2) {
-      return <h5 className="prioridadDos">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Media"+id_} className="prioridadDos">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 3) {
-      return <h5 className="prioridadTres">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Alta"+id_} className="prioridadTres">{prio.name.toUpperCase()}</h5>;
     } else {
-      return <h5 className="prioridadCero">NO ASIGNADO</h5>;
+      return <h5 id={"No-asignado"+id_} className="prioridadCero">NO ASIGNADO</h5>;
     }
   };
   const reports = filteredItems.map((report: reporte) => {
     return {
-      titulo: <Button id={report.title} href={"/VerReporteEnv/" + report.id} variant="link">{report.title}</Button>,
+      titulo: <Button id={"reporte-"+report.id} href={"/VerReporteEnv/" + report.id} variant="link">{report.title}</Button>,
       fecha: report.date,
       estado: estados[report.id_state],
-      likes: report.likes,
+      likes: report.likes,  
       id_producto: report.id_product,
-      prioridad: getPrioridadNombre(report.id_priority),
+      prioridad: getPrioridadNombre(report.id_priority,report.id),
       CambioPrioridad : <DropdownPrioridad  id_report={report.id}></DropdownPrioridad>
     }
   });
@@ -221,13 +222,13 @@ export default function SearchBar() {
         
         <DropdownButton
           size="lg"
-          id="dropdown-button-dark"
+          id="dropdown-listaReportesEnc"
           variant="primary" 
           align="end"
           title={name_product}
           >
           {products.map((product) => (
-            <Dropdown.Item id={product.nombre} onClick={() => {(setId_product(product.id));  (setName(product.nombre))}}>
+            <Dropdown.Item id={"producto-"+product.id} onClick={() => {(setId_product(product.id));  (setName(product.nombre))}}>
               {product.nombre}
             </Dropdown.Item>
           ))}
@@ -239,7 +240,7 @@ export default function SearchBar() {
         <br></br>
       <Row >
         <input
-          id="custom-search-bar"
+          id="search-listaReportesEnc"
           className="form-control form-control-s"
           type="search"
           aria-label="search"

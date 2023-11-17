@@ -62,20 +62,21 @@ const Reportes_sin_Asignar: React.FunctionComponent<IReportes_sin_AsignarProps> 
 
   // const [data, setData] = useState({});
 
-  const getPrioridadNombre =(id:number) =>{
+  const getPrioridadNombre =(id:number, id_reporte:number) =>{
+    const id_=id_reporte
     const  prio = prioridades.find((item: prioridad) => item.id === id);
     if (!prio) {
-      return <h5 className="prioridadCero">NO ASIGNADO</h5>;
+      return <h5 id={"No-asignado"+id_} className="prioridadCero" >NO ASIGNADO</h5>;
     } else if (prio.id === 0) {
-      return <h5 className="prioridadCero">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Sin Prioridad"+id_} className="prioridadCero">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 1) {
-      return <h5 className="prioridadUno">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Baja"+id_} className="prioridadUno">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 2) {
-      return <h5 className="prioridadDos">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Media"+id_} className="prioridadDos">{prio.name.toUpperCase()}</h5>;
     } else if (prio.id === 3) {
-      return <h5 className="prioridadTres">{prio.name.toUpperCase()}</h5>;
+      return <h5 id={"Alta"+id_} className="prioridadTres">{prio.name.toUpperCase()}</h5>;
     } else {
-      return <h5 className="prioridadCero">NO ASIGNADO</h5>;
+      return <h5 id={"No-asignado"+id_} className="prioridadCero">NO ASIGNADO</h5>;
     }
   };
 
@@ -117,8 +118,9 @@ const Reportes_sin_Asignar: React.FunctionComponent<IReportes_sin_AsignarProps> 
 
   const reports = filteredReports.map((reports:reporte) => {
     return {
+      id_state:reports.id_state,
       titulo:<Button id="titulo_reasignacion" href={"/VerReporteEnv/"+reports.id} variant="link">{reports.title}</Button>, 
-      prioridad: getPrioridadNombre(reports.id_priority),
+      prioridad: getPrioridadNombre(reports.id_priority,reports.id),
       likes:reports.likes,
       asignacion:<AsignacionButton  id_report ={reports.id}  ></AsignacionButton>,
       prioridad_a: <DropdownPrioridad id_report={reports.id}></DropdownPrioridad>
@@ -206,7 +208,17 @@ const Reportes_sin_Asignar: React.FunctionComponent<IReportes_sin_AsignarProps> 
             <div style={{ width: '45rem', height: '36rem', overflowY: 'scroll' }}>
                 <MDBTable >
                   <MDBTableHead  columns={data.columns} />
-                  <MDBTableBody rows={data.rows } />
+                  <MDBTableBody>
+                    {data.rows.filter((row) => row).map((row, index) => (
+                      <tr className={"row-state-asignacion"+row.id_state} key={index} data-custom="hidden data">
+                        <td>{row.titulo}</td>
+                        <td>{row.prioridad}</td>
+                        <td>{row.likes}</td>
+                        <td>{row.asignacion}</td>
+                        <td>{row.prioridad_a}</td>
+                      </tr>
+                    ))}
+                  </MDBTableBody>
                 </MDBTable>
               </div>
 
