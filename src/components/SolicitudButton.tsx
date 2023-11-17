@@ -33,6 +33,7 @@ const SolicitudButton: React.FunctionComponent<ISolicitudButtonProps> = ({
     const response = await fetch(url, {
       method: "POST",
       headers: {
+
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -50,6 +51,7 @@ const SolicitudButton: React.FunctionComponent<ISolicitudButtonProps> = ({
   return (
     <>
       <Button
+        id="request-reassignment-button"
         variant="success"
         onClick={handleShow}
         disabled={isButtonDisabled}
@@ -67,10 +69,10 @@ const SolicitudButton: React.FunctionComponent<ISolicitudButtonProps> = ({
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="mb-3">
               <Form.Label>Motivo de solicitud</Form.Label>
-              <Form.Control {...register("motivo")} as="textarea" rows={3} />
+              <Form.Control id='reassign-reason' {...register("motivo")} as="textarea" rows={3} />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button id="send-reason"variant="primary" type="submit">
               Solicitar Reasignar
             </Button>
           </Form>

@@ -1,6 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
-
+*** Variables ***
+${BROWSER}  firefox
 *** Keywords ***
 INIT APP
     Open Browser  http://localhost:5173/dev  ${BROWSER}

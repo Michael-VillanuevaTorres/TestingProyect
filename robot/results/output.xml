@@ -1,76 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.10.12 on linux)" generated="20231116 20:39:41.480" rpa="false" schemaversion="4">
+<robot generator="Robot 6.1.1 (Python 3.10.12 on linux)" generated="20231117 01:23:13.028" rpa="false" schemaversion="4">
 <suite id="s1" name="Test All Reports" source="/home/sanhue_903/code/college/TestingProyect/robot/tests/developer/test_all_reports.robot">
-<test id="s1-t1" name="Check All Reports" line="10">
-<kw name="INIT APP" type="SETUP">
+<test id="s1-t1" name="Check All Report Of Product" line="7">
+<kw name="Given a developer in the view &quot;Todos los reportes&quot;">
+<kw name="INIT APP" library="base">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>http://localhost:5173/dev</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20231116 20:39:41.761" level="INFO">Opening browser 'firefox' to base url 'http://localhost:5173/dev'.</msg>
-<status status="PASS" starttime="20231116 20:39:41.760" endtime="20231116 20:39:46.805"/>
+<msg timestamp="20231117 01:23:13.346" level="INFO">Opening browser 'firefox' to base url 'http://localhost:5173/dev'.</msg>
+<status status="PASS" starttime="20231117 01:23:13.345" endtime="20231117 01:23:19.137"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20231116 20:39:46.805" endtime="20231116 20:39:46.811"/>
+<status status="PASS" starttime="20231117 01:23:19.137" endtime="20231117 01:23:19.172"/>
 </kw>
-<status status="PASS" starttime="20231116 20:39:41.758" endtime="20231116 20:39:46.811"/>
+<status status="PASS" starttime="20231117 01:23:13.345" endtime="20231117 01:23:19.172"/>
 </kw>
 <kw name="Click Link" library="SeleniumLibrary">
 <arg>id:dev-all-reports</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231116 20:39:46.813" level="INFO">Clicking link 'id:dev-all-reports'.</msg>
-<status status="PASS" starttime="20231116 20:39:46.812" endtime="20231116 20:39:47.900"/>
+<msg timestamp="20231117 01:23:19.174" level="INFO">Clicking link 'id:dev-all-reports'.</msg>
+<status status="PASS" starttime="20231117 01:23:19.172" endtime="20231117 01:23:20.671"/>
+</kw>
+<status status="PASS" starttime="20231117 01:23:13.342" endtime="20231117 01:23:20.671"/>
+</kw>
+<kw name="When the developer clicks a filter by product">
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>id:dev-all-reports</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20231117 01:23:20.676" level="INFO">Clicking link 'id:dev-all-reports'.</msg>
+<status status="PASS" starttime="20231117 01:23:20.673" endtime="20231117 01:23:21.989"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>id:dropdown-button-dark</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20231116 20:39:47.903" level="INFO">Clicking button 'id:dropdown-button-dark'.</msg>
-<status status="PASS" starttime="20231116 20:39:47.901" endtime="20231116 20:39:48.290"/>
+<msg timestamp="20231117 01:23:21.991" level="INFO">Clicking button 'id:dropdown-button-dark'.</msg>
+<status status="PASS" starttime="20231117 01:23:21.990" endtime="20231117 01:23:22.458"/>
 </kw>
 <kw name="Click Link" library="SeleniumLibrary">
 <arg>id:product-2</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231116 20:39:48.291" level="INFO">Clicking link 'id:product-2'.</msg>
-<status status="PASS" starttime="20231116 20:39:48.290" endtime="20231116 20:39:48.564"/>
+<msg timestamp="20231117 01:23:22.460" level="INFO">Clicking link 'id:product-2'.</msg>
+<status status="PASS" starttime="20231117 01:23:22.459" endtime="20231117 01:23:22.708"/>
 </kw>
+<status status="PASS" starttime="20231117 01:23:20.672" endtime="20231117 01:23:22.708"/>
+</kw>
+<kw name="Then the table of all reports of the product are filtered">
 <kw name="Page Should Contain Element" library="SeleniumLibrary">
 <arg>class:product-2</arg>
 <doc>Verifies that element ``locator`` is found on the current page.</doc>
-<msg timestamp="20231116 20:39:48.572" level="INFO">Current page contains element 'class:product-2'.</msg>
-<status status="PASS" starttime="20231116 20:39:48.564" endtime="20231116 20:39:48.572"/>
+<msg timestamp="20231117 01:23:22.717" level="INFO">Current page contains element 'class:product-2'.</msg>
+<status status="PASS" starttime="20231117 01:23:22.709" endtime="20231117 01:23:22.717"/>
 </kw>
 <kw name="Page Should Not Contain Element" library="SeleniumLibrary">
 <arg>class:product-1</arg>
 <doc>Verifies that element ``locator`` is not found on the current page.</doc>
-<msg timestamp="20231116 20:39:48.577" level="INFO">Current page does not contain element 'class:product-1'.</msg>
-<status status="PASS" starttime="20231116 20:39:48.572" endtime="20231116 20:39:48.577"/>
+<msg timestamp="20231117 01:23:22.723" level="INFO">Current page does not contain element 'class:product-1'.</msg>
+<status status="PASS" starttime="20231117 01:23:22.717" endtime="20231117 01:23:22.724"/>
 </kw>
-<kw name="Finish Test" type="TEARDOWN">
+<status status="PASS" starttime="20231117 01:23:22.709" endtime="20231117 01:23:22.724"/>
+</kw>
+<kw name="Finish Test" library="base" type="TEARDOWN">
 <kw name="Close Browser" library="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20231116 20:39:48.578" endtime="20231116 20:39:49.794"/>
+<status status="PASS" starttime="20231117 01:23:22.725" endtime="20231117 01:23:23.996"/>
 </kw>
-<status status="PASS" starttime="20231116 20:39:48.578" endtime="20231116 20:39:49.794"/>
+<status status="PASS" starttime="20231117 01:23:22.724" endtime="20231117 01:23:23.996"/>
 </kw>
-<doc>Check all reports of a product are displayed in the view of the link "Todos los reportes"</doc>
-<tag>Functional</tag>
-<status status="PASS" starttime="20231116 20:39:41.756" endtime="20231116 20:39:49.794"/>
+<doc>Check all reports of a product are filtered in the view of the link "Todos los reportes"</doc>
+<status status="PASS" starttime="20231117 01:23:13.341" endtime="20231117 01:23:23.996"/>
 </test>
-<status status="PASS" starttime="20231116 20:39:41.484" endtime="20231116 20:39:49.795"/>
+<status status="PASS" starttime="20231117 01:23:13.032" endtime="20231117 01:23:23.997"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">Functional</stat>
 </tag>
 <suite>
 <stat pass="1" fail="0" skip="0" id="s1" name="Test All Reports">Test All Reports</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20231116 20:39:41.755" level="WARN">Imported resource file '/home/sanhue_903/code/college/TestingProyect/robot/resources/base.robot' is empty.</msg>
 </errors>
 </robot>
