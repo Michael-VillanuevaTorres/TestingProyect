@@ -1,78 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.10.12 on linux)" generated="20231117 23:16:03.677" rpa="false" schemaversion="4">
-<suite id="s1" name="Test Change State" source="/home/sanhue_903/code/college/TestingProyect/robot/tests/developer/test_change_state.robot">
-<test id="s1-t1" name="Change The State Of A Report" line="10">
+<robot generator="Robot 6.1.1 (Python 3.10.12 on linux)" generated="20231117 23:32:29.387" rpa="false" schemaversion="4">
+<suite id="s1" name="Test Check Priority" source="/home/sanhue_903/code/college/TestingProyect/robot/tests/developer/test_check_priority.robot">
+<test id="s1-t1" name="Check a priority" line="8">
 <kw name="Given a developer">
 <kw name="Init App" library="base">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>http://localhost:5173/dev</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20231117 23:16:03.962" level="INFO">Opening browser 'firefox' to base url 'http://localhost:5173/dev'.</msg>
-<status status="PASS" starttime="20231117 23:16:03.961" endtime="20231117 23:16:09.045"/>
+<msg timestamp="20231117 23:32:29.653" level="INFO">Opening browser 'firefox' to base url 'http://localhost:5173/dev'.</msg>
+<status status="PASS" starttime="20231117 23:32:29.652" endtime="20231117 23:32:35.483"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20231117 23:16:09.046" endtime="20231117 23:16:09.076"/>
+<status status="PASS" starttime="20231117 23:32:35.483" endtime="20231117 23:32:35.548"/>
 </kw>
-<status status="PASS" starttime="20231117 23:16:03.961" endtime="20231117 23:16:09.076"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>1</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231117 23:16:10.077" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231117 23:16:09.076" endtime="20231117 23:16:10.077"/>
-</kw>
-<status status="PASS" starttime="20231117 23:16:03.959" endtime="20231117 23:16:10.078"/>
-</kw>
-<kw name="When he go to a report view a change the state of a report">
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>id:link-3</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231117 23:16:10.080" level="INFO">Clicking link 'id:link-3'.</msg>
-<status status="PASS" starttime="20231117 23:16:10.079" endtime="20231117 23:16:10.860"/>
+<status status="PASS" starttime="20231117 23:32:29.652" endtime="20231117 23:32:35.549"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231117 23:16:11.861" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231117 23:16:10.861" endtime="20231117 23:16:11.862"/>
+<msg timestamp="20231117 23:32:36.551" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 23:32:35.549" endtime="20231117 23:32:36.551"/>
 </kw>
-<kw name="Select From List By Index" library="SeleniumLibrary">
-<arg>id:select-priority</arg>
-<arg>2</arg>
-<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
-<msg timestamp="20231117 23:16:11.864" level="INFO">Selecting options from selection list 'id:select-priority' by index 2.</msg>
-<status status="PASS" starttime="20231117 23:16:11.862" endtime="20231117 23:16:12.278"/>
+<status status="PASS" starttime="20231117 23:32:29.649" endtime="20231117 23:32:36.552"/>
 </kw>
+<kw name="When want to check a priority">
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>id:report-3</arg>
+<arg>MEDIA</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20231117 23:32:36.636" level="INFO">Element 'id:report-3' contains text 'MEDIA'.</msg>
+<status status="PASS" starttime="20231117 23:32:36.553" endtime="20231117 23:32:36.636"/>
+</kw>
+<status status="PASS" starttime="20231117 23:32:36.552" endtime="20231117 23:32:36.636"/>
+</kw>
+<kw name="Then the priority should be checked">
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231117 23:16:13.279" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231117 23:16:12.278" endtime="20231117 23:16:13.280"/>
+<msg timestamp="20231117 23:32:37.639" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 23:32:36.638" endtime="20231117 23:32:37.639"/>
 </kw>
-<status status="PASS" starttime="20231117 23:16:10.078" endtime="20231117 23:16:13.280"/>
-</kw>
-<kw name="Then the state of the report is changed">
-<kw name="Sleep" library="BuiltIn">
-<arg>1</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231117 23:16:14.282" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231117 23:16:13.281" endtime="20231117 23:16:14.282"/>
-</kw>
-<status status="PASS" starttime="20231117 23:16:13.280" endtime="20231117 23:16:14.283"/>
+<status status="PASS" starttime="20231117 23:32:36.637" endtime="20231117 23:32:37.639"/>
 </kw>
 <kw name="Finish Test" library="base" type="TEARDOWN">
 <kw name="Close Browser" library="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20231117 23:16:14.285" endtime="20231117 23:16:15.559"/>
+<status status="PASS" starttime="20231117 23:32:37.641" endtime="20231117 23:32:40.822"/>
 </kw>
-<status status="PASS" starttime="20231117 23:16:14.284" endtime="20231117 23:16:15.559"/>
+<status status="PASS" starttime="20231117 23:32:37.640" endtime="20231117 23:32:40.822"/>
 </kw>
-<doc>Go to the view report page and change the state of a report</doc>
-<status status="PASS" starttime="20231117 23:16:03.957" endtime="20231117 23:16:15.559"/>
+<status status="PASS" starttime="20231117 23:32:29.648" endtime="20231117 23:32:40.822"/>
 </test>
-<status status="PASS" starttime="20231117 23:16:03.679" endtime="20231117 23:16:15.561"/>
+<status status="PASS" starttime="20231117 23:32:29.391" endtime="20231117 23:32:40.824"/>
 </suite>
 <statistics>
 <total>
@@ -81,7 +62,7 @@
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Test Change State">Test Change State</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test Check Priority">Test Check Priority</stat>
 </suite>
 </statistics>
 <errors>
