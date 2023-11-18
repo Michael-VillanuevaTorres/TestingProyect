@@ -67,6 +67,6 @@ Select Cambiar_producto_Desarolladores_2
 
 Select Reportes_del_desarollador_1
     
-    Click Button    id=developer1
+    Click Button    id=Reportes_asignado_developer1
     Sleep    1.5
     Sleep    1.5
