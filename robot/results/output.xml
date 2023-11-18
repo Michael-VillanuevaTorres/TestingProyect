@@ -1,88 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.10.12 on linux)" generated="20231117 18:17:17.507" rpa="false" schemaversion="4">
-<suite id="s1" name="Test Reassignment Button" source="/home/sanhue_903/code/college/TestingProyect/robot/tests/developer/test_reassignment_button.robot">
-<test id="s1-t1" name="Reasign Report" line="8">
-<kw name="INIT APP" library="base" type="SETUP">
+<robot generator="Robot 6.1.1 (Python 3.10.12 on linux)" generated="20231117 23:16:03.677" rpa="false" schemaversion="4">
+<suite id="s1" name="Test Change State" source="/home/sanhue_903/code/college/TestingProyect/robot/tests/developer/test_change_state.robot">
+<test id="s1-t1" name="Change The State Of A Report" line="10">
+<kw name="Given a developer">
+<kw name="Init App" library="base">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>http://localhost:5173/dev</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20231117 18:17:17.910" level="INFO">Opening browser 'firefox' to base url 'http://localhost:5173/dev'.</msg>
-<status status="PASS" starttime="20231117 18:17:17.906" endtime="20231117 18:17:23.625"/>
+<msg timestamp="20231117 23:16:03.962" level="INFO">Opening browser 'firefox' to base url 'http://localhost:5173/dev'.</msg>
+<status status="PASS" starttime="20231117 23:16:03.961" endtime="20231117 23:16:09.045"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20231117 18:17:23.625" endtime="20231117 18:17:23.634"/>
+<status status="PASS" starttime="20231117 23:16:09.046" endtime="20231117 23:16:09.076"/>
 </kw>
-<status status="PASS" starttime="20231117 18:17:17.905" endtime="20231117 18:17:23.634"/>
+<status status="PASS" starttime="20231117 23:16:03.961" endtime="20231117 23:16:09.076"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231117 18:17:24.635" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231117 18:17:23.634" endtime="20231117 18:17:24.636"/>
+<msg timestamp="20231117 23:16:10.077" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 23:16:09.076" endtime="20231117 23:16:10.077"/>
 </kw>
-<kw name="Get Table Cell" library="SeleniumLibrary">
-<var>${report_id}</var>
-<arg>id:dev-1</arg>
+<status status="PASS" starttime="20231117 23:16:03.959" endtime="20231117 23:16:10.078"/>
+</kw>
+<kw name="When he go to a report view a change the state of a report">
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>id:link-3</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20231117 23:16:10.080" level="INFO">Clicking link 'id:link-3'.</msg>
+<status status="PASS" starttime="20231117 23:16:10.079" endtime="20231117 23:16:10.860"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 23:16:11.861" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 23:16:10.861" endtime="20231117 23:16:11.862"/>
+</kw>
+<kw name="Select From List By Index" library="SeleniumLibrary">
+<arg>id:select-priority</arg>
 <arg>2</arg>
-<arg>8</arg>
-<doc>Returns contents of a table cell.</doc>
-<msg timestamp="20231117 18:17:24.741" level="INFO">${report_id} = 3</msg>
-<status status="PASS" starttime="20231117 18:17:24.636" endtime="20231117 18:17:24.741"/>
-</kw>
-<kw name="Click Button" library="SeleniumLibrary">
-<arg>id:request-${report_id}</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20231117 18:17:24.742" level="INFO">Clicking button 'id:request-3'.</msg>
-<status status="PASS" starttime="20231117 18:17:24.741" endtime="20231117 18:17:25.046"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>id:reassign-reason</arg>
-<arg>Input text test</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20231117 18:17:25.048" level="INFO">Typing text 'Input text test' into text field 'id:reassign-reason'.</msg>
-<status status="PASS" starttime="20231117 18:17:25.047" endtime="20231117 18:17:25.127"/>
-</kw>
-<kw name="Click Button" library="SeleniumLibrary">
-<arg>id:send-reason</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20231117 18:17:25.128" level="INFO">Clicking button 'id:send-reason'.</msg>
-<status status="PASS" starttime="20231117 18:17:25.128" endtime="20231117 18:17:25.564"/>
+<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
+<msg timestamp="20231117 23:16:11.864" level="INFO">Selecting options from selection list 'id:select-priority' by index 2.</msg>
+<status status="PASS" starttime="20231117 23:16:11.862" endtime="20231117 23:16:12.278"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20231117 18:17:26.566" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20231117 18:17:25.565" endtime="20231117 18:17:26.566"/>
+<msg timestamp="20231117 23:16:13.279" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 23:16:12.278" endtime="20231117 23:16:13.280"/>
 </kw>
-<kw name="Page Should Not Contain Element" library="SeleniumLibrary">
-<arg>id:request-${report_id}</arg>
-<doc>Verifies that element ``locator`` is not found on the current page.</doc>
-<msg timestamp="20231117 18:17:26.735" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-18.png"&gt;&lt;img src="selenium-screenshot-18.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20231117 18:17:26.736" level="FAIL">Page should not have contained element 'id:request-3'.</msg>
-<status status="FAIL" starttime="20231117 18:17:26.567" endtime="20231117 18:17:26.740"/>
+<status status="PASS" starttime="20231117 23:16:10.078" endtime="20231117 23:16:13.280"/>
+</kw>
+<kw name="Then the state of the report is changed">
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 23:16:14.282" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 23:16:13.281" endtime="20231117 23:16:14.282"/>
+</kw>
+<status status="PASS" starttime="20231117 23:16:13.280" endtime="20231117 23:16:14.283"/>
 </kw>
 <kw name="Finish Test" library="base" type="TEARDOWN">
 <kw name="Close Browser" library="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20231117 18:17:26.742" endtime="20231117 18:17:28.088"/>
+<status status="PASS" starttime="20231117 23:16:14.285" endtime="20231117 23:16:15.559"/>
 </kw>
-<status status="PASS" starttime="20231117 18:17:26.741" endtime="20231117 18:17:28.088"/>
+<status status="PASS" starttime="20231117 23:16:14.284" endtime="20231117 23:16:15.559"/>
 </kw>
-<doc>Reasign a report to another developer</doc>
-<status status="FAIL" starttime="20231117 18:17:17.904" endtime="20231117 18:17:28.088">Page should not have contained element 'id:request-3'.</status>
+<doc>Go to the view report page and change the state of a report</doc>
+<status status="PASS" starttime="20231117 23:16:03.957" endtime="20231117 23:16:15.559"/>
 </test>
-<status status="FAIL" starttime="20231117 18:17:17.512" endtime="20231117 18:17:28.090"/>
+<status status="PASS" starttime="20231117 23:16:03.679" endtime="20231117 23:16:15.561"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Test Reassignment Button">Test Reassignment Button</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test Change State">Test Change State</stat>
 </suite>
 </statistics>
 <errors>
