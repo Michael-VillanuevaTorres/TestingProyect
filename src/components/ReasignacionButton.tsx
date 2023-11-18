@@ -99,7 +99,7 @@ const ReasignacionButton: React.FunctionComponent<IReasignacionButtonProps> = ({
   
   return (
     <>
-      <Button variant="success" onClick={handleShow}>
+      <Button className={'boton-reasignacion-'+id_report} variant="success" onClick={handleShow}>
         Reasignacion
       </Button>
 

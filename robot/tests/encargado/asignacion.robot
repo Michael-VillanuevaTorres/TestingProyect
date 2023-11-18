@@ -14,12 +14,14 @@ Test Teardown  Close Browser
 This is my first test case
     [Documentation]  Test for "encargado"
     [Tags]  Functional
-    
+    # Given: El encargado esta en su vista principal y puede ver la tabla asignacion
     Open Browser  http://localhost:5173/Asignacion  Firefox
     Maximize Browser Window
     Select Cambiar_producto_Asignacion
+    # When : Se asigna un reporte a un desarollador
     Sleep    1
     Select Asignacion
+    # Then: Se agrega el producto a el desarollador y se elimina de la tabla de asignacion
     Select Cambiar_producto_Asignacion
     Select VerificarAsignacion
     Reload Page
@@ -33,33 +35,14 @@ Select Asignacion
     Select From List By Value    name:developer  1
     Sleep    1
     Click Button    id:enviar-asignacion
-    Sleep    1
-    Reload Page
+    Sleep    2
+    Select VerificarAsignacion
     Sleep    1
 
 Select VerificarAsignacion
-    Mouse Down  class:row-developer1
-    Element Should Contain  num_reportes1   1(1)
-Select VerReporte
-    Click Link   id:reporte-1
-    Sleep    1
+    Mouse Down  id:row-developer1
+    Element Should Contain  class:num_reportes1   1 (1)
 
-Select MisReportes
-    
-    Click Link    id:todos_reportes_bar
-    Sleep    1
-
-Select Cambiar_producto_1
-    
-    Click Button  id:dropdown-listaReportesEnc   
-    Sleep    1.5
-    Click Link   id:producto-1 
-    Sleep    1
-Select Cambiar_producto_2
-    Click Button  id:dropdown-listaReportesEnc 
-    Sleep    1.5
-    Click Link   id:producto-2
-    Sleep    1 
 
 Select Cambiar_producto_Asignacion
     
@@ -68,37 +51,4 @@ Select Cambiar_producto_Asignacion
     Select From List By Value   id:producto_asignacion    2
     Sleep    1
     Select From List By Value   id:producto_asignacion    1 
-
-Select PrioridadBaja
-    
-    Click Button    id:dropdown-prioridad-report1
-    Sleep    1
-    Click Link    id:Baja
-    Sleep    1
-    Sleep    1
-    Reload Page
-    Sleep    1
-    Element Text Should Be  id:Baja1  BAJA  
-    
-
-
-Select PrioridadAlta
-    
-    Click Button    id:dropdown-prioridad-report1
-    Sleep    1
-    Click Link    id:Alta
-    Sleep    1
-    Sleep    1
-    Reload Page
-    Sleep    1
-    Element Text Should Be  id:Alta1  ALTA
-
-Select Conmentario
-    
-    Input Text    id:comentarios    Primer comentario
-    Sleep    1
-    Sleep    1
-    Click Button    id:submit
-    Sleep    1
-    Sleep    1
 

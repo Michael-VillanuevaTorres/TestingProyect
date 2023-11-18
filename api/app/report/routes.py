@@ -19,42 +19,6 @@ from app.models.user import User
 
 from app.product.routes import add_developer_product
 
-desarrolladores_fake = [
-    "Desarrollador 1",
-    "Desarrollador 2",
-]
-desarrolladores_fake2 = [
-    "Desarrollador 3",
-    "Desarrollador 4",
-]
-
-# Generar clientes
-clientes_fake = [
-    "Cliente 1",
-    "Cliente 2",
-    "Cliente 3",
-]
-
-# Generar productos
-productos_fake = [
-    "Producto 1",
-    "Producto 2",
-    "Producto 3",
-    "Producto 4",
-]
-emailcliente_fake = [
-    "email1@example.com",
-    "email2@example.com", 
-    "email3@example.com"
-]
-emaildesarrollador_fake =[
-    "desarrollador1@example.com"
-    "desarrollador2@example.com",
-]
-emaildesarrollador_fake2 =[
-    "desarrollador3@example.com",
-    "desarrollador4@example.com"
-]
 
 
 @app.route('/add/comment', methods=['POST'])
@@ -292,10 +256,8 @@ def generate_fake_data():
     # Developers
     default_developer = Developer(name="default_developer", email='default@email.com', id_role=1)
     default_developer2 = Developer(name="default_developer2", email='default2@email.com', id_role=1)
-    default_developer3 = Developer(name="default_developer3", email='default3@email.com', id_role=2)
     db.session.add(default_developer)
     db.session.add(default_developer2)
-    db.session.add(default_developer3)
 
     # Commit changes
     db.session.commit()
@@ -310,6 +272,7 @@ def generate_fake_data():
     db.session.commit()
 
     default_product.id_developer = 1
+    default_product2.id_developer = 1
     default_product2.id_developer = 1  
 
 
@@ -322,6 +285,12 @@ def generate_fake_data():
     
     # RelationshipDeveloperProduct
     default_relationship = RelationshipDeveloperProduct( id_developer=1,id_product=1)
+    db.session.add(default_relationship)
+    default_relationship = RelationshipDeveloperProduct( id_developer=2,id_product=1)
+    db.session.add(default_relationship)
+    default_relationship = RelationshipDeveloperProduct( id_developer=1,id_product=2)
+    db.session.add(default_relationship)
+    default_relationship = RelationshipDeveloperProduct( id_developer=2,id_product=2)
     db.session.add(default_relationship)
     
     # States
@@ -349,9 +318,6 @@ def generate_fake_data():
     db.session.add(default_report2)
     # Commit changes
     db.session.commit()
-
-    default_report.id_state = 1
-    default_report2.id_state = 1  
 
 
     # Commit changes

@@ -66,7 +66,7 @@ const Reasignacion: React.FunctionComponent<IReasignacionProps> = (props) => {
 
   const reports = datos.map((reports:reporte) => {
     return {
-      titulo:<Button href={"/VerReporteEnv/"+reports.id_report}  variant="link">{reports.report_title}</Button>, 
+      titulo:<Button className={'titulo-reasignacion-'+reports.id_report} href={"/VerReporteEnv/"+reports.id_report}  variant="link">{reports.report_title}</Button>, 
       desarollador: reports.developer_name,
       prioridad_a: nombreP(reports.id_prioridad),
       asignacion:<ReasignacionButton id_producto={id_product} id_report ={reports.id_report} id_developer={reports.id_developer} developer_name={reports.developer_name} date={reports.date} motivo={reports.motivo} ></ReasignacionButton>
@@ -131,7 +131,7 @@ const Reasignacion: React.FunctionComponent<IReasignacionProps> = (props) => {
                   </Card.Title>
                 </div>
                 <div >
-                  <select name="Producto" onChange={selectChange} >
+                  <select id='producto_reasignacion' name="Producto" onChange={selectChange} >
                   {products.map((product) => (
                     <option key={product.id} value={product.id}>
                       {product.nombre}

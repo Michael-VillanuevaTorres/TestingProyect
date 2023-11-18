@@ -119,7 +119,7 @@ const Reportes_sin_Asignar: React.FunctionComponent<IReportes_sin_AsignarProps> 
   const reports = filteredReports.map((reports:reporte) => {
     return {
       id_state:reports.id_state,
-      titulo:<Button id="titulo_reasignacion" href={"/VerReporteEnv/"+reports.id} variant="link">{reports.title}</Button>, 
+      titulo:<Button id={"reporte-"+reports.id} href={"/VerReporteEnv/"+reports.id} variant="link">{reports.title}</Button>, 
       prioridad: getPrioridadNombre(reports.id_priority,reports.id),
       likes:reports.likes,
       asignacion:<AsignacionButton  id_report ={reports.id}  ></AsignacionButton>,
@@ -210,7 +210,7 @@ const Reportes_sin_Asignar: React.FunctionComponent<IReportes_sin_AsignarProps> 
                   <MDBTableHead  columns={data.columns} />
                   <MDBTableBody>
                     {data.rows.filter((row) => row).map((row, index) => (
-                      <tr className={"row-state-asignacion"+row.id_state} key={index} data-custom="hidden data">
+                      <tr className={"producto"+id_product}  key={index} data-custom="hidden data">
                         <td>{row.titulo}</td>
                         <td>{row.prioridad}</td>
                         <td>{row.likes}</td>

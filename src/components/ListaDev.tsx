@@ -81,6 +81,7 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
       const num_rep = await fetchNumReports(dev.id);
 
       return {
+        
         id:dev.id,
         nombre: dev.name,
         email: dev.email,
@@ -178,7 +179,7 @@ const ListaDev: React.FunctionComponent<IListaDevProps> = (props) => {
                   <MDBTableHead  columns={data.columns} />
                   <MDBTableBody>
                     {data.rows.filter((row) => row).map((row, index) => (
-                      <tr className={"row-developer"+row.id} key={index} data-custom="hidden data">
+                      <tr id={"row-developer"+row.id} className={"producto_developer_"+id_product} key={index} data-custom="hidden data">
                         <td className={"nombre"+row.id} >{row.nombre}</td>
                         <td className={"email"+row.id}>{row.email}</td>
                         <td className={"num_reportes"+row.id}>{row.num_reportes}</td>

@@ -96,7 +96,7 @@ function CustomCardEnv(props: { bug: Bug }) {
   return (
     <div className="scroll-cards__item container-xl" aria-label="Wie - 1">
       <div className="card-header"></div>
-      <div className="card-body">
+      <div id={"verReporte"+ props.bug.id} className="card-body">
         <div className="bug-info-container">
         <div className="comp-comp"><DropdownPrioridad  id_report={props.bug.id}/></div>
         <div className="bug-state">
@@ -139,7 +139,7 @@ function CustomCardEnv(props: { bug: Bug }) {
           </div>
           {"   " + props.bug.likes+" likes"}
         </div>
-        <p className="titulardo">{props.bug.titulo}</p>
+        <p className={"titulardo"}>{props.bug.titulo}</p>
         <div>
         {getPrioridadNombre(props.bug.id_prioridad,props.bug.id)}
         </div>

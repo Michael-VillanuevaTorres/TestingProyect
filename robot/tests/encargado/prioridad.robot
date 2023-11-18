@@ -16,31 +16,54 @@ Test Teardown  Close Browser
 This is my first test case
     [Documentation]  Test for "encargado"
     [Tags]  Functional
-    
+    # Given: El encargado esta en su vista principal 
     Open Browser  http://localhost:5173/Asignacion  Firefox
     Maximize Browser Window
-    
-    Sleep    1
+    # When : Se cambia la prioridad en la vista principal
     Sleep    1
     Select Cambiar_producto_Asignacion
     Select PrioridadBaja
-    Select Cambiar_producto_Asignacion
-    Select PrioridadAlta
+    #Then: Se cambia la prioridad
+    Sleep    1
+    Select VerificarPrioridadBaja
+    Sleep    1
+
+    # Given : Se va a la vista de todos los reportes
     Select MisReportes
+    # When : Se cambia la prioridad en la vista de todos los reportes
     Select Cambiar_producto_Reporte
     Sleep    1
-    Select PrioridadBaja
-    Sleep    1
     Select PrioridadAlta
-    Reload Page
-    Sleep    1
+    #Then: Se cambia la prioridad
+    Sleep    1.5
+    Select VerificarPrioridadAlta
+    
+    # Given : Se va a la vista del reporte
     Select VerReporte
+    # When : Se cambia la prioridad en la vista del reporte
     Select PrioridadBaja
     Sleep    1
-    Select PrioridadAlta
-    Select Conmentario
+    #Then: Se cambia la prioridad
+    Select VerificarPrioridadBaja
+    Sleep    1
+    
 
 *** Keywords ***
+
+Select VerificarPrioridadAlta
+    Element Should Be Visible   id:Alta1   
+    Element Should Not Be Visible   id:No-asignado1  
+    Element Should Not Be Visible   id:Baja1  
+    Element Should Not Be Visible   id:Media1  
+
+Select VerificarPrioridadBaja
+    Element Should Be Visible    id:Baja1  
+    Element Should Not Be Visible   id:No-asignado1  
+    Element Should Not Be Visible   id:Alta1  
+    Element Should Not Be Visible   id:Media1  
+     
+
+
 
 Select VerReporte
     Click Link   id:reporte-1
@@ -51,10 +74,6 @@ Select MisReportes
     Click Link    id:todos_reportes_bar
     Sleep    1
 
-Select Asignacion
-    
-    Click Link    id:asignacion_bar
-    Sleep    1
 
 Select Cambiar_producto_Reporte
     
@@ -103,12 +122,5 @@ Select PrioridadAlta
     Sleep    1
     Element Text Should Be  id:Alta1  ALTA
 
-Select Conmentario
-    
-    Input Text    id:comentarios    Primer comentario
-    Sleep    1
-    Sleep    1
-    Click Button    id:submit
-    Sleep    1
-    Sleep    1
+
 

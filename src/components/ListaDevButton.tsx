@@ -161,8 +161,8 @@ const ListaDevButton: React.FunctionComponent<IListaDevButtonProps> = ({ id_dev,
     .filter((report :reporte) => report.id_product == (id_producto))
     .map((report: reporte) => {
       return {
-        titulo: <Button href={"/VerReporteEnv/" + report.id} variant="link">{report.title}</Button>,
-        prioridad: getPrioridadNombre(report.id_priority),
+        titulo: <Button className={'titulo'+report.id} href={"/VerReporteEnv/" + report.id} variant="link">{report.title}</Button>,
+        prioridad:  getPrioridadNombre(report.id_priority),
         likes: report.likes,
         fecha: report.date,
         producto: report.id_product,
@@ -210,7 +210,7 @@ const ListaDevButton: React.FunctionComponent<IListaDevButtonProps> = ({ id_dev,
 
   return (
     <>
-      <Button variant="success" onClick={handleShow}>
+      <Button id={"Reportes_asignado_developer"+id_dev} variant="success" onClick={handleShow}>
       Asignados
       </Button>
 
@@ -219,7 +219,7 @@ const ListaDevButton: React.FunctionComponent<IListaDevButtonProps> = ({ id_dev,
           <Modal.Title className="text-black">Reportes asignados al desarrollador {devInfo['name']} en el proyecto {productInfo['name']}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <MDBTable scrollY maxHeight='70vh'>
+        <MDBTable className={'reportes'+id_dev} scrollY maxHeight='70vh'>
                 <MDBTableHead columns={data.columns} />
                 <MDBTableBody rows={data.rows} />
         </MDBTable>
