@@ -14,16 +14,27 @@ def add_reassignment_petition():
     id_report = request.args.get('id_report')
     id_developer = request.args.get('id_developer')
     
-    db.report.query.get_or_404(id_report)
-    db.developer.query.get_or_404(id_developer)
+    db.get_or_404(Report, id_report)
+    db.get_or_404(Developer, id_developer)
     
-    if db.solicitud_reasignacion.query.filter_by(id_dev=id_developer,id_reporte = id_report).first() != None:
-        return jsonify({'message': 'The id_dev is already in the database'}), 400
-    commit_reassignment(id_report,id_developer, data['motivo'])
-    return jsonify({'message': 'solicitud de reasignacion agregada exitosamente.'}), 201
+    if db.session.scalar(db.select(Reassignment).where(Reassignment.id_developer==id_developer, Reassignment.id_report==id_report)) is None:
+        commit_reassignment(id_report,id_developer, data['motivo'])
+        return jsonify({'message': 'solicitud de reasignacion agregada exitosamente.'}), 201    
+    
+    return jsonify({'message': 'The id_report is already in the database'}), 400
+    
+    
+@app.route('/get', methods=['GET'])
+def get_reassignment():
+    id_report = request.args.get('id_report')
+    reassignment = db.session.scalar(db.select(Reassignment).where(Reassignment.id_report==id_report))
+    
+    return jsonify(reassignment.serialize()), 200
+    
 
 @app.route('/delete', methods=['DELETE'])
 def delete_reassignment_petition():
+
     pass
 
 @app.route('/product/all', methods=['GET'])

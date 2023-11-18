@@ -1,86 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.10.12 on linux)" generated="20231117 01:23:13.028" rpa="false" schemaversion="4">
-<suite id="s1" name="Test All Reports" source="/home/sanhue_903/code/college/TestingProyect/robot/tests/developer/test_all_reports.robot">
-<test id="s1-t1" name="Check All Report Of Product" line="7">
-<kw name="Given a developer in the view &quot;Todos los reportes&quot;">
-<kw name="INIT APP" library="base">
+<robot generator="Robot 6.1.1 (Python 3.10.12 on linux)" generated="20231117 18:17:17.507" rpa="false" schemaversion="4">
+<suite id="s1" name="Test Reassignment Button" source="/home/sanhue_903/code/college/TestingProyect/robot/tests/developer/test_reassignment_button.robot">
+<test id="s1-t1" name="Reasign Report" line="8">
+<kw name="INIT APP" library="base" type="SETUP">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>http://localhost:5173/dev</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20231117 01:23:13.346" level="INFO">Opening browser 'firefox' to base url 'http://localhost:5173/dev'.</msg>
-<status status="PASS" starttime="20231117 01:23:13.345" endtime="20231117 01:23:19.137"/>
+<msg timestamp="20231117 18:17:17.910" level="INFO">Opening browser 'firefox' to base url 'http://localhost:5173/dev'.</msg>
+<status status="PASS" starttime="20231117 18:17:17.906" endtime="20231117 18:17:23.625"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20231117 01:23:19.137" endtime="20231117 01:23:19.172"/>
+<status status="PASS" starttime="20231117 18:17:23.625" endtime="20231117 18:17:23.634"/>
 </kw>
-<status status="PASS" starttime="20231117 01:23:13.345" endtime="20231117 01:23:19.172"/>
+<status status="PASS" starttime="20231117 18:17:17.905" endtime="20231117 18:17:23.634"/>
 </kw>
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>id:dev-all-reports</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231117 01:23:19.174" level="INFO">Clicking link 'id:dev-all-reports'.</msg>
-<status status="PASS" starttime="20231117 01:23:19.172" endtime="20231117 01:23:20.671"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 18:17:24.635" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 18:17:23.634" endtime="20231117 18:17:24.636"/>
 </kw>
-<status status="PASS" starttime="20231117 01:23:13.342" endtime="20231117 01:23:20.671"/>
-</kw>
-<kw name="When the developer clicks a filter by product">
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>id:dev-all-reports</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231117 01:23:20.676" level="INFO">Clicking link 'id:dev-all-reports'.</msg>
-<status status="PASS" starttime="20231117 01:23:20.673" endtime="20231117 01:23:21.989"/>
+<kw name="Get Table Cell" library="SeleniumLibrary">
+<var>${report_id}</var>
+<arg>id:dev-1</arg>
+<arg>2</arg>
+<arg>8</arg>
+<doc>Returns contents of a table cell.</doc>
+<msg timestamp="20231117 18:17:24.741" level="INFO">${report_id} = 3</msg>
+<status status="PASS" starttime="20231117 18:17:24.636" endtime="20231117 18:17:24.741"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
-<arg>id:dropdown-button-dark</arg>
+<arg>id:request-${report_id}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20231117 01:23:21.991" level="INFO">Clicking button 'id:dropdown-button-dark'.</msg>
-<status status="PASS" starttime="20231117 01:23:21.990" endtime="20231117 01:23:22.458"/>
+<msg timestamp="20231117 18:17:24.742" level="INFO">Clicking button 'id:request-3'.</msg>
+<status status="PASS" starttime="20231117 18:17:24.741" endtime="20231117 18:17:25.046"/>
 </kw>
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>id:product-2</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20231117 01:23:22.460" level="INFO">Clicking link 'id:product-2'.</msg>
-<status status="PASS" starttime="20231117 01:23:22.459" endtime="20231117 01:23:22.708"/>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:reassign-reason</arg>
+<arg>Input text test</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231117 18:17:25.048" level="INFO">Typing text 'Input text test' into text field 'id:reassign-reason'.</msg>
+<status status="PASS" starttime="20231117 18:17:25.047" endtime="20231117 18:17:25.127"/>
 </kw>
-<status status="PASS" starttime="20231117 01:23:20.672" endtime="20231117 01:23:22.708"/>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:send-reason</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20231117 18:17:25.128" level="INFO">Clicking button 'id:send-reason'.</msg>
+<status status="PASS" starttime="20231117 18:17:25.128" endtime="20231117 18:17:25.564"/>
 </kw>
-<kw name="Then the table of all reports of the product are filtered">
-<kw name="Page Should Contain Element" library="SeleniumLibrary">
-<arg>class:product-2</arg>
-<doc>Verifies that element ``locator`` is found on the current page.</doc>
-<msg timestamp="20231117 01:23:22.717" level="INFO">Current page contains element 'class:product-2'.</msg>
-<status status="PASS" starttime="20231117 01:23:22.709" endtime="20231117 01:23:22.717"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231117 18:17:26.566" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231117 18:17:25.565" endtime="20231117 18:17:26.566"/>
 </kw>
 <kw name="Page Should Not Contain Element" library="SeleniumLibrary">
-<arg>class:product-1</arg>
+<arg>id:request-${report_id}</arg>
 <doc>Verifies that element ``locator`` is not found on the current page.</doc>
-<msg timestamp="20231117 01:23:22.723" level="INFO">Current page does not contain element 'class:product-1'.</msg>
-<status status="PASS" starttime="20231117 01:23:22.717" endtime="20231117 01:23:22.724"/>
-</kw>
-<status status="PASS" starttime="20231117 01:23:22.709" endtime="20231117 01:23:22.724"/>
+<msg timestamp="20231117 18:17:26.735" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-18.png"&gt;&lt;img src="selenium-screenshot-18.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20231117 18:17:26.736" level="FAIL">Page should not have contained element 'id:request-3'.</msg>
+<status status="FAIL" starttime="20231117 18:17:26.567" endtime="20231117 18:17:26.740"/>
 </kw>
 <kw name="Finish Test" library="base" type="TEARDOWN">
 <kw name="Close Browser" library="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20231117 01:23:22.725" endtime="20231117 01:23:23.996"/>
+<status status="PASS" starttime="20231117 18:17:26.742" endtime="20231117 18:17:28.088"/>
 </kw>
-<status status="PASS" starttime="20231117 01:23:22.724" endtime="20231117 01:23:23.996"/>
+<status status="PASS" starttime="20231117 18:17:26.741" endtime="20231117 18:17:28.088"/>
 </kw>
-<doc>Check all reports of a product are filtered in the view of the link "Todos los reportes"</doc>
-<status status="PASS" starttime="20231117 01:23:13.341" endtime="20231117 01:23:23.996"/>
+<doc>Reasign a report to another developer</doc>
+<status status="FAIL" starttime="20231117 18:17:17.904" endtime="20231117 18:17:28.088">Page should not have contained element 'id:request-3'.</status>
 </test>
-<status status="PASS" starttime="20231117 01:23:13.032" endtime="20231117 01:23:23.997"/>
+<status status="FAIL" starttime="20231117 18:17:17.512" endtime="20231117 18:17:28.090"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Test All Reports">Test All Reports</stat>
+<stat pass="0" fail="1" skip="0" id="s1" name="Test Reassignment Button">Test Reassignment Button</stat>
 </suite>
 </statistics>
 <errors>

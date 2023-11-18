@@ -12,12 +12,15 @@ Check All Report Of Product
     
 *** Keywords ***
 Given a developer in the view "Todos los reportes"
-    base.INIT APP
+    base.Init App
     Click Link  id:dev-all-reports
+    Sleep  1
 
 When the developer clicks a filter by product
     Click Link  id:dev-all-reports
+    Sleep  1
     Click Button  id:dropdown-button-dark
+    Sleep  1
     Click Link  id:product-2
 
 Then the table of all reports of the product are filtered

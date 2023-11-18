@@ -238,14 +238,17 @@ const ReportesDev: React.FunctionComponent<IReportesDev> = (props) => {
           <div style={{ width: "75rem", height: "36rem", overflowY: "scroll" }}>
             <MDBTable id={`dev-${id_dev}`}>
               <MDBTableHead columns={data.columns} />
-              <MDBTableBody rows={data.rows} >
+              <MDBTableBody >
                 {data.rows.map((row, index) => (
                   <tr key={index} id={`report-${row.id}`} data-custom="hidden data">
-                    <td>{row.titulo}</td>
+                    <td id={`link-${row.id}`}>{row.titulo}</td>
                     <td>{row.prioridad}</td>
                     <td>{row.estado}</td>
                     <td>{row.likes}</td>
                     <td>{row.fecha}</td>
+                    <td>{row.producto}</td>
+                    <td>{row.solicitud}</td>
+                    <td>{row.id}</td>
                   </tr>
                 ))}
               </MDBTableBody>

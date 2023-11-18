@@ -101,7 +101,7 @@ function CustomCardDev(props: { bug: Bug }) {
       <div className="card-body">
         <div className="bug-info-container">
           <div className="bug-state">
-            <select
+            <select id="select-priority"
               className="bug-state-select"
               value={bugState}
               onChange={handleBugStateChange}

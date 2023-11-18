@@ -48,10 +48,11 @@ const SolicitudButton: React.FunctionComponent<ISolicitudButtonProps> = ({
     }
   };
 
+
   return (
     <>
       <Button
-        id="request-reassignment-button"
+        id={`request-${id_report}`}
         variant="success"
         onClick={handleShow}
         disabled={isButtonDisabled}
