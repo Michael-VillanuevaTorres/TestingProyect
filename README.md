@@ -27,6 +27,16 @@ Tener instalado node 18.15.00
 1. Hacer `npm install` para instalar las dependecias
 2. Correr  el frontend con `npm dev run`
 
+#######################################################3
+### Test de aceptación
+Para realizar los tests se tiene que instalar en el ambiente virtual 
+`pip install robotframework`
+`pip install robotframework-selenium2library`
+
+luego en la carpeta `robot` realizar:
+`robot -d results tests/test.robot`
+*cambiar tests/test por directorio y nombre del test correspondiente
+
 REQUERIMIENTOS:
 Ing Soft IITema: Bug Tracker
 
